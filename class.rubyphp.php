@@ -4,6 +4,38 @@
  * 
  * HERE. Let's make a map of the functions that I want to write for this class.
  * 
+ * 
+ * *** NUMBERS ***
+ * isMoney()
+ * even()
+ * odd()
+ * gcd() <-- Greatest common denominator
+ * int() <-- Is an integer?
+ * round( $places )
+ * multiply( $times );
+ * abs()
+ * infinite()
+ * NaN()
+ * zero()
+ * round()
+ * 
+ * *** ARRAYS ***
+ * first()
+ * last()
+ * index( $num )
+ * sort()
+ * push()
+ * rotate()
+ * sample()
+ * select()
+ * shuffle()
+ * slice()
+ * uniq()
+ * zip()
+ * 
+ * 
+ * *** MISCELLANEOUS ***
+ * 
  * toJSON()
  * fromJSON()
  * serialize()
@@ -43,36 +75,157 @@
  * each()
  * hash()
  * eql()
- * 
- * *** NUMBERS ***
- * isMoney()
- * even()
- * odd()
- * gcd() <-- Greatest common denominator
- * int() <-- Is an integer?
- * round( $places )
- * multiply( $times );
- * abs()
- * infinite()
- * NaN()
- * zero()
- * round()
- * 
- * *** ARRAYS ***
- * first()
- * last()
- * index( $num )
- * sort()
- * push()
- * rotate()
- * sample()
- * select()
- * shuffle()
- * slice()
- * uniq()
- * zip()
- * 
  **/
+
+$functions = array(
+	"utility" => array(
+		"exception" => array(
+			"Exception Object",
+			"msg"
+		),
+		"responds_to" => array(
+			"function"
+		),
+		"showObject",
+		"val",
+		"toJSON",
+		"fromJSON",
+		"serialize",
+		"unserialize",
+		"dump",
+		"destroy",
+		"secure" => array(
+			"mode"
+		),
+		"md5",
+		"sha1",
+		"escape",
+		"to_s",
+		"to_f",
+		"to_i",
+		"to_int"
+	),
+	"strings" => array(
+		"flip",
+		"to_s",
+		"length",
+		"capitalize" => array(
+			"type"
+		)
+	),
+	"arrays" => array(
+		"first",
+		"last",
+		"index" => array(
+			"index"
+		),
+		"sort" => array(
+			"key",
+			"type"
+		),
+		"push" => array(
+			"item",
+			"location"
+		),
+		"rotate",
+		"sample",
+		"select" => array(
+			"index"
+		),
+		"shuffle",
+		"slice" => array(
+			"start",
+			"count",
+			"end"
+		),
+		"uniq",
+		"zip"
+	),
+	"numbers" => array(
+		"isMoney" => array(
+			"symbol = '$'",
+			"decimal = '.'"
+		),
+		"even",
+		"odd",
+		"gcd" => array(
+			"comparison"
+		),
+		"int",
+		"round" => array(
+			"place"
+		),
+		"multiply" => array(
+			"times"
+		),
+		"abs",
+		"infinite",
+		"NaN",
+		"zero"
+	),
+	"ruby-specific" => array(
+		"concat" => array(
+			"value",
+			"position = end"
+		),
+		"prepend" => array(
+			"value"
+		),
+		"downcase",
+		"each_char" => array(
+			"function"
+		),
+		"hex",
+		"index" => array(
+			"key"
+		),
+		"match" => array(
+			"regex"
+		),
+		"succ",
+		"reverse",
+		"swapcase",
+		"each",
+		"hash" => array(
+			"mode"
+		),
+		"eql" => array(
+			"comparison"
+		)
+	),
+	"miscellaneous" => array(
+		"trim",
+		"delete" => array(
+			"index"
+		),
+		"explode" => array(
+			"delimiter"
+		),
+		"implode" => array(
+			"delimiter"
+		),
+		"repeat" => array(
+			"times"
+		),
+		"replace" => array(
+			"regex",
+			"value"
+		),
+		"shuffle",
+		"count" => array(
+			"recursive = 0"
+		),
+		"comp" => array(
+			"comparison"
+		),
+		"slashes" => array(
+			"mode"
+		),
+		"pos" => array(
+			"key"
+		)
+	)
+);
 
 /**
  * I would call this class RubyPHP, but in an effort to make development with this class more efficient, I figured writing $foo = new RubyPHP("$string") a thousand times wasn't worth it.
@@ -84,10 +237,41 @@
  */
 class r {
 
+	/**
+	* First we declare all our publicly accessible variables for each data type. These will be accessible by $foo->$var. 
+	* 
+	* ex:
+	* $foo = new r("$string");
+	* print $foo->length;
+	* print $foo->even;
+	* print $foo-slashes;
+	* 
+	* etc..
+	* */
+
+	var $to_s;
+	var $to_f;
+	var $to_i;
+	var $to_int;
+	var $length;
+	var $capitalize;
+	var $count;
+	var $isMoney;
+	var $even;
+	var $odd;
+	var $reverse;
+	var $md5;
+	var $sha1;
+	var $val;
+	var $trim;
+	var $slashes;
+	var $flipArray;
+
 	function __construct( $item ) {
 
 		$this->self = $item;
 		$this->value = $item;
+		$this->val = $this->value;
 		$this->origVal = $this->value;
 		$this->buildObject();
 
@@ -103,11 +287,11 @@ class r {
 	 * @param string $msg - The message that was thrown
 	 * @return void
 	 * */
-	public final function exception( Exception $e ) {
+	public final function exception( Exception $e , $msg ) {
 
 		print "#######################################";
 
-		print "Exception: {$e->getMessage} \n";
+		print "Exception: $msg \n";
 
 		print "Stack Trace is as follows: \n <pre>";
 
@@ -117,6 +301,11 @@ class r {
 
 	}
 
+/******************************************************
+ * 
+ * 			UTILITY FUNCTIONS
+ * 
+ * ****************************************************/
 	/**
 	 * Just a plain utility function to deal with errors. 
 	 * 
@@ -179,10 +368,8 @@ class r {
 				case "array":
 					$this->buildArray();
 					break;
+				// If it is an object, empty or null type or is otherwise not on this list, we spit it back out. OOPSIES
 				case "object":
-					$this->buildObj();
-					break;
-				// If it is an empty or null type or is otherwise not on this list, we spit it back out. OOPSIES
 				case null:
 				default: 
 					throw new exception("Invalid argument or item supplied to RubyPHP. Please try again.");
@@ -190,9 +377,25 @@ class r {
 			}	
 		} catch( Exception $e ) {
 
-			$this->exception( $e );
+			$this->exception( $e , $e->getMessage() );
 
 		}
+	}
+
+	/**
+	 * With every object instantiation, let's build the basic data that will be present for every single type of value.
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return void
+	 **/
+	private final function runMethods() {
+
+		foreach( $this->methods as $k ) {
+			//$this->$k = $this->$k();
+		}
+
 	}
 
 	/**
@@ -208,7 +411,7 @@ class r {
 		$this->value = ( $this->self ) ? 1 : 0;
 		$this->valueString = ( $this->value ) ? "true" : "false";
 		$this->methods = array("flip","to_s","length");
-
+		$this->runMethods();
 		return $this->value;
 	}
 
@@ -225,7 +428,10 @@ class r {
 		$this->valueString = $this->value;
 		$this->length = strlen( $this->value );
 		$this->chars = str_split( $this->value );
+		$this->flip = $this->flip();
 		$this->methods = array("flip","to_s","length","capitalize","lowercase","capFirst");
+		$this->runMethods();
+		return $this->value;
 
 	}
 
@@ -239,8 +445,12 @@ class r {
 	 * */
 	private final function buildInteger() {
 
-
-
+		$this->valueString = $this->to_s($this->value);
+		$this->length = strlen( $this->value );
+		$this->chars = str_split((string)$this->value);
+		$this->methods = array("isMoney","even","odd","gcd","int","round","multiply","abs","infinite","NaN","zero");
+		$this->runMethods();
+		return $this->value;
 	}
 
 	/**
@@ -253,7 +463,11 @@ class r {
 	 * */
 	private final function buildDouble() {
 
-
+		$this->valueString = $this->to_s();
+		$this->to_s = $this->to_s();
+		$this->length = $this->length();
+		$this->runMethods();
+		return $this->value;
 
 	}
 
@@ -267,22 +481,12 @@ class r {
 	 * */
 	private final function buildArray() {
 
-
-
-	}
-
-	/**
-	 * Still going. Now we're building the "object" object.
-	 * 
-	 * @package RubyPHP
-	 * @author Pierce Moore
-	 * 
-	 * @return boolean
-	 * */
-	private final function buildObj() {
-
-
-
+		$this->valueString = null;
+		$this->length = $this->length();
+		$this->flip = $this->flip();
+		$this->methods = array("first","last","index","sort","push","rotate","sample","select","shuffle","slice","uniq","zip");
+		$this->runMethods();
+		return $this->value;
 	}
 
 	/**
@@ -309,7 +513,30 @@ class r {
 	 **/
 	public final function flip() {
 
-		// Placeholder so I don't forget!
+		try {
+
+			switch( $this->type ) {
+
+				case "boolean":
+					return !$this->value;
+					break;
+				case "string":
+					for( $i = ( count( $this->chars ) - 1) ; $i >= 0 ; $i-- ) {
+						$data[] = $this->chars[$i];
+					}
+					$this->flipArray = $data;
+					return implode($data);
+					break;
+				case "array":
+					$this->flipArray = array_reverse( $this->value );
+					return $this->flipArray;
+					break;
+				default:
+					return null;
+			}
+		} catch( Exception $e ) {
+			$this->exception( $e , $e->getMessage() );
+		}
 
 	}
 
@@ -319,12 +546,53 @@ class r {
 	 * @package RubyPHP
 	 * @author Pierce Moore
 	 * 
-	 * @return mixed
+	 * @return string
 	 **/
 	public final function to_s() {
 
-		// Another placeholder!
 		return (string)$this->value;
+
+	}
+
+	/**
+	 * Returns the integer version of the object's value. 
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return int
+	 **/
+	public final function to_i() {
+
+		return (int)$this->value;
+
+	}
+
+	/**
+	 * Returns the integer version of the object's value. ## DIFFERENT SYNTAX ##
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return int
+	 **/
+	public final function to_int() {
+
+		return (int)$this->value;
+
+	}
+
+	/**
+	 * Returns the floating point decimal version of the object's value.
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return float
+	 **/
+	public final function to_f() {
+
+		return (float)$this->value;
 
 	}
 
@@ -336,9 +604,16 @@ class r {
 	 * 
 	 * @return int
 	 **/
-	public final function length() {
+	public final function length( $mode = COUNT_NORMAL ) {
 
-		// PLACEHOLDER BRAHHHHHH
+		if( !is_array( $this->value )) {
+
+			return strlen( (string)$this->value );
+
+		} else if (is_array( $this->value )) {
+
+			return count( $this->value , $mode );
+		}
 
 	}
 
@@ -353,31 +628,49 @@ class r {
 	 **/
 	public final function capitalize( $type ) {
 
-		// Placeholder so I don't forget!
+		try {
+
+			switch( $type ) {
+
+				case "first":
+					return ucfirst( strtolower( $this->value ));
+					break;
+				case "all":
+					return strtoupper( $this->value );
+					break;
+				case "none":
+					return strtolower( $this->value );
+					break;
+				case "words":
+					return ucwords( strtolower( $this->value ));
+					break;
+				default: 
+					throw new exception("Invalid capitalization mode supplied. 'first', 'all', 'none', and 'words' are acceptable.");
+			}
+
+		} catch( Exception $e ) {
+
+			$this->exception( $e , $e->getMessage() );
+
+		}
+
+	}
+
+	/**
+	 * Returns the first item in an array
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return mixed
+	 **/
+	public final function first() {
+
+		// PLACEHOLDER BRAHHHHHH
 
 	}
 
 }
 
-print "<html><head></head><body style=\"background: #cccccc;\"><div style=\"width: 500px;min-height: 300px; padding: 25px; margin: 50px auto; border: 1px #999999 solid; background: #eeeeee;\">";
-
-$a = new r(true);
-$b = new r("Pierce");
-print_r($b->chars);
-//$secure = $b->md5();
-// laksjdlkj1290odnlokjslakdj012in
-// 1234.50
-//$c->isMoney();
-$c = new r(1234);
-//$c->isMoney();
-// $1,234.00
-print $c->val() . " , type: " . gettype( $c->val() ) . "<br />";
-print $c->to_s() . " , type: " . gettype( $c->to_s() ) . "<br />";
-$d = new r(12.34);
-$e = new r(new stdclass);
-$f = new r(array('thingOne'=>"Thing one!", "thingTwo"=>"Thing two yay!", "three" , "four"));
-//print $r->flip();
-
-print "</pre><div style=\"clear:both;\"></div></div></body></html>";
 
 ?>
