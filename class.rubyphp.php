@@ -90,8 +90,8 @@ $functions = array(
 		"val",
 		"toJSON",
 		"fromJSON",
-		"serialize",
-		"unserialize",
+		"serial",
+		"unserial",
 		"dump",
 		"destroy",
 		"secure" => array(
@@ -158,7 +158,7 @@ $functions = array(
 		"multiply" => array(
 			"times"
 		),
-		"abs",
+		"absVal",
 		"infinite",
 		"NaN",
 		"zero"
@@ -227,6 +227,7 @@ $functions = array(
 	)
 );
 
+
 /**
  * I would call this class RubyPHP, but in an effort to make development with this class more efficient, I figured writing $foo = new RubyPHP("$string") a thousand times wasn't worth it.
  * 
@@ -266,6 +267,87 @@ class r {
 	var $trim;
 	var $slashes;
 	var $flipArray;
+
+	var $allowedMethods = array(
+		"boolean" => array(
+			"val",
+			"flip",
+			"to_s",
+			"length"
+		),
+		"string" => array(
+			"val",
+			"flip",
+			"to_s",
+			"length",
+			"capitalize",
+			"lowercase",
+			"capFirst",
+			"toJSON",
+			"fromJSON",
+			"dump",
+			"secure",
+			"sha1",
+			"md5",
+			"escape",
+			"to_int",
+			"to_i",
+			"to_f",
+			"first",
+			"last",
+			"index",
+			"sort",
+			"push",
+			"sample",
+			"rotate",
+			"select",
+			"shuffle",
+			"slice"
+		),
+		"integer" => array(
+			"val",
+			"isMoney",
+			"even",
+			"odd",
+			"gcd",
+			"int",
+			"round",
+			"multiply",
+			"absVal",
+			"infinite",
+			"NaN",
+			"zero"
+		),
+		"double" => array(
+			"val",
+			"isMoney",
+			"even",
+			"odd",
+			"gcd",
+			"int",
+			"round",
+			"multiply",
+			"absVal",
+			"infinite",
+			"NaN",
+			"zero"
+		),
+		"array" => array(
+			"val",
+			"first",
+			"last",
+			"index",
+			"sort",
+			"push",
+			"rotate",
+			"sample",
+			"select",
+			"shuffle",
+			"slice",
+			"uniq",
+			"zip"
+		)
+	);
 
 	function __construct( $item ) {
 
@@ -410,7 +492,7 @@ class r {
 
 		$this->value = ( $this->self ) ? 1 : 0;
 		$this->valueString = ( $this->value ) ? "true" : "false";
-		$this->methods = array("flip","to_s","length");
+		$this->methods = $this->allowedMethods['boolean'];
 		$this->runMethods();
 		return $this->value;
 	}
@@ -429,7 +511,7 @@ class r {
 		$this->length = strlen( $this->value );
 		$this->chars = str_split( $this->value );
 		$this->flip = $this->flip();
-		$this->methods = array("flip","to_s","length","capitalize","lowercase","capFirst");
+		$this->methods = $this->allowedMethods["string"];
 		$this->runMethods();
 		return $this->value;
 
@@ -448,7 +530,7 @@ class r {
 		$this->valueString = $this->to_s($this->value);
 		$this->length = strlen( $this->value );
 		$this->chars = str_split((string)$this->value);
-		$this->methods = array("isMoney","even","odd","gcd","int","round","multiply","abs","infinite","NaN","zero");
+		$this->methods = $this->allowedMethods['integer'];
 		$this->runMethods();
 		return $this->value;
 	}
@@ -466,6 +548,7 @@ class r {
 		$this->valueString = $this->to_s();
 		$this->to_s = $this->to_s();
 		$this->length = $this->length();
+		$this->methods = $this->allowedMethods['double'];
 		$this->runMethods();
 		return $this->value;
 
@@ -484,7 +567,7 @@ class r {
 		$this->valueString = null;
 		$this->length = $this->length();
 		$this->flip = $this->flip();
-		$this->methods = array("first","last","index","sort","push","rotate","sample","select","shuffle","slice","uniq","zip");
+		$this->methods = $this->allowedMethods['array'];
 		$this->runMethods();
 		return $this->value;
 	}
@@ -500,6 +583,115 @@ class r {
 	public final function val() {
 
 		return $this->value;
+
+	}
+
+	/**
+	 * Dumps the contents of the object 
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return mixed
+	 **/
+	public final function dump() {
+
+		var_dump( $this->value );
+
+	}
+
+	/**
+	 * Destroys an object 
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return void
+	 **/
+	public final function destroy() {
+
+		foreach( $this as $k ){
+			$k = "";
+		}
+
+	}
+
+	/**
+	 * Secures an object 
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @param string $mode - The hashing method to use. Accepts "md5" or "sha1"
+	 * @param string $salt - The salt to use on the item prior to it being hashed. Default: null (no salt)
+	 * @param string $position - The position to place the salt. Accepts "first" or "last". Default: Null (no salt position)
+	 * @return string
+	 **/
+	public final function secure( $mode = "sha1" , $salt = null , $position = null ) {
+
+		try {
+			if( is_array($this->value)) {
+				throw new exception("Arrays are not allowed to be secured. Please try again.");
+			}
+			$string = $this->value;
+			if( $salt != null ) {
+				if( strcmp( $position , "first" ) == 0 ) {
+					$string = $salt . $this->value;
+				} else if( strcmp( $position , "last" ) == 0 ) {
+					$string = $this->value . $salt;
+				} else {
+					throw new exception("Invalid salt location specified, please try again.");
+				}
+			}
+			if( !in_array( $mode , hash_algos() ) ) {
+				throw new exception("Invalid or unsupported hashing algorithm specified. Please try again.");
+			}
+			return $mode( $string );
+		} catch( Exception $e ) {
+			$this->exception( $e , $e->getMessage() );
+		}
+
+	}
+
+	/**
+	 * Secures an object using md5 hashing algorithm
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return string
+	 **/
+	public final function md5() {
+
+		return md5( $this->value );
+
+	}
+
+	/**
+	 * Secures an object using sha1 hashing algorithm
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return string
+	 **/
+	public final function sha1() {
+
+		return sha1( $this->value );
+
+	}
+
+	/**
+	 * Secures a value for storage in a database by escaping.
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return string
+	 **/
+	public final function escape() {
+
+		return mysql_real_escape_string( $this->value );
 
 	}
 
@@ -666,9 +858,195 @@ class r {
 	 **/
 	public final function first() {
 
-		// PLACEHOLDER BRAHHHHHH
+		if( is_array( $this->value )) {
+			return reset($this->value);
+		} else if( isset($this->chars) && is_array( $this->chars )) {
+			return $this->chars[0];
+		} else {
+			return false;
+		}
 
 	}
+
+	/**
+	 * Returns the last item in an array
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return mixed
+	 **/
+	public final function last() {
+
+		if( is_array( $this->value )) {
+			return reset($this->value);
+		} else if( isset($this->chars) && is_array( $this->chars )) {
+			return reset($this->chars);
+		} else {
+			return false;
+		}
+
+	}
+
+	/**
+	 * Returns a JSON object of a value 
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return string
+	 **/
+	public final function toJSON() {
+
+		return json_encode( $this->value );
+
+	}
+
+	/**
+	 * Returns an array or string from a provided JSON object 
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return string
+	 **/
+	public final function fromJSON() {
+
+		return json_decode( $this->value );
+
+	}
+
+	/**
+	 * Serializes a dataset 
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return string
+	 **/
+	public final function serial() {
+
+		return serialize( $this->value );
+
+	}
+
+	/**
+	 * Unserializes a dataset 
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return mixed
+	 **/
+	public final function unserial() {
+
+		return unserialize( $this->value );
+
+	}
+
+	/**
+	 * Retrieves a specific index from an array 
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return mixed
+	 **/
+	public final function index( $key ) {
+
+		if(!is_array( $this->value )) {
+			return false;
+		} else {
+			return $this->value[$key];
+		}
+
+	}	
+
+	/**
+	 * Formats the value as a monetary value.
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return string
+	 **/
+	public final function isMoney( $symbol = "$" , $decimal = "." ) {
+
+		if( is_int( $this->value )) {
+			return "{$symbol}{$this->value}{$decimal}00";
+		} else if( is_float($this->value) ) {
+			return "{$symbol}{$this->value}";
+		} else if( !is_array($this->value)) {
+			return "{$symbol}{$this->value}{$decimal}00";
+		} else {
+			return false;
+		}
+
+	}
+
+	/**
+	 * Determines if the number is odd or even - EVEN specific
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return boolean
+	 **/
+	public final function even() {
+
+		if( $this->value % 2 ) {
+			return false;
+		} else {
+			return true;
+		}
+
+	}	
+
+	/**
+	 * Determines if the number is odd or even - ODD specific
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return boolean
+	 **/
+	public final function odd() {
+
+		if( $this->value % 2 ) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}	
+
+	/**
+	 * Multiplies the value by a given number
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return mixed
+	 **/
+	public final function multiply( $times ) {
+
+		return $this->value * $times;
+
+	}	
+
+	/**
+	 * Determines the absolute value of a number
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return mixed
+	 **/
+	public final function absVal() {
+
+		return abs($this->value);
+
+	}	
 
 }
 

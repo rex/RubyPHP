@@ -50,19 +50,18 @@ body {
 	padding: 10px;
 	margin: auto auto 10px auto;
 	border-radius: 5px;
-	box-shadow: 0px 2px 10px #000000;
 	font-size: 25px;
 	color: #eeeeee;
 	text-shadow:0px 1px 2px #000000;
 }
 .green {
 	/*border: 1px #256B12 solid;*/
-	box-shadow: 0px 2px 5px #000000, inset 0px 1px 1px #CCF2B6;
+	box-shadow: 0px 2px 10px #000000, inset 0px 1px 1px #CCF2B6;
 	background: -webkit-gradient(linear,left bottom, left top, color-stop(0, #245904), color-stop(1, #61BA2D));
 }
 .red {
 	/*border: 1px #256B12 solid;*/
-	box-shadow: 0px 2px 5px #000000, inset 0px 1px 1px #F5C4C4;
+	box-shadow: 0px 2px 10px #000000, inset 0px 1px 1px #F5C4C4;
 	background: -webkit-gradient(linear,left bottom, left top, color-stop(0, #961E1E), color-stop(1, #DB3B3B));
 }
 </style>
@@ -72,11 +71,12 @@ body {
 
 		<div class="bigbox">
 			<div class="container">
+<pre>
 	<?php
 
-	/**/
+	
 	$a = new r(true);
-	$b = new r("Pierce");
+	/*$b = new r("Pierce");
 	//print_r($b->chars);
 	//$secure = $b->md5();
 	// laksjdlkj1290odnlokjslakdj012in
@@ -98,60 +98,88 @@ body {
 		)
 	);
 	$f = new r($array);
-	//print $r->flip();
+	//print $f->flip();
+*/
 
+	$writtenMethods = get_class_methods("r");
+	$allowedMethods = $a->allowedMethods;
 
-	?>
-			</div>
+	// Flatten the allowedMethods array
+	foreach($allowedMethods as $k=>$v) {
+		foreach($v as $key=>$val) {
+			$methodsInUse[] = $val;
+		}
+	}
+	$methodsInUse = array_unique($methodsInUse);
 
-			<div class="container">
-				<h1>RubyPHP Built-In Methods</h1>
-	<?php
+	foreach($methodsInUse as $k=>$v) {
+		foreach( $allowedMethods as $key => $val ) {
+			$s = array_search( $v , $val );
+			if($s) {
+				$breakdown[$v][] = $key;
+			}
+		}
+	}
 
-	$methodList = get_class_methods("r");
-
-	/*
-	print "<pre>";
-	print_r($methodList);
-	print "</pre>";
-	*/
+	$methodCount = 0;
+	$completedCount = 0;
+	$output = "";
 
 	foreach( $functions as $k=>$v ) {
-		print "<h2>$k</h2>";
+		$output .= "<h2>$k</h2>";
 		foreach( $v as $key=>$val ) {
-
+			$methodCount++;
 			if( is_array( $val ) ) {
-				if(in_array($key, $methodList)) {
-					print "<div class=\"functions green\">";
-				} else {
-					print "<div class=\"functions red\">";
-				}
+				$item = $key;
 			} else {
-				if(in_array($val, $methodList)) {
-					print "<div class=\"functions green\">";
-				} else {
-					print "<div class=\"functions red\">";
-				}
+				$item = $val;
+			}
+			if(in_array($item, $writtenMethods)) {
+				$output .= "<div class=\"functions green\">";
+				$completedCount++;
+			} else {
+				$output .= "<div class=\"functions red\">";
 			}
 			if(is_array($val)) {
-				print $key . "(";
+				$output .= $key . "(";
 				if( count($val) > 1) {
 					$separator = " , ";
 				} else {
 					$separator = " ";
 				}
 				foreach ($val as $value) {
-					print " $$value$separator";
+					$output .= " $$value$separator";
 				}
 			} else {
-				print $val . "(";
+				$output .= $val . "(";
 			}
-			print ")</div>";
+			$output .= ")";
+
+			if( isset( $breakdown[$item] )) {
+				foreach( $breakdown[$item] as $key=>$val) {
+				$output .= "<br />Used by data type: $val";
+			}
+			}
+			
+
+			$output .= "</div>";
 		}
 	}
-	 
 
 	?>
+</pre>
+			</div>
+
+			<div class="container">
+				<h1>RubyPHP Built-In Methods</h1>
+
+
+			<h2>
+				<?=$completedCount;?> / <?=$methodCount;?> functions written!
+				<?php print round(($completedCount / $methodCount) * 100 ) . "% done!"; ?>
+			</h2>
+
+			<?=$output;?>
 
 			</div>
 		</div>
