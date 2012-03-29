@@ -109,7 +109,7 @@ $functions = array(
 		"flip",
 		"to_s",
 		"length",
-		"capitalize" => array(
+		"cap" => array(
 			"type"
 		)
 	),
@@ -142,7 +142,7 @@ $functions = array(
 		"zip"
 	),
 	"numbers" => array(
-		"isMoney" => array(
+		"money" => array(
 			"symbol = '$'",
 			"decimal = '.'"
 		),
@@ -151,14 +151,13 @@ $functions = array(
 		"gcd" => array(
 			"comparison"
 		),
-		"int",
-		"round" => array(
+		"rnd" => array(
 			"place"
 		),
-		"multiply" => array(
+		"mult" => array(
 			"times"
 		),
-		"absVal",
+		"av",
 		"infinite",
 		"NaN",
 		"zero"
@@ -280,7 +279,7 @@ class r {
 			"flip",
 			"to_s",
 			"length",
-			"capitalize",
+			"cap",
 			"lowercase",
 			"capFirst",
 			"toJSON",
@@ -306,28 +305,26 @@ class r {
 		),
 		"integer" => array(
 			"val",
-			"isMoney",
+			"money",
 			"even",
 			"odd",
 			"gcd",
-			"int",
-			"round",
-			"multiply",
-			"absVal",
+			"rnd",
+			"mult",
+			"av",
 			"infinite",
 			"NaN",
 			"zero"
 		),
 		"double" => array(
 			"val",
-			"isMoney",
+			"money",
 			"even",
 			"odd",
 			"gcd",
-			"int",
-			"round",
-			"multiply",
-			"absVal",
+			"rnd",
+			"mult",
+			"av",
 			"infinite",
 			"NaN",
 			"zero"
@@ -357,7 +354,7 @@ class r {
 		$this->origVal = $this->value;
 		$this->buildObject();
 
-		$this->showObject();
+		//$this->showObject();
 	}
 
 	/**
@@ -530,6 +527,7 @@ class r {
 		$this->valueString = $this->to_s($this->value);
 		$this->length = strlen( $this->value );
 		$this->chars = str_split((string)$this->value);
+		$this->flip = $this->flip();
 		$this->methods = $this->allowedMethods['integer'];
 		$this->runMethods();
 		return $this->value;
@@ -712,12 +710,9 @@ class r {
 				case "boolean":
 					return !$this->value;
 					break;
+				case "integer":
 				case "string":
-					for( $i = ( count( $this->chars ) - 1) ; $i >= 0 ; $i-- ) {
-						$data[] = $this->chars[$i];
-					}
-					$this->flipArray = $data;
-					return implode($data);
+					return implode(array_reverse($this->chars));
 					break;
 				case "array":
 					$this->flipArray = array_reverse( $this->value );
@@ -818,7 +813,7 @@ class r {
 	 * @param string $type - The parameters that the capitalize function must work within. Accepts: "first" , "all" , "none" , "words"
 	 * @return string
 	 **/
-	public final function capitalize( $type ) {
+	public final function cap( $type ) {
 
 		try {
 
@@ -879,9 +874,9 @@ class r {
 	public final function last() {
 
 		if( is_array( $this->value )) {
-			return reset($this->value);
+			return end($this->value);
 		} else if( isset($this->chars) && is_array( $this->chars )) {
-			return reset($this->chars);
+			return end($this->chars);
 		} else {
 			return false;
 		}
@@ -953,9 +948,8 @@ class r {
 	 * @return mixed
 	 **/
 	public final function index( $key ) {
-
 		if(!is_array( $this->value )) {
-			return false;
+			return $this->chars[$key];
 		} else {
 			return $this->value[$key];
 		}
@@ -970,14 +964,15 @@ class r {
 	 * 
 	 * @return string
 	 **/
-	public final function isMoney( $symbol = "$" , $decimal = "." ) {
+	public final function money( $symbol = "$" , $decimal = "." ) {
 
+		$num = number_format($this->value);
 		if( is_int( $this->value )) {
-			return "{$symbol}{$this->value}{$decimal}00";
+			return "{$symbol}{$num}{$decimal}00";
 		} else if( is_float($this->value) ) {
-			return "{$symbol}{$this->value}";
-		} else if( !is_array($this->value)) {
-			return "{$symbol}{$this->value}{$decimal}00";
+			return "{$symbol}{$num}";
+		} else if( !is_array($this->value) && !is_bool($this->value)) {
+			return "{$symbol}{$num}{$decimal}00";
 		} else {
 			return false;
 		}
@@ -1028,7 +1023,7 @@ class r {
 	 * 
 	 * @return mixed
 	 **/
-	public final function multiply( $times ) {
+	public final function mult( $times ) {
 
 		return $this->value * $times;
 
@@ -1042,11 +1037,85 @@ class r {
 	 * 
 	 * @return mixed
 	 **/
-	public final function absVal() {
+	public final function av() {
 
 		return abs($this->value);
 
 	}	
+
+	/**
+	 * Determines the greatest common denominator for the value and a provided number
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return mixed
+	 **/
+	public final function gcd( $comparison ) {
+
+		return $this->value * $comparison;
+
+	}	
+
+	/**
+	 * Rounds the object to a specified place
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return mixed
+	 **/
+	public final function rnd( $comparison ) {
+
+		return $this->value * $comparison;
+
+	}	
+
+	/**
+	 * Determines if the value is infinite
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return boolean
+	 **/
+	public final function infinite() {
+
+		return is_infinite( $this->value );
+
+	}	
+
+	/**
+	 * Determines if the value is a number at all
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return boolean
+	 **/
+	public final function NaN() {
+
+		return is_nan( $this->value );
+
+	}
+
+	/**
+	 * Determines if the value is zero
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * 
+	 * @return boolean
+	 **/
+	public final function zero() {
+
+		if( $this->value != 0 ) {
+			return false;
+		} else {
+			return true;
+		}
+
+	}
 
 }
 

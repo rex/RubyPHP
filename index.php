@@ -76,12 +76,48 @@ body {
 
 	
 	$a = new r(true);
-	/*$b = new r("Pierce");
-	//print_r($b->chars);
-	//$secure = $b->md5();
-	// laksjdlkj1290odnlokjslakdj012in
-	// 1234.50
-	//$c->isMoney();
+
+	/* *** STRING TEST ****
+	$b = new r("Pierce Moore");
+	print $b->secure('sha1') . '<br />';
+	print $b->md5() . '<br />';
+	print $b->sha1() . '<br />';
+	print $b->escape() . '<br />';
+	print $b->to_s() . '<br />';
+	print $b->flip . '<br />';
+	print $b->to_f() . '<br />';
+	print $b->to_i() . '<br />';
+	print $b->length . '<br />';
+	print $b->capitalize('all') . '<br />';
+	print $b->capitalize('none') . '<br />';
+	print $b->capitalize('words') . '<br />';
+	print $b->first() . '<br />';
+	print $b->last() . '<br />';
+	print $b->index(1) . '<br />';
+
+	$b->showObject();
+	*/
+
+	/* *** INTEGER TEST *****/
+	$b = new r(1234576488);
+	print $b->secure('sha1') . '<br />';
+	print $b->md5() . '<br />';
+	print $b->sha1() . '<br />';
+	print $b->escape() . '<br />';
+	print $b->to_s() . '<br />';
+	print $b->flip . '<br />';
+	print $b->to_f() . '<br />';
+	print $b->to_i() . '<br />';
+	print $b->length . '<br />';
+	print $b->money() . '<br />';
+	print $b->first() . '<br />';
+	print $b->last() . '<br />';
+	print $b->index(1) . '<br />';
+	print $b->even() . '<br />';
+	print $b->odd() . '<br />';
+	$b->showObject();
+	
+/*
 	$c = new r(1234);
 	//$c->isMoney();
 	$d = new r(12.34);
@@ -157,8 +193,8 @@ body {
 
 			if( isset( $breakdown[$item] )) {
 				foreach( $breakdown[$item] as $key=>$val) {
-				$output .= "<br />Used by data type: $val";
-			}
+					$output .= "<br />Used by data type: $val";
+				}
 			}
 			
 
