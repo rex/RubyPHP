@@ -1,0 +1,284 @@
+\hypertarget{namespace_ruby_p_h_p}{\section{Ruby\-P\-H\-P Namespace Reference}
+\label{namespace_ruby_p_h_p}\index{Ruby\-P\-H\-P@{Ruby\-P\-H\-P}}
+}
+
+
+Taking all the beautiful simplicity of Ruby and implementing it in P\-H\-P!  
+
+
+
+
+\subsection{Detailed Description}
+Taking all the beautiful simplicity of Ruby and implementing it in P\-H\-P! I would call this class \hyperlink{namespace_ruby_p_h_p}{Ruby\-P\-H\-P}, but in an effort to make development with this class more efficient, I figured writing \$foo = new \hyperlink{namespace_ruby_p_h_p}{Ruby\-P\-H\-P}(\char`\"{}\$string\char`\"{}) a thousand times wasn't worth it.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\-1 
+\end{DoxyVersion}
+\begin{DoxyCopyright}{Copyright}
+Pierce Moore 2012 , Refreshed Web Design 2012
+\end{DoxyCopyright}
+Just a plain utility function to deal with errors.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+A pre-\/emptive security function. You are free to run all functions as-\/is, but if you want to ensure that nothing weird happens when trying to run a method or access a property, use this function to determine whether or not that method or property is valid.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Just a simple utility function to display the formatted object.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+This is the function that is called upon instantiation. It builds the corresponding object for the item provided and gives it the properties and functionality of a ruby object.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+With every object instantiation, let's build the basic data that will be present for every single type of value.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Let's go down the list, doing the easy stuff first.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Still going. Now we're building the \char`\"{}string\char`\"{} object.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Still going. Now we're building the \char`\"{}integer\char`\"{} object.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Still going. Now we're building the \char`\"{}double\char`\"{} object.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Still going. Now we're building the \char`\"{}array\char`\"{} object.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Simple val() function, returns the value of the object.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Dumps the contents of the object
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Destroys an object
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Secures an object
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Secures an object using md5 hashing algorithm
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Secures an object using sha1 hashing algorithm
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Secures a value for storage in a database by escaping.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Returns the R\-E\-V\-E\-R\-S\-E of the object. If it's a boolean, it will act like an on/off switch. For arrays, strings, and numbers it will just reverse the order of the characters.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Returns the stringified version of the object's value.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Returns the integer version of the object's value.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Returns the integer version of the object's value. \#\# D\-I\-F\-F\-E\-R\-E\-N\-T S\-Y\-N\-T\-A\-X \#\#
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Returns the floating point decimal version of the object's value.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Simply returns the length of the value. If it's a number or string, it will return the number of characters. If an array or object, it will return the number of elements present.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Deals with casing in strings. Is used to modify the upper-\/ and lower-\/case nature of the string.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Returns the first item in an array
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Returns the last item in an array
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Returns a J\-S\-O\-N object of a value
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Returns an array or string from a provided J\-S\-O\-N object
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Serializes a dataset
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Unserializes a dataset
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Retrieves a specific index from an array
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+\subparagraph*{}
+
+\begin{DoxyVerb}                   NUMBER FUNCTIONS, yay! (This includes float and int)\end{DoxyVerb}
+ \subparagraph*{}
+
+Formats the value as a monetary value.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Determines if the number is odd or even -\/ E\-V\-E\-N specific
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Determines if the number is odd or even -\/ O\-D\-D specific
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Multiplies the value by a given number
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Determines the absolute value of a number
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Determines the greatest common denominator for the value and a provided number
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Rounds the object to a specified place
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Determines if the value is infinite
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Determines if the value is a number at all
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Determines if the value is zero
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+\subparagraph*{}
+
+\begin{DoxyVerb}                   ARRAY FUNCTIONS, yay!\end{DoxyVerb}
+ \subparagraph*{}
+
+Sorts an array according to the provided parameters.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Places an item into a pre-\/existing array at the specified location. Default\-: \char`\"{}end\char`\"{}
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Rotates an array (first element becomes last element, second element becomes first.)
+
+N\-O\-T\-E\-: T\-H\-I\-S I\-S A V\-E\-R\-Y R\-O\-U\-G\-H C\-U\-T. Just.. Bear with me.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Returns a random sample of an array of a specified number of elements.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Shuffles an array and returns it. Useful for random selection.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Slices a specific part of the array and returns it. If the provided \char`\"{}start\char`\"{} offset is larger than the largest key, an exception will be thrown.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+\char`\"{}\-Cleans\char`\"{} an array by removing all duplicate elements and returning the array with no duplicates.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+\char`\"{}\-Zip\char`\"{} takes multiple arrays and interlaces them at their matching positions
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Takes a string and reverses the case of each of the letters. All capitals become lowercase and vice-\/versa
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore 
+\end{DoxyAuthor}

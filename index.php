@@ -75,7 +75,11 @@ body {
 	<?php
 
 	
-	$a = new r(true);
+	$data = array("Juice","Person","Place");
+	$a = new r($data);
+	$one = array("Me","You","I");
+	$two = array("Someone","Peanuts","Baseball");
+	print_r( $a->zip( $one , $two ) );
 
 	/* *** STRING TEST ****
 	$b = new r("Pierce Moore");
@@ -99,7 +103,7 @@ body {
 	*/
 
 	/* *** INTEGER TEST *****/
-	$b = new r(1234576488);
+/*	$b = new r(1234576488);
 	print $b->secure('sha1') . '<br />';
 	print $b->md5() . '<br />';
 	print $b->sha1() . '<br />';
@@ -117,7 +121,7 @@ body {
 	print $b->odd() . '<br />';
 	$b->showObject();
 	
-/*
+
 	$c = new r(1234);
 	//$c->isMoney();
 	$d = new r(12.34);

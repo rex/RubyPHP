@@ -23,7 +23,7 @@
  * first()
  * last()
  * index( $num )
- * sort()
+ * srt()
  * push()
  * rotate()
  * sample()
@@ -119,20 +119,18 @@ $functions = array(
 		"index" => array(
 			"index"
 		),
-		"sort" => array(
-			"key",
-			"type"
+		"srt" => array(
+			"method = 'sort'"
 		),
 		"push" => array(
 			"item",
 			"location"
 		),
 		"rotate",
-		"sample",
-		"select" => array(
-			"index"
+		"sample" => array(
+			"size = 1"
 		),
-		"shuffle",
+		"shuf",
 		"slice" => array(
 			"start",
 			"count",
@@ -197,10 +195,10 @@ $functions = array(
 		"delete" => array(
 			"index"
 		),
-		"explode" => array(
+		"exp" => array( // Explode
 			"delimiter"
 		),
-		"implode" => array(
+		"imp" => array( // Implode
 			"delimiter"
 		),
 		"repeat" => array(
@@ -211,7 +209,7 @@ $functions = array(
 			"value"
 		),
 		"shuffle",
-		"count" => array(
+		"cnt" => array(
 			"recursive = 0"
 		),
 		"comp" => array(
@@ -231,6 +229,7 @@ $functions = array(
  * I would call this class RubyPHP, but in an effort to make development with this class more efficient, I figured writing $foo = new RubyPHP("$string") a thousand times wasn't worth it.
  * 
  * @package RubyPHP
+ * @brief Taking all the beautiful simplicity of Ruby and implementing it in PHP!
  * @author Pierce Moore
  * @version 0.1
  * @copyright Pierce Moore 2012 , Refreshed Web Design 2012
@@ -299,8 +298,7 @@ class r {
 			"push",
 			"sample",
 			"rotate",
-			"select",
-			"shuffle",
+			"shuf",
 			"slice"
 		),
 		"integer" => array(
@@ -334,12 +332,11 @@ class r {
 			"first",
 			"last",
 			"index",
-			"sort",
+			"srt",
 			"push",
 			"rotate",
 			"sample",
-			"select",
-			"shuffle",
+			"shuf",
 			"slice",
 			"uniq",
 			"zip"
@@ -354,7 +351,7 @@ class r {
 		$this->origVal = $this->value;
 		$this->buildObject();
 
-		//$this->showObject();
+		$this->showObject();
 	}
 
 	/**
@@ -362,7 +359,8 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * @param string $function - The function that threw the exception
+	 * @fn exception()
+	 * @param Exception $e - The function that threw the exception
 	 * @param string $msg - The message that was thrown
 	 * @return void
 	 * */
@@ -386,13 +384,14 @@ class r {
  * 
  * ****************************************************/
 	/**
-	 * Just a plain utility function to deal with errors. 
+	 * A pre-emptive security function. You are free to run all functions as-is, but if you want to ensure that nothing weird happens when trying 
+	 * to run a method or access a property, use this function to determine whether or not that method or property is valid.
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * @param string $function - The function that threw the exception
-	 * @param string $msg - The message that was thrown
-	 * @return void
+	 * @fn responds_to()
+	 * @param string $function - The function that you are trying to test for
+	 * @return boolean
 	 * */
 	public final function responds_to( $function ) {
 
@@ -404,7 +403,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn showObject()
 	 * @return void
 	 * */
 	public final function showObject() {
@@ -420,6 +419,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
+	 * @fn buildObject()
 	 * @return void
 	 **/
 	private final function buildObject() {
@@ -466,7 +466,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn runMethods()
 	 * @return void
 	 **/
 	private final function runMethods() {
@@ -482,7 +482,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn buildBoolean()
 	 * @return boolean
 	 **/
 	private final function buildBoolean() {
@@ -499,7 +499,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn buildString()
 	 * @return boolean
 	 * */
 	private final function buildString() {
@@ -519,7 +519,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn buildInteger()
 	 * @return boolean
 	 * */
 	private final function buildInteger() {
@@ -538,7 +538,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn buildDouble()
 	 * @return boolean
 	 * */
 	private final function buildDouble() {
@@ -557,7 +557,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn buildArray()
 	 * @return boolean
 	 * */
 	private final function buildArray() {
@@ -575,7 +575,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn val()
 	 * @return mixed
 	 **/
 	public final function val() {
@@ -589,7 +589,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn dump()
 	 * @return mixed
 	 **/
 	public final function dump() {
@@ -603,7 +603,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn destroy()
 	 * @return void
 	 **/
 	public final function destroy() {
@@ -619,7 +619,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn secure()
 	 * @param string $mode - The hashing method to use. Accepts "md5" or "sha1"
 	 * @param string $salt - The salt to use on the item prior to it being hashed. Default: null (no salt)
 	 * @param string $position - The position to place the salt. Accepts "first" or "last". Default: Null (no salt position)
@@ -656,7 +656,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn md5()
 	 * @return string
 	 **/
 	public final function md5() {
@@ -670,7 +670,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn sha1()
 	 * @return string
 	 **/
 	public final function sha1() {
@@ -684,7 +684,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn escape()
 	 * @return string
 	 **/
 	public final function escape() {
@@ -698,7 +698,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn flip()
 	 * @return mixed
 	 **/
 	public final function flip() {
@@ -732,7 +732,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn to_s()
 	 * @return string
 	 **/
 	public final function to_s() {
@@ -746,7 +746,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn to_i()
 	 * @return int
 	 **/
 	public final function to_i() {
@@ -760,7 +760,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn to_int()
 	 * @return int
 	 **/
 	public final function to_int() {
@@ -774,7 +774,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn to_f()
 	 * @return float
 	 **/
 	public final function to_f() {
@@ -788,7 +788,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn length()
 	 * @return int
 	 **/
 	public final function length( $mode = COUNT_NORMAL ) {
@@ -809,7 +809,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn cap()
 	 * @param string $type - The parameters that the capitalize function must work within. Accepts: "first" , "all" , "none" , "words"
 	 * @return string
 	 **/
@@ -848,7 +848,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn first()
 	 * @return mixed
 	 **/
 	public final function first() {
@@ -856,7 +856,7 @@ class r {
 		if( is_array( $this->value )) {
 			return reset($this->value);
 		} else if( isset($this->chars) && is_array( $this->chars )) {
-			return $this->chars[0];
+			return reset($this->chars);
 		} else {
 			return false;
 		}
@@ -868,7 +868,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn last()
 	 * @return mixed
 	 **/
 	public final function last() {
@@ -888,7 +888,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn toJSON()
 	 * @return string
 	 **/
 	public final function toJSON() {
@@ -902,7 +902,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn fromJSON()
 	 * @return string
 	 **/
 	public final function fromJSON() {
@@ -916,7 +916,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn serial()
 	 * @return string
 	 **/
 	public final function serial() {
@@ -930,7 +930,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn unserial()
 	 * @return mixed
 	 **/
 	public final function unserial() {
@@ -944,10 +944,14 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn index()
+	 * @param int $key - The key to locate
 	 * @return mixed
 	 **/
 	public final function index( $key ) {
+		if( $key > count( $this->value )) {
+			return false;
+		}
 		if(!is_array( $this->value )) {
 			return $this->chars[$key];
 		} else {
@@ -957,11 +961,23 @@ class r {
 	}	
 
 	/**
+	 * 
+	 * ################################################################
+	 * 
+	 * 			NUMBER FUNCTIONS, yay! (This includes float and int)
+	 * 
+	 * ################################################################
+	 * 
+	 * */
+
+	/**
 	 * Formats the value as a monetary value.
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn money()
+	 * @param string $symbol - The currency denominator to use
+	 * @param string $decimal - The decimal separator
 	 * @return string
 	 **/
 	public final function money( $symbol = "$" , $decimal = "." ) {
@@ -984,7 +1000,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn even()
 	 * @return boolean
 	 **/
 	public final function even() {
@@ -1002,7 +1018,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn odd()
 	 * @return boolean
 	 **/
 	public final function odd() {
@@ -1020,7 +1036,8 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn mult()
+	 * @param mixed $times - The multiplier
 	 * @return mixed
 	 **/
 	public final function mult( $times ) {
@@ -1034,7 +1051,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn av()
 	 * @return mixed
 	 **/
 	public final function av() {
@@ -1048,7 +1065,8 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn gcd()
+	 * @param mixed $comparison - The number to find the GCD with
 	 * @return mixed
 	 **/
 	public final function gcd( $comparison ) {
@@ -1062,12 +1080,16 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn rnd()
+	 * @param int $place - The precision with which you would like to round the number.
 	 * @return mixed
 	 **/
-	public final function rnd( $comparison ) {
+	public final function rnd( $place ) {
 
-		return $this->value * $comparison;
+		if( $this->NaN( $this->value ) ) {
+			return false;
+		}
+		return round( $this->value , $place );
 
 	}	
 
@@ -1076,7 +1098,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn infinite()
 	 * @return boolean
 	 **/
 	public final function infinite() {
@@ -1090,7 +1112,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn NaN()
 	 * @return boolean
 	 **/
 	public final function NaN() {
@@ -1104,7 +1126,7 @@ class r {
 	 * 
 	 * @package RubyPHP
 	 * @author Pierce Moore
-	 * 
+	 * @fn zero()
 	 * @return boolean
 	 **/
 	public final function zero() {
@@ -1117,6 +1139,250 @@ class r {
 
 	}
 
+	/**
+	 * 
+	 * ################################################################
+	 * 
+	 * 			ARRAY FUNCTIONS, yay!
+	 * 
+	 * ################################################################
+	 * 
+	 * */
+
+
+	/**
+	 * Sorts an array according to the provided parameters.
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn srt()
+	 * @return mixed
+	 **/
+	public final function srt( $method = 'sort') {
+
+		if( !is_array( $this->value ) ) {
+			return false; 
+		}
+		return $method( $this->value );
+
+	}
+
+	/**
+	 * Places an item into a pre-existing array at the specified location. Default: "end"
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn push()
+	 * @param mixed $item - The item to be placed into the array
+	 * @param string $location - The item to be 
+	 * @return mixed
+	 **/
+	public final function push( $item , $location = "end" ) {
+
+		try {
+
+			if( !is_array( $this->value ) ) {
+				return false; 
+			} else {
+				switch( $location ) {
+					case "fin":
+					case "end":
+						return array_push( $this->value , item );
+						break;
+					case "start":
+					case "beg":
+						return array_unshift( $this->value , $item );
+						break;
+					default:
+						throw new exception("Invalid location specified in push(). The function accepts 'beg','start','fin', and 'end'");
+				}
+			}
+		} catch( Exception $e ) {
+			$this->exception( $e , $e->getMessage() );
+		}
+
+	}
+
+	/**
+	 * Rotates an array (first element becomes last element, second element becomes first.) 
+	 * 
+	 * NOTE: THIS IS A VERY ROUGH CUT. Just.. Bear with me.
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn rotate()
+	 * @return array
+	 **/
+	public final function rotate() {
+
+		if( !is_array( $this->value ) ) {
+			return false; 
+		}
+		return array_push(array_shift( $this->value ));
+
+	}
+
+	/**
+	 * Returns a random sample of an array of a specified number of elements.
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn sample()
+	 * @param int $size - The number of random elements to return.
+	 * @return mixed
+	 **/
+	public final function sample( $size = 1 ) {
+
+		$return = array();
+
+		if( !is_array( $this->value ) ) {
+			return false; 
+		}
+		if( count( $this->value ) < $size ) {
+			$size = count( $this->value );
+		}
+		for( $i = 0; $i < $size; $i++ ) {
+			$key = array_rand( $this->value );
+			$return[] = array( $key => $this->value[$key] );
+		}
+		return $return;
+
+	}
+
+	/**
+	 * Shuffles an array and returns it. Useful for random selection.
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn shuf()
+	 * @return mixed
+	 **/
+	public final function shuf() {
+
+		if( is_array( $this->value )) {
+			return shuffle( $this->value );
+		} else if( is_string( $this->value )) {
+			return shuffle( $this->chars ); 
+		} else {
+			return false;
+		}
+
+	}
+
+	/**
+	 * Slices a specific part of the array and returns it. If the provided "start" offset is larger than the largest key, an exception will be thrown.
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn slice()
+	 * @param int $start - The starting index of the slice
+	 * @param int $count - The size of the slice. 
+	 * @return mixed
+	 **/
+	public final function slice( $start = 0 , $count = null ) {
+
+		try {
+			if( $count == null ) {
+				throw new exception("The size of the desired slice is required, but was not provided. Please provide both the starting point and the size of the slice.");
+			}
+			if( is_array( $this->value ) ) {
+				if( $start > count( $this->value ) ) {
+					throw new exception("The key you provided is greater than the highest key in the array. Please select a smaller starting key.");
+				}
+				return array_slice( $this->value , $start , $count );
+			} else if( is_string( $this->value )) {
+				if( $start > count( $this->value ) ) {
+					throw new exception("The key you provided is greater than the highest key in the character array. Please select a smaller starting key.");
+				}
+				return array_slice( $this->chars , $start , $count );
+			} else {
+				throw new exception("You are trying to slice an unsupported data type. Please try again.");
+			}
+		} catch( Exception $e ) {
+			$this->exception( $e , $e->getMessage() );
+		}
+
+	}
+
+	/**
+	 * "Cleans" an array by removing all duplicate elements and returning the array with no duplicates.
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn uniq()
+	 * @return mixed
+	 **/
+	public final function uniq() {
+
+		if( is_array( $this->value )) {
+			return array_unique( $this->value );
+		} else if( is_array( $this->chars )) {
+			return array_unique( $this->chars );
+		} else {
+			return false;
+		}
+
+	}
+
+	/**
+	 * "Zip" takes multiple arrays and interlaces them at their matching positions
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn zip()
+	 * @param mixed $args - This function accepts as many arguments as you throw at it. It will hard-typecast all arguments into arrays and go from there. 
+	 * @return mixed
+	 **/
+	public final function zip( $args ) {
+
+		$val = (array)$this->value;
+		$data = array();
+		$return = array();
+		$max = 0;
+
+		foreach( func_get_args() as $k=>$v ) {
+			$data[] = (array)$v;
+		}
+		foreach( $data as $k=>$v ) {
+			if( count( $v ) > $max ) {
+				$max = count( $v );
+			}
+		}
+		for($i = 0; $i < $max; $i++ ) {
+			foreach( $data as $k=>$v ) {
+				foreach( $v as $key=>$val ) {
+					$return[$i][] = $val;
+				}
+			}
+		}
+		return $return;
+
+	}
+
+	/**
+	 * Takes a string and reverses the case of each of the letters. All capitals become lowercase and vice-versa
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn swapcase()
+	 * @return mixed
+	 **/
+	public final function swapcase() {
+
+		if( $this->type != "string" ) {
+			return false;
+		}
+		$return = array();
+		foreach( $this->chars as $k=>$v) {
+			if( ctype_upper( $v )) {
+				$return[] = strtolower( $v );
+			} else if( ctype_lower( $v )) {
+				$return[] = strtoupper( $v );
+			}
+			return implode( $return );
+		}
+
+	}
 }
 
 
