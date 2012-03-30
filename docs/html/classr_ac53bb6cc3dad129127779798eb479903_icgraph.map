@@ -1,7 +1,8 @@
 <map id="G" name="G">
 <area shape="rect" id="node3" href="$classr.html#a983a9fa784e9028dea46897a760f1210" title="secure" alt="" coords="133,5,195,32"/>
 <area shape="rect" id="node5" href="$classr.html#ab7b978294481794664ea5ffa6530e020" title="flip" alt="" coords="145,56,183,83"/>
-<area shape="rect" id="node7" href="$classr.html#a1a9162d9360cbf8e07359b7801c6ed93" title="cap" alt="" coords="143,107,185,133"/>
-<area shape="rect" id="node9" href="$classr.html#a24a0a2d08214aa208efaf13be12b41fe" title="push" alt="" coords="139,157,189,184"/>
-<area shape="rect" id="node11" href="$classr.html#ae01473d9a4d7f2c33c1a157b9cce13f4" title="slice" alt="" coords="139,208,189,235"/>
+<area shape="rect" id="node9" href="$classr.html#a6919ea74ebb93cd28fee10d172ebc4c4" title="cap" alt="" coords="143,107,185,133"/>
+<area shape="rect" id="node11" href="$classr.html#a24a0a2d08214aa208efaf13be12b41fe" title="push" alt="" coords="139,157,189,184"/>
+<area shape="rect" id="node13" href="$classr.html#ae01473d9a4d7f2c33c1a157b9cce13f4" title="slice" alt="" coords="139,208,189,235"/>
+<area shape="rect" id="node7" href="$classr.html#a601c54a2a4082e5d8dfc4509b07ea958" title="reverse" alt="" coords="243,56,306,83"/>
 </map>

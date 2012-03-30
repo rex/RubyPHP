@@ -2,81 +2,11 @@
 
 /**
  * 
- * HERE. Let's make a map of the functions that I want to write for this class.
+ * HEY THERE! And welcome to RubyPHP, your new best friend. 
  * 
+ * Have you ever written code in Ruby and then tried to do the same things in PHP but realized that you definitely couldn't? Yeah. Me too. That's why this class came to be.
  * 
- * *** NUMBERS ***
- * isMoney()
- * even()
- * odd()
- * gcd() <-- Greatest common denominator
- * int() <-- Is an integer?
- * round( $places )
- * multiply( $times );
- * abs()
- * infinite()
- * NaN()
- * zero()
- * round()
- * 
- * *** ARRAYS ***
- * first()
- * last()
- * index( $num )
- * srt()
- * push()
- * rotate()
- * sample()
- * select()
- * shuffle()
- * slice()
- * uniq()
- * zip()
- * 
- * 
- * *** MISCELLANEOUS ***
- * 
- * toJSON()
- * fromJSON()
- * serialize()
- * unserialize()
- * dump() <- Will replace var_dump( $foo )
- * destroy()
- * secure() <-- Will generate sha1 hash WITH SALT
- * md5()
- * sha1()
- * trim()
- * delete()
- * explode( $delim ) <-- Usable on objects, arrays, and strings
- * implode( $delim = null ) <-- Same as explode(). Optional $delim if they want to separate by a character
- * repeat( $times )
- * replace( $needle , $replace )
- * shuffle() <-- Shuffles a string, array, or number
- * count() <-- Counts the number of entities in an object, array, string, or number
- * comp( $comparison ) <-- Compares the string to the comparison string provided
- * slashes( $function ) <-- Add/Strip slashes. Accepts "add" , "strip"
- * pos( $needle ) <-- Searches for $needle in the "haystack" and returns the numeric position of said needle.
- * escape()
- * to_f() <-- Like to_s() but creates a float
- * to_i() / to_int() <-- Like to_f() but creates an int
- * 
- * 
- * *** Ruby-Specific Functions ***
- * concat( $item ) <-- Appends a string to the object. Works for Strings and arrays.
- * prepend( $item ) <-- Same as concat() except for in front of string
- * downcase() <-- See capitalize() function
- * each_char() 
- * hex()
- * index( $needle ) <-- see pos() above
- * match()
- * succ() <-- Increments a value. Applicable to strings, numbers
- * reverse() 
- * swapcase()
- * each()
- * hash()
- * eql()
  **/
-
 $functions = array(
 	"utility" => array(
 		"exception" => array(
@@ -84,6 +14,9 @@ $functions = array(
 			"msg"
 		),
 		"responds_to" => array(
+			"function"
+		),
+		"_call" => array(
 			"function"
 		),
 		"showObject",
@@ -110,7 +43,8 @@ $functions = array(
 		"to_s",
 		"length",
 		"cap" => array(
-			"type"
+			"type",
+			"value = 'null'"
 		)
 	),
 	"arrays" => array(
@@ -162,17 +96,18 @@ $functions = array(
 	),
 	"ruby-specific" => array(
 		"concat" => array(
-			"value",
-			"position = end"
+			"item",
+			"position = 'end'"
 		),
 		"prepend" => array(
-			"value"
+			"item"
 		),
 		"downcase",
 		"each_char" => array(
 			"function"
 		),
 		"hex",
+		"toHex",
 		"index" => array(
 			"key"
 		),
@@ -183,22 +118,19 @@ $functions = array(
 		"reverse",
 		"swapcase",
 		"each",
-		"hash" => array(
-			"mode"
-		),
 		"eql" => array(
 			"comparison"
 		)
 	),
 	"miscellaneous" => array(
-		"trim",
-		"delete" => array(
+		"tr",
+		"del" => array(
 			"index"
 		),
-		"exp" => array( // Explode
+		"ex" => array( // Explode
 			"delimiter"
 		),
-		"imp" => array( // Implode
+		"im" => array( // Implode
 			"delimiter"
 		),
 		"repeat" => array(
@@ -208,12 +140,8 @@ $functions = array(
 			"regex",
 			"value"
 		),
-		"shuffle",
 		"cnt" => array(
 			"recursive = 0"
-		),
-		"comp" => array(
-			"comparison"
 		),
 		"slashes" => array(
 			"mode"
@@ -224,6 +152,9 @@ $functions = array(
 	)
 );
 
+// Some debug variables
+define("DEBUG", false);			/// Enables / Disables global debug mode
+define("CHAINING", false);		/// This is a dead variable for now. Once all functionality is written, I will rewrite all functions to enable chaining. $a = new r("Pierce")->length()->uniq()->slashes();
 
 /**
  * I would call this class RubyPHP, but in an effort to make development with this class more efficient, I figured writing $foo = new RubyPHP("$string") a thousand times wasn't worth it.
@@ -351,7 +282,8 @@ class r {
 		$this->origVal = $this->value;
 		$this->buildObject();
 
-		$this->showObject();
+		if( DEBUG )
+			$this->showObject();
 	}
 
 	/**
@@ -396,6 +328,21 @@ class r {
 	public final function responds_to( $function ) {
 
 		return in_array( $function , $this->methods );
+	}
+
+	/**
+	 * This utility function will call a user-provided function on the data object.
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn _call()
+	 * @param string $function - The user-supplied function that will be run against the object value
+	 * @return mixed
+	 **/
+	public final function _call( $function ) {
+
+		return $function( $this->value );
+
 	}
 
 	/**
@@ -811,25 +758,30 @@ class r {
 	 * @author Pierce Moore
 	 * @fn cap()
 	 * @param string $type - The parameters that the capitalize function must work within. Accepts: "first" , "all" , "none" , "words"
+	 * @param mixed $value - The value to be modified. I found that this parameter was necessary for other functions that required casing and needed to pass their own values.
 	 * @return string
 	 **/
-	public final function cap( $type ) {
+	public final function cap( $type , $value = null ) {
 
 		try {
+
+			if( !isset( $value ) || value == null ) {
+				$value = $this->value;
+			}
 
 			switch( $type ) {
 
 				case "first":
-					return ucfirst( strtolower( $this->value ));
+					return ucfirst( strtolower( $value ));
 					break;
 				case "all":
-					return strtoupper( $this->value );
+					return strtoupper( $value );
 					break;
 				case "none":
-					return strtolower( $this->value );
+					return strtolower( $value );
 					break;
 				case "words":
-					return ucwords( strtolower( $this->value ));
+					return ucwords( strtolower( $value ));
 					break;
 				default: 
 					throw new exception("Invalid capitalization mode supplied. 'first', 'all', 'none', and 'words' are acceptable.");
@@ -1263,9 +1215,8 @@ class r {
 			return shuffle( $this->value );
 		} else if( is_string( $this->value )) {
 			return shuffle( $this->chars ); 
-		} else {
-			return false;
 		}
+		return false;
 
 	}
 
@@ -1339,22 +1290,26 @@ class r {
 		$data = array();
 		$return = array();
 		$max = 0;
-
 		foreach( func_get_args() as $k=>$v ) {
 			$data[] = (array)$v;
 		}
+		$data[] = $val;
 		foreach( $data as $k=>$v ) {
 			if( count( $v ) > $max ) {
 				$max = count( $v );
 			}
 		}
-		for($i = 0; $i < $max; $i++ ) {
+
+		for( $i = 0; $i < $max; $i++ ) {
 			foreach( $data as $k=>$v ) {
-				foreach( $v as $key=>$val ) {
-					$return[$i][] = $val;
+				if( isset( $data[$k][$i]) ) {
+					$return[$i][] = $data[$k][$i];
+				} else {
+					$return[$i][] = null;
 				}
-			}
+			} 
 		}
+
 		return $return;
 
 	}
@@ -1383,7 +1338,435 @@ class r {
 		}
 
 	}
-}
 
+	/**
+	 * Appends the elements of a provided array to the r object.
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn concat()
+	 * @param mixed $item - The item that you would like appended to the object value array. Preferred: Array 
+	 * @param string $position - The position in the array you would like the value appended. Accepts "start" "fin" "begin" and "end"
+	 * @return mixed
+	 **/
+	public final function concat( $item , $position = "end" ) {
+
+		$val = (array)$item;
+		if( !is_array( $this->value ) && !is_array( $this->chars )) {
+			return false;
+		}
+		switch( $position ) {
+			case "start":
+			case "begin":
+				if( is_array( $this->value )) {
+					return array_unshift( $this->value , $val );
+				} else if( is_array( $this->chars )) {
+					return implode( array_unshift( $this->chars , $val ));
+				}
+				break;
+			case "fin":
+			case "end":
+				if( is_array( $this->value )) {
+					return array_push( $this->value , $val);
+				} else if( is_array( $this->chars )) {
+					return implode( array_push( $this->chars , $val ) );
+				}
+				break;
+			default:
+				return false;
+		}
+		
+
+	}
+
+	/**
+	 * Prepends a value to the front of an array or a string
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn prepend()
+	 * @param mixed $item - The item to be prepended to the existing array
+	 * @return mixed
+	 **/
+	public final function prepend( $item ) {
+
+		if( !is_array( $this->value ) && !is_array( $this->chars )) {
+			return false;
+		}
+		if( is_array( $this->value )) {
+			return array_unshift( $this->value , $item );
+		} else if( is_array( $this->chars )) {
+			return imploade( array_unshift( $this->chars, $item));
+		} else {
+			return false;
+		}
+
+	}
+
+	/**
+	 * Adjusts the entire case of a string to lower
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn downcase()
+	 * @param mixed $item
+	 * @return mixed
+	 **/
+	public final function downcase() {
+
+		if( $this->type == "string" ) {
+			return strtolower( $this->value );
+		} else {
+			return false;
+		}
+
+	}
+
+	/**
+	 * Returns the decimal value for the object value
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn hex()
+	 * @return mixed
+	 **/
+	public final function hex() {
+
+		if( $this->type == "string" ) {
+			return hexdec( $this->value );
+		} else {
+			return false;
+		}
+
+	}
+
+	/**
+	 * Returns the hex value for the object value
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn toHex()
+	 * @return mixed
+	 **/
+	public final function toHex() {
+
+		if( $this->type == "string" ) {
+			return dechex( $this->value );
+		} else {
+			return false;
+		}
+
+	}
+
+	/**
+	 * Matches a regex against the object value and returns the occurrences
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn match()
+	 * @param string $pattern - The pattern that the regex will follow.
+	 * @return mixed
+	 **/
+	public final function match( $pattern ) {
+
+		if( $this->type == "string" ) {
+			if( preg_match( $pattern , $this->value , $matches ) ) {
+				return $matches;
+			}
+		}
+		return false;
+
+	}
+
+	/**
+	 * Runs a function against each of the characters in the object string ($this->chars)
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn each_char()
+	 * @param string $function - The user-supplied function that will be run against the characters
+	 * @return mixed
+	 **/
+	public final function each_char( $function ) {
+
+		if( is_array( $this->chars ) ) {
+			foreach( $this->chars as $k => $v ) {
+				$output[] = $function( $v );
+			}
+			return $output;
+		}
+		return false;
+
+	}
+
+	/**
+	 * Runs a function against each of the characters in the object string or the elements in the object array.
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn each()
+	 * @param string $function - The user-supplied function that will be run against the characters or elements
+	 * @return mixed
+	 **/
+	public final function each( $function ) {
+
+		if( $this->type == "string" ) {
+			foreach( $this->chars as $k => $v ) {
+				$output[] = $function( $v );
+			}
+		} else if ( $this->type == "array" ) {
+			foreach( $this->value as $k => $v ) {
+				$output[] = $function( $v );
+			}
+		} else if ( is_array( $this->chars )) {
+			foreach( $this->chars as $k => $v ) {
+				$output[] = $function( $v );
+			}
+		} else {
+			return false;
+		}
+		return $output;
+
+	}
+
+	/**
+	 * Reverses the elements of an array or the characters in a string/double/integer/etc. This is an alias of flip()!
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn reverse()
+	 * @return mixed
+	 **/
+	public final function reverse() {
+
+		return $this->flip();
+
+	}
+
+	/**
+	 * Determines whether a provided value is equal to the object value or not
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn eql()
+	 * @param mixed $comparison - The value to be compared to.
+	 * @return boolean
+	 **/
+	public final function eql( $comparison ) {
+
+		if( $this->type == "string" ) {
+			return ( strcmp( $this->value , $comparison ) == 0 );
+		} else {
+			return $this->value == $comparison;
+		}
+
+	}
+
+	/**
+	 * Trims all whitespace from the beginning and end of the object value. 
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn tr()
+	 * @return mixed
+	 **/
+	public final function tr() {
+
+		if( $this->type == "string" ) {
+			return trim( $this->value );
+		} else {
+			return false;
+		}
+
+	}
+
+	/**
+	 * Removes a specified key from an array.
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn del()
+	 * @param mixed $key - The key to remove from the array
+	 * @return mixed
+	 **/
+	public final function del( $key ) {
+
+		if( $this->type == "string" ) {
+			if( $key > count( $this->chars )) {
+				return false;
+			}
+			unset( $this->chars[$key] );
+			return $this->chars;
+		} else if( $this->type == "array" ) {
+			if( $key > count( $this->value )) {
+				return false;
+			}
+			unset( $this->value[$key] );
+			return $this->value;
+		} else {
+			return false;
+		}
+
+	}
+
+	/**
+	 * Breaks apart a string of values into separate array pieces by a provided delimiter
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn ex()
+	 * @param string $delimiter - The character separator used to break the string apart
+	 * @return mixed
+	 **/
+	public final function ex( $delimiter ) {
+
+		return explode( $delimiter , $this->value );
+
+	}
+
+	/**
+	 * Flattens an array using a provided delimiter
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn im()
+	 * @param string $delimiter - The character separator to include between characters.
+	 * @return mixed
+	 **/
+	public final function im( $delimiter ) {
+
+		if( is_array( $this->value )) {
+			return implode( $delimiter , $this->value );
+		} else if( is_array( $this->chars ) ) {
+			return implode( $delimiter , $this->chars );
+		}
+		return false;
+
+	}
+
+	/**
+	 * Repeats a string, number or array $num of times.
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn repeat()
+	 * @param int $num - Number of times to be repeated
+	 * @return mixed
+	 **/
+	public final function repeat( $num ) {
+		if( $num <= 0 || is_nan( $num )) {
+			return false;
+		}
+		if( $this->type == "array" ) {
+			for( $i = 0; $i < $num; $i++ ) {
+				$return[$i] = $this->value;
+			}
+		} else if( is_array( $this->chars ) ) {
+			$return = str_repeat( $this->value , $num );
+		} else {
+			return false;
+		}
+		return $return;
+
+	}
+
+	/**
+	 * Shuffles an array
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn cnt()
+	 * @param int $mode - The count mode: 1) Normal, top-level count. 2) Recursive count. Counts all levels.
+	 * @return mixed
+	 **/
+	public final function cnt( $mode = 1 ) {
+
+		switch( $mode ) {
+			case 1: 
+				$m = "COUNT_NORMAL";
+				break;
+			case 2:
+				$m = "COUNT_RECURSIVE";
+				break;
+			default:
+				return false;
+		}
+		if( $this->type == "string" ) {
+			return count( $this->chars , $m );
+		} else if( $this->type == "array" ) {
+			return count( $this->value , $m );
+		}
+		return false;
+
+	}
+
+	/**
+	 * Adds/Removes slashes based on input
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn slashes()
+	 * @param mixed $mode - The method of slashes to use. DEFAULT: "add", ACCEPTS: "add","addc","strip","stripc"
+	 * @return mixed
+	 **/
+	public final function slashes( $mode = "add" ) {
+
+		switch( $mode ) {
+			case "add":
+				$f = function( $val , $key ) { /// For some reason, array_walk_recursive() sends these backwards. I'm used to $key=>$val pairs. Oh well. *sigh*
+					( $this->type == "array" ) ? $return = array( $key , addslashes( $val ) ) : $return = addslashes( $val );
+					return $return; 
+				};
+				break;
+			case "addc":
+				$f = function($val) { return addcslashes($val); };
+				break;
+			case "strip":
+				$f = function($val) { return stripslashes($val); };
+				break;
+			case "stripc":
+				$f = function($val) { return stripcslashes($val); };
+				break;
+			default:
+				return false;
+		}
+
+		if( $this->type == "string" || is_array( @$this->chars) ) {
+			return $f( $this->value );
+		} else if( $this->type == "array" ) {
+			return array_walk_recursive( $this->value , $f );
+		}
+		return false;
+
+	}
+
+	/**
+	 * Searches for a key or item in a string, integer, double, or array.
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn pos()
+	 * @param mixed $needle - The search term.
+	 * @return mixed
+	 **/
+	public final function pos( $needle , $recursive = true ) {
+
+		if( !isset( $needle ) ) {
+			return false;
+		}
+		$search = function( $key , $haystack ) {
+			return array_search( $key , $haystack );
+		};
+
+		if( $this->type == "string" || is_array( @$this->chars) ) {
+			return $search( $this->chars );
+		} else if( $this->type == "array" ) {
+			return array_walk_recursive( $this->value , $search );
+		}
+		return false;
+
+	}
+
+}
 
 ?>

@@ -78,6 +78,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="globals.html"><span>All</span></a></li>
       <li class="current"><a href="globals_vars.html"><span>Variables</span></a></li>
+      <li><a href="globals_enum.html"><span>Enumerations</span></a></li>
     </ul>
   </div>
 </div>
@@ -86,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -103,11 +104,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>$allowedMethods
 : <a class="el" href="index_8php.html#ab278eba7cab5341dacdccecd7a2cc2df">index.php</a>
 </li>
+<li>$array
+: <a class="el" href="index_8php.html#ac1361b8d873c1f927b21b809f99e5752">index.php</a>
+</li>
 <li>$completedCount
 : <a class="el" href="index_8php.html#a51c734a41c7747051953ec3d78dd1c5b">index.php</a>
 </li>
-<li>$data
-: <a class="el" href="index_8php.html#a6efc15b5a2314dd4b5aaa556a375c6d6">index.php</a>
+<li>$f
+: <a class="el" href="index_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">index.php</a>
 </li>
 <li>$functions
 : <a class="el" href="class_8rubyphp_8php.html#aa75daea491817f3b64daa2f51128bcdf">class.rubyphp.php</a>
@@ -118,14 +122,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>$methodsInUse
 : <a class="el" href="index_8php.html#a1c475c0c53206fb15c4c3028bb7d5c7c">index.php</a>
 </li>
-<li>$one
-: <a class="el" href="index_8php.html#a95601f0019d098a2b40f33f5939e799b">index.php</a>
-</li>
 <li>$output
 : <a class="el" href="index_8php.html#a73004ce9cd673c1bfafd1dc351134797">index.php</a>
-</li>
-<li>$two
-: <a class="el" href="index_8php.html#a6c7519bde09ff89a11a474606e57547f">index.php</a>
 </li>
 <li>$writtenMethods
 : <a class="el" href="index_8php.html#a2e64f0494f7eccf90168af7f67198650">index.php</a>
@@ -138,7 +136,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 29 2012 18:30:03 for RubyPHP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Mar 30 2012 18:27:31 for RubyPHP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.0
 </small></address>

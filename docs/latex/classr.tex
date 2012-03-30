@@ -10,6 +10,8 @@
 \item 
 \hyperlink{classr_ae9afa34c455aa79da5394a608f38386e}{responds\-\_\-to} (\$function)
 \item 
+\hyperlink{classr_af4b09312c3dd2b7ef02781c54c9a5244}{\-\_\-call} (\$function)
+\item 
 \hyperlink{classr_a152d588244df6a865c3f452d7b095a42}{show\-Object} ()
 \item 
 \hyperlink{classr_af745c1e6bc71ed38a120043c0cb13416}{val} ()
@@ -38,7 +40,7 @@
 \item 
 \hyperlink{classr_a93564c0bb378f8d37470946df4d09ceb}{length} (\$mode=C\-O\-U\-N\-T\-\_\-\-N\-O\-R\-M\-A\-L)
 \item 
-\hyperlink{classr_a1a9162d9360cbf8e07359b7801c6ed93}{cap} (\$type)
+\hyperlink{classr_a6919ea74ebb93cd28fee10d172ebc4c4}{cap} (\$type, \$value=null)
 \item 
 \hyperlink{classr_ac73eef9ff76ea330c0dab36ca448b90d}{first} ()
 \item 
@@ -91,6 +93,42 @@
 \hyperlink{classr_a2dba4fd3850e2c373dad4604d170dfa6}{zip} (\$args)
 \item 
 \hyperlink{classr_a04980c8e9024c09c700fdf68df9d5775}{swapcase} ()
+\item 
+\hyperlink{classr_a69c3762d52c367c08ca4dd234f5576df}{concat} (\$item, \$position=\char`\"{}end\char`\"{})
+\item 
+\hyperlink{classr_a7e2ed8a2b96e8c0340390647f081557c}{prepend} (\$item)
+\item 
+\hyperlink{classr_ac627a4ea49a87091d67dd7e1319bc872}{downcase} ()
+\item 
+\hyperlink{classr_a0c6f82bc490087648b9f1fef553e05eb}{hex} ()
+\item 
+\hyperlink{classr_a59e26fcd3f578f30737550623859abe7}{to\-Hex} ()
+\item 
+\hyperlink{classr_a59c310be108326e741acb1a678ff9bbe}{match} (\$pattern)
+\item 
+\hyperlink{classr_a52486765aad19321ca30127f786ca709}{each\-\_\-char} (\$function)
+\item 
+\hyperlink{classr_a6c0a4c47b3531bcc641e0aa02e155f00}{each} (\$function)
+\item 
+\hyperlink{classr_a601c54a2a4082e5d8dfc4509b07ea958}{reverse} ()
+\item 
+\hyperlink{classr_a3a9f9703b0a2b7a455a1e109f96f706d}{eql} (\$comparison)
+\item 
+\hyperlink{classr_a93130ece3f9aced2dcacf00ec6968413}{tr} ()
+\item 
+\hyperlink{classr_a4be48cfb26bfde30df2a0954ee852591}{del} (\$key)
+\item 
+\hyperlink{classr_ae05789292fafbb86600f74343762296c}{ex} (\$delimiter)
+\item 
+\hyperlink{classr_acb799c47bea88bda888622f887871c1c}{im} (\$delimiter)
+\item 
+\hyperlink{classr_ab924f20be77fca419f8433a2c8df810a}{repeat} (\$num)
+\item 
+\hyperlink{classr_ad8ade07cf9fec6dddec76822547a34b2}{cnt} (\$mode=1)
+\item 
+\hyperlink{classr_aee99d6b6d0c3479c48a98e76de963e06}{slashes} (\$mode=\char`\"{}add\char`\"{})
+\item 
+\hyperlink{classr_a3792ea27c7c50f1509214cbe67bd62e4}{pos} (\$needle, \$recursive=true)
 \end{DoxyCompactItemize}
 \subsection*{Data Fields}
 \begin{DoxyCompactItemize}
@@ -136,7 +174,7 @@
 \subsection{Detailed Description}
 
 
-Definition at line 237 of file class.\-rubyphp.\-php.
+Definition at line 168 of file class.\-rubyphp.\-php.
 
 
 
@@ -150,7 +188,7 @@ Definition at line 237 of file class.\-rubyphp.\-php.
 )}}\label{classr_a4b0c1fe0e6c94ec2df5006f414b164c4}
 
 
-Definition at line 346 of file class.\-rubyphp.\-php.
+Definition at line 277 of file class.\-rubyphp.\-php.
 
 
 
@@ -167,6 +205,25 @@ Here is the call graph for this function\-:
 
 
 \subsection{Member Function Documentation}
+\hypertarget{classr_af4b09312c3dd2b7ef02781c54c9a5244}{\index{r@{r}!\-\_\-call@{\-\_\-call}}
+\index{\-\_\-call@{\-\_\-call}!r@{r}}
+\subsubsection[{\-\_\-call}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-\_\-call} (
+\begin{DoxyParamCaption}
+\item[{\$}]{function}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_af4b09312c3dd2b7ef02781c54c9a5244}
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$function} & -\/ The user-\/supplied function that will be run against the object value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+
+
+Definition at line 342 of file class.\-rubyphp.\-php.
+
 \hypertarget{classr_ad8c557c876471daa5dce718f01fd77b2}{\index{r@{r}!av@{av}}
 \index{av@{av}!r@{r}}
 \subsubsection[{av}]{\setlength{\rightskip}{0pt plus 5cm}{\bf av} (
@@ -179,18 +236,21 @@ mixed
 \end{DoxyReturn}
 
 
-Definition at line 1057 of file class.\-rubyphp.\-php.
+Definition at line 1009 of file class.\-rubyphp.\-php.
 
-\hypertarget{classr_a1a9162d9360cbf8e07359b7801c6ed93}{\index{r@{r}!cap@{cap}}
+\hypertarget{classr_a6919ea74ebb93cd28fee10d172ebc4c4}{\index{r@{r}!cap@{cap}}
 \index{cap@{cap}!r@{r}}
 \subsubsection[{cap}]{\setlength{\rightskip}{0pt plus 5cm}{\bf cap} (
 \begin{DoxyParamCaption}
-\item[{\$}]{type}
+\item[{\$}]{type, }
+\item[{\$}]{value = {\ttfamily null}}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_a1a9162d9360cbf8e07359b7801c6ed93}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_a6919ea74ebb93cd28fee10d172ebc4c4}
 
 \begin{DoxyParams}[1]{Parameters}
 string & {\em \$type} & -\/ The parameters that the capitalize function must work within. Accepts\-: \char`\"{}first\char`\"{} , \char`\"{}all\char`\"{} , \char`\"{}none\char`\"{} , \char`\"{}words\char`\"{} \\
+\hline
+mixed & {\em \$value} & -\/ The value to be modified. I found that this parameter was necessary for other functions that required casing and needed to pass their own values. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -198,7 +258,7 @@ string
 \end{DoxyReturn}
 
 
-Definition at line 816 of file class.\-rubyphp.\-php.
+Definition at line 764 of file class.\-rubyphp.\-php.
 
 
 
@@ -207,10 +267,70 @@ Here is the call graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=208pt]{classr_a1a9162d9360cbf8e07359b7801c6ed93_cgraph}
+\includegraphics[width=208pt]{classr_a6919ea74ebb93cd28fee10d172ebc4c4_cgraph}
 \end{center}
 \end{figure}
 
+
+\hypertarget{classr_ad8ade07cf9fec6dddec76822547a34b2}{\index{r@{r}!cnt@{cnt}}
+\index{cnt@{cnt}!r@{r}}
+\subsubsection[{cnt}]{\setlength{\rightskip}{0pt plus 5cm}{\bf cnt} (
+\begin{DoxyParamCaption}
+\item[{\$}]{mode = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_ad8ade07cf9fec6dddec76822547a34b2}
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$mode} & -\/ The count mode\-: 1) Normal, top-\/level count. 2) Recursive count. Counts all levels. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+
+
+Definition at line 1682 of file class.\-rubyphp.\-php.
+
+\hypertarget{classr_a69c3762d52c367c08ca4dd234f5576df}{\index{r@{r}!concat@{concat}}
+\index{concat@{concat}!r@{r}}
+\subsubsection[{concat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf concat} (
+\begin{DoxyParamCaption}
+\item[{\$}]{item, }
+\item[{\$}]{position = {\ttfamily \char`\"{}end\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_a69c3762d52c367c08ca4dd234f5576df}
+
+\begin{DoxyParams}[1]{Parameters}
+mixed & {\em \$item} & -\/ The item that you would like appended to the object value array. Preferred\-: Array \\
+\hline
+string & {\em \$position} & -\/ The position in the array you would like the value appended. Accepts \char`\"{}start\char`\"{} \char`\"{}fin\char`\"{} \char`\"{}begin\char`\"{} and \char`\"{}end\char`\"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+
+
+Definition at line 1352 of file class.\-rubyphp.\-php.
+
+\hypertarget{classr_a4be48cfb26bfde30df2a0954ee852591}{\index{r@{r}!del@{del}}
+\index{del@{del}!r@{r}}
+\subsubsection[{del}]{\setlength{\rightskip}{0pt plus 5cm}{\bf del} (
+\begin{DoxyParamCaption}
+\item[{\$}]{key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_a4be48cfb26bfde30df2a0954ee852591}
+
+\begin{DoxyParams}[1]{Parameters}
+mixed & {\em \$key} & -\/ The key to remove from the array \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+
+
+Definition at line 1592 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_aa118461de946085fe42989193337044a}{\index{r@{r}!destroy@{destroy}}
 \index{destroy@{destroy}!r@{r}}
@@ -224,7 +344,26 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 609 of file class.\-rubyphp.\-php.
+Definition at line 556 of file class.\-rubyphp.\-php.
+
+\hypertarget{classr_ac627a4ea49a87091d67dd7e1319bc872}{\index{r@{r}!downcase@{downcase}}
+\index{downcase@{downcase}!r@{r}}
+\subsubsection[{downcase}]{\setlength{\rightskip}{0pt plus 5cm}{\bf downcase} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_ac627a4ea49a87091d67dd7e1319bc872}
+
+\begin{DoxyParams}[1]{Parameters}
+mixed & {\em \$item} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+
+
+Definition at line 1415 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a5bf63e4ac70cfd9d97e3f2eab936ec8b}{\index{r@{r}!dump@{dump}}
 \index{dump@{dump}!r@{r}}
@@ -238,7 +377,64 @@ mixed
 \end{DoxyReturn}
 
 
-Definition at line 595 of file class.\-rubyphp.\-php.
+Definition at line 542 of file class.\-rubyphp.\-php.
+
+\hypertarget{classr_a6c0a4c47b3531bcc641e0aa02e155f00}{\index{r@{r}!each@{each}}
+\index{each@{each}!r@{r}}
+\subsubsection[{each}]{\setlength{\rightskip}{0pt plus 5cm}{\bf each} (
+\begin{DoxyParamCaption}
+\item[{\$}]{function}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_a6c0a4c47b3531bcc641e0aa02e155f00}
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$function} & -\/ The user-\/supplied function that will be run against the characters or elements \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+
+
+Definition at line 1511 of file class.\-rubyphp.\-php.
+
+\hypertarget{classr_a52486765aad19321ca30127f786ca709}{\index{r@{r}!each\-\_\-char@{each\-\_\-char}}
+\index{each\-\_\-char@{each\-\_\-char}!r@{r}}
+\subsubsection[{each\-\_\-char}]{\setlength{\rightskip}{0pt plus 5cm}{\bf each\-\_\-char} (
+\begin{DoxyParamCaption}
+\item[{\$}]{function}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_a52486765aad19321ca30127f786ca709}
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$function} & -\/ The user-\/supplied function that will be run against the characters \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+
+
+Definition at line 1490 of file class.\-rubyphp.\-php.
+
+\hypertarget{classr_a3a9f9703b0a2b7a455a1e109f96f706d}{\index{r@{r}!eql@{eql}}
+\index{eql@{eql}!r@{r}}
+\subsubsection[{eql}]{\setlength{\rightskip}{0pt plus 5cm}{\bf eql} (
+\begin{DoxyParamCaption}
+\item[{\$}]{comparison}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_a3a9f9703b0a2b7a455a1e109f96f706d}
+
+\begin{DoxyParams}[1]{Parameters}
+mixed & {\em \$comparison} & -\/ The value to be compared to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+
+
+Definition at line 1555 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_ab4e6060d5b0dd93113194ba83534d385}{\index{r@{r}!escape@{escape}}
 \index{escape@{escape}!r@{r}}
@@ -252,7 +448,7 @@ string
 \end{DoxyReturn}
 
 
-Definition at line 690 of file class.\-rubyphp.\-php.
+Definition at line 637 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a046b5f5e8b171d4724f2780303239825}{\index{r@{r}!even@{even}}
 \index{even@{even}!r@{r}}
@@ -266,7 +462,26 @@ boolean
 \end{DoxyReturn}
 
 
-Definition at line 1006 of file class.\-rubyphp.\-php.
+Definition at line 958 of file class.\-rubyphp.\-php.
+
+\hypertarget{classr_ae05789292fafbb86600f74343762296c}{\index{r@{r}!ex@{ex}}
+\index{ex@{ex}!r@{r}}
+\subsubsection[{ex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ex} (
+\begin{DoxyParamCaption}
+\item[{\$}]{delimiter}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_ae05789292fafbb86600f74343762296c}
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$delimiter} & -\/ The character separator used to break the string apart \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+
+
+Definition at line 1621 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_ac53bb6cc3dad129127779798eb479903}{\index{r@{r}!exception@{exception}}
 \index{exception@{exception}!r@{r}}
@@ -288,7 +503,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 367 of file class.\-rubyphp.\-php.
+Definition at line 299 of file class.\-rubyphp.\-php.
 
 
 
@@ -297,7 +512,7 @@ Here is the caller graph for this function\-:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=222pt]{classr_ac53bb6cc3dad129127779798eb479903_icgraph}
+\includegraphics[width=306pt]{classr_ac53bb6cc3dad129127779798eb479903_icgraph}
 \end{center}
 \end{figure}
 
@@ -314,7 +529,7 @@ mixed
 \end{DoxyReturn}
 
 
-Definition at line 854 of file class.\-rubyphp.\-php.
+Definition at line 806 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_ab7b978294481794664ea5ffa6530e020}{\index{r@{r}!flip@{flip}}
 \index{flip@{flip}!r@{r}}
@@ -328,7 +543,7 @@ mixed
 \end{DoxyReturn}
 
 
-Definition at line 704 of file class.\-rubyphp.\-php.
+Definition at line 651 of file class.\-rubyphp.\-php.
 
 
 
@@ -338,6 +553,18 @@ Here is the call graph for this function\-:
 \begin{center}
 \leavevmode
 \includegraphics[width=206pt]{classr_ab7b978294481794664ea5ffa6530e020_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{classr_ab7b978294481794664ea5ffa6530e020_icgraph}
 \end{center}
 \end{figure}
 
@@ -354,7 +581,7 @@ string
 \end{DoxyReturn}
 
 
-Definition at line 908 of file class.\-rubyphp.\-php.
+Definition at line 860 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a0a13d13bfe0866bab479a700d059898b}{\index{r@{r}!gcd@{gcd}}
 \index{gcd@{gcd}!r@{r}}
@@ -373,7 +600,40 @@ mixed
 \end{DoxyReturn}
 
 
-Definition at line 1072 of file class.\-rubyphp.\-php.
+Definition at line 1024 of file class.\-rubyphp.\-php.
+
+\hypertarget{classr_a0c6f82bc490087648b9f1fef553e05eb}{\index{r@{r}!hex@{hex}}
+\index{hex@{hex}!r@{r}}
+\subsubsection[{hex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf hex} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_a0c6f82bc490087648b9f1fef553e05eb}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+
+
+Definition at line 1433 of file class.\-rubyphp.\-php.
+
+\hypertarget{classr_acb799c47bea88bda888622f887871c1c}{\index{r@{r}!im@{im}}
+\index{im@{im}!r@{r}}
+\subsubsection[{im}]{\setlength{\rightskip}{0pt plus 5cm}{\bf im} (
+\begin{DoxyParamCaption}
+\item[{\$}]{delimiter}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_acb799c47bea88bda888622f887871c1c}
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$delimiter} & -\/ The character separator to include between characters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+
+
+Definition at line 1636 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_ada723c8fc4c1599c3f0a5a73698ef7fd}{\index{r@{r}!index@{index}}
 \index{index@{index}!r@{r}}
@@ -392,7 +652,7 @@ mixed
 \end{DoxyReturn}
 
 
-Definition at line 951 of file class.\-rubyphp.\-php.
+Definition at line 903 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a63f86e65e715320e6e292251810cd0b9}{\index{r@{r}!infinite@{infinite}}
 \index{infinite@{infinite}!r@{r}}
@@ -406,7 +666,7 @@ boolean
 \end{DoxyReturn}
 
 
-Definition at line 1104 of file class.\-rubyphp.\-php.
+Definition at line 1056 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_ac90cadb327363232bb2d83a4f8ebd613}{\index{r@{r}!last@{last}}
 \index{last@{last}!r@{r}}
@@ -420,7 +680,7 @@ mixed
 \end{DoxyReturn}
 
 
-Definition at line 874 of file class.\-rubyphp.\-php.
+Definition at line 826 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a93564c0bb378f8d37470946df4d09ceb}{\index{r@{r}!length@{length}}
 \index{length@{length}!r@{r}}
@@ -434,7 +694,26 @@ int
 \end{DoxyReturn}
 
 
-Definition at line 794 of file class.\-rubyphp.\-php.
+Definition at line 741 of file class.\-rubyphp.\-php.
+
+\hypertarget{classr_a59c310be108326e741acb1a678ff9bbe}{\index{r@{r}!match@{match}}
+\index{match@{match}!r@{r}}
+\subsubsection[{match}]{\setlength{\rightskip}{0pt plus 5cm}{\bf match} (
+\begin{DoxyParamCaption}
+\item[{\$}]{pattern}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_a59c310be108326e741acb1a678ff9bbe}
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$pattern} & -\/ The pattern that the regex will follow. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+
+
+Definition at line 1470 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a63b637e71bf8bbee33889ae833423560}{\index{r@{r}!md5@{md5}}
 \index{md5@{md5}!r@{r}}
@@ -448,7 +727,7 @@ string
 \end{DoxyReturn}
 
 
-Definition at line 662 of file class.\-rubyphp.\-php.
+Definition at line 609 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a7755db2baa1c58774d9cf1c5c82676a1}{\index{r@{r}!money@{money}}
 \index{money@{money}!r@{r}}
@@ -470,7 +749,7 @@ string
 \end{DoxyReturn}
 
 
-Definition at line 983 of file class.\-rubyphp.\-php.
+Definition at line 935 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a57202f5e3d5e0a89e18aac7d96773cab}{\index{r@{r}!mult@{mult}}
 \index{mult@{mult}!r@{r}}
@@ -489,7 +768,7 @@ mixed
 \end{DoxyReturn}
 
 
-Definition at line 1043 of file class.\-rubyphp.\-php.
+Definition at line 995 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_ae27ea99fd73ded7a863a154be23756d3}{\index{r@{r}!Na\-N@{Na\-N}}
 \index{Na\-N@{Na\-N}!r@{r}}
@@ -503,7 +782,7 @@ boolean
 \end{DoxyReturn}
 
 
-Definition at line 1118 of file class.\-rubyphp.\-php.
+Definition at line 1070 of file class.\-rubyphp.\-php.
 
 
 
@@ -529,7 +808,46 @@ boolean
 \end{DoxyReturn}
 
 
-Definition at line 1024 of file class.\-rubyphp.\-php.
+Definition at line 976 of file class.\-rubyphp.\-php.
+
+\hypertarget{classr_a3792ea27c7c50f1509214cbe67bd62e4}{\index{r@{r}!pos@{pos}}
+\index{pos@{pos}!r@{r}}
+\subsubsection[{pos}]{\setlength{\rightskip}{0pt plus 5cm}{\bf pos} (
+\begin{DoxyParamCaption}
+\item[{\$}]{needle, }
+\item[{\$}]{recursive = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_a3792ea27c7c50f1509214cbe67bd62e4}
+
+\begin{DoxyParams}[1]{Parameters}
+mixed & {\em \$needle} & -\/ The search term. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+
+
+Definition at line 1752 of file class.\-rubyphp.\-php.
+
+\hypertarget{classr_a7e2ed8a2b96e8c0340390647f081557c}{\index{r@{r}!prepend@{prepend}}
+\index{prepend@{prepend}!r@{r}}
+\subsubsection[{prepend}]{\setlength{\rightskip}{0pt plus 5cm}{\bf prepend} (
+\begin{DoxyParamCaption}
+\item[{\$}]{item}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_a7e2ed8a2b96e8c0340390647f081557c}
+
+\begin{DoxyParams}[1]{Parameters}
+mixed & {\em \$item} & -\/ The item to be prepended to the existing array \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+
+
+Definition at line 1391 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a24a0a2d08214aa208efaf13be12b41fe}{\index{r@{r}!push@{push}}
 \index{push@{push}!r@{r}}
@@ -551,7 +869,7 @@ mixed
 \end{DoxyReturn}
 
 
-Definition at line 1180 of file class.\-rubyphp.\-php.
+Definition at line 1132 of file class.\-rubyphp.\-php.
 
 
 
@@ -564,6 +882,25 @@ Here is the call graph for this function\-:
 \end{center}
 \end{figure}
 
+
+\hypertarget{classr_ab924f20be77fca419f8433a2c8df810a}{\index{r@{r}!repeat@{repeat}}
+\index{repeat@{repeat}!r@{r}}
+\subsubsection[{repeat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf repeat} (
+\begin{DoxyParamCaption}
+\item[{\$}]{num}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_ab924f20be77fca419f8433a2c8df810a}
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$num} & -\/ Number of times to be repeated \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+
+
+Definition at line 1656 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_ae9afa34c455aa79da5394a608f38386e}{\index{r@{r}!responds\-\_\-to@{responds\-\_\-to}}
 \index{responds\-\_\-to@{responds\-\_\-to}!r@{r}}
@@ -582,7 +919,33 @@ boolean
 \end{DoxyReturn}
 
 
-Definition at line 396 of file class.\-rubyphp.\-php.
+Definition at line 328 of file class.\-rubyphp.\-php.
+
+\hypertarget{classr_a601c54a2a4082e5d8dfc4509b07ea958}{\index{r@{r}!reverse@{reverse}}
+\index{reverse@{reverse}!r@{r}}
+\subsubsection[{reverse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf reverse} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_a601c54a2a4082e5d8dfc4509b07ea958}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+
+
+Definition at line 1540 of file class.\-rubyphp.\-php.
+
+
+
+Here is the call graph for this function\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{classr_a601c54a2a4082e5d8dfc4509b07ea958_cgraph}
+\end{center}
+\end{figure}
+
 
 \hypertarget{classr_ab7cf083b6111db8f56b7d0b42cbba7a0}{\index{r@{r}!rnd@{rnd}}
 \index{rnd@{rnd}!r@{r}}
@@ -601,7 +964,7 @@ mixed
 \end{DoxyReturn}
 
 
-Definition at line 1087 of file class.\-rubyphp.\-php.
+Definition at line 1039 of file class.\-rubyphp.\-php.
 
 
 
@@ -627,7 +990,7 @@ array
 \end{DoxyReturn}
 
 
-Definition at line 1216 of file class.\-rubyphp.\-php.
+Definition at line 1168 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_ace98c3b631ca27cdb027bbe389ef8628}{\index{r@{r}!sample@{sample}}
 \index{sample@{sample}!r@{r}}
@@ -646,7 +1009,7 @@ mixed
 \end{DoxyReturn}
 
 
-Definition at line 1234 of file class.\-rubyphp.\-php.
+Definition at line 1186 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a983a9fa784e9028dea46897a760f1210}{\index{r@{r}!secure@{secure}}
 \index{secure@{secure}!r@{r}}
@@ -671,7 +1034,7 @@ string
 \end{DoxyReturn}
 
 
-Definition at line 628 of file class.\-rubyphp.\-php.
+Definition at line 575 of file class.\-rubyphp.\-php.
 
 
 
@@ -697,7 +1060,7 @@ string
 \end{DoxyReturn}
 
 
-Definition at line 922 of file class.\-rubyphp.\-php.
+Definition at line 874 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a7751a3691d09eba1c3d390fdde2c4f4f}{\index{r@{r}!sha1@{sha1}}
 \index{sha1@{sha1}!r@{r}}
@@ -711,7 +1074,7 @@ string
 \end{DoxyReturn}
 
 
-Definition at line 676 of file class.\-rubyphp.\-php.
+Definition at line 623 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a152d588244df6a865c3f452d7b095a42}{\index{r@{r}!show\-Object@{show\-Object}}
 \index{show\-Object@{show\-Object}!r@{r}}
@@ -725,7 +1088,7 @@ void
 \end{DoxyReturn}
 
 
-Definition at line 409 of file class.\-rubyphp.\-php.
+Definition at line 356 of file class.\-rubyphp.\-php.
 
 
 
@@ -751,7 +1114,26 @@ mixed
 \end{DoxyReturn}
 
 
-Definition at line 1260 of file class.\-rubyphp.\-php.
+Definition at line 1212 of file class.\-rubyphp.\-php.
+
+\hypertarget{classr_aee99d6b6d0c3479c48a98e76de963e06}{\index{r@{r}!slashes@{slashes}}
+\index{slashes@{slashes}!r@{r}}
+\subsubsection[{slashes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf slashes} (
+\begin{DoxyParamCaption}
+\item[{\$}]{mode = {\ttfamily \char`\"{}add\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_aee99d6b6d0c3479c48a98e76de963e06}
+
+\begin{DoxyParams}[1]{Parameters}
+mixed & {\em \$mode} & -\/ The method of slashes to use. D\-E\-F\-A\-U\-L\-T\-: \char`\"{}add\char`\"{}, A\-C\-C\-E\-P\-T\-S\-: \char`\"{}add\char`\"{},\char`\"{}addc\char`\"{},\char`\"{}strip\char`\"{},\char`\"{}stripc\char`\"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+For some reason, array\-\_\-walk\-\_\-recursive() sends these backwards. I'm used to \$key=$>$\$val pairs. Oh well. {\itshape sigh\/} 
+
+Definition at line 1712 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_ae01473d9a4d7f2c33c1a157b9cce13f4}{\index{r@{r}!slice@{slice}}
 \index{slice@{slice}!r@{r}}
@@ -773,7 +1155,7 @@ mixed
 \end{DoxyReturn}
 
 
-Definition at line 1282 of file class.\-rubyphp.\-php.
+Definition at line 1233 of file class.\-rubyphp.\-php.
 
 
 
@@ -799,7 +1181,7 @@ mixed
 \end{DoxyReturn}
 
 
-Definition at line 1161 of file class.\-rubyphp.\-php.
+Definition at line 1113 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a04980c8e9024c09c700fdf68df9d5775}{\index{r@{r}!swapcase@{swapcase}}
 \index{swapcase@{swapcase}!r@{r}}
@@ -813,7 +1195,7 @@ mixed
 \end{DoxyReturn}
 
 
-Definition at line 1370 of file class.\-rubyphp.\-php.
+Definition at line 1325 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_ad12032cdf12c784eafa8994f13f464df}{\index{r@{r}!to\-\_\-f@{to\-\_\-f}}
 \index{to\-\_\-f@{to\-\_\-f}!r@{r}}
@@ -827,7 +1209,7 @@ float
 \end{DoxyReturn}
 
 
-Definition at line 780 of file class.\-rubyphp.\-php.
+Definition at line 727 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_aa1ea52bbf266b7ba98c1198ca335ddf1}{\index{r@{r}!to\-\_\-i@{to\-\_\-i}}
 \index{to\-\_\-i@{to\-\_\-i}!r@{r}}
@@ -841,7 +1223,7 @@ int
 \end{DoxyReturn}
 
 
-Definition at line 752 of file class.\-rubyphp.\-php.
+Definition at line 699 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a2d59e8b9284086c0dd59203615f28d2e}{\index{r@{r}!to\-\_\-int@{to\-\_\-int}}
 \index{to\-\_\-int@{to\-\_\-int}!r@{r}}
@@ -855,7 +1237,7 @@ int
 \end{DoxyReturn}
 
 
-Definition at line 766 of file class.\-rubyphp.\-php.
+Definition at line 713 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a4968be1bfca5da3a210d46e21bd080ff}{\index{r@{r}!to\-\_\-s@{to\-\_\-s}}
 \index{to\-\_\-s@{to\-\_\-s}!r@{r}}
@@ -869,7 +1251,21 @@ string
 \end{DoxyReturn}
 
 
-Definition at line 738 of file class.\-rubyphp.\-php.
+Definition at line 685 of file class.\-rubyphp.\-php.
+
+\hypertarget{classr_a59e26fcd3f578f30737550623859abe7}{\index{r@{r}!to\-Hex@{to\-Hex}}
+\index{to\-Hex@{to\-Hex}!r@{r}}
+\subsubsection[{to\-Hex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf to\-Hex} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_a59e26fcd3f578f30737550623859abe7}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+
+
+Definition at line 1451 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a2108d0f07e9bca6160bf5885703de972}{\index{r@{r}!to\-J\-S\-O\-N@{to\-J\-S\-O\-N}}
 \index{to\-J\-S\-O\-N@{to\-J\-S\-O\-N}!r@{r}}
@@ -883,7 +1279,21 @@ string
 \end{DoxyReturn}
 
 
-Definition at line 894 of file class.\-rubyphp.\-php.
+Definition at line 846 of file class.\-rubyphp.\-php.
+
+\hypertarget{classr_a93130ece3f9aced2dcacf00ec6968413}{\index{r@{r}!tr@{tr}}
+\index{tr@{tr}!r@{r}}
+\subsubsection[{tr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tr} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}final\mbox{]}}}}\label{classr_a93130ece3f9aced2dcacf00ec6968413}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+
+
+Definition at line 1573 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a032c9d1b1b6ac32627b95225479aa7c0}{\index{r@{r}!uniq@{uniq}}
 \index{uniq@{uniq}!r@{r}}
@@ -897,7 +1307,7 @@ mixed
 \end{DoxyReturn}
 
 
-Definition at line 1315 of file class.\-rubyphp.\-php.
+Definition at line 1266 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a5664dc3d9f1d71ac463a833d37583e84}{\index{r@{r}!unserial@{unserial}}
 \index{unserial@{unserial}!r@{r}}
@@ -911,7 +1321,7 @@ mixed
 \end{DoxyReturn}
 
 
-Definition at line 936 of file class.\-rubyphp.\-php.
+Definition at line 888 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_af745c1e6bc71ed38a120043c0cb13416}{\index{r@{r}!val@{val}}
 \index{val@{val}!r@{r}}
@@ -925,7 +1335,7 @@ mixed
 \end{DoxyReturn}
 
 
-Definition at line 581 of file class.\-rubyphp.\-php.
+Definition at line 528 of file class.\-rubyphp.\-php.
 
 
 
@@ -951,7 +1361,7 @@ boolean
 \end{DoxyReturn}
 
 
-Definition at line 1132 of file class.\-rubyphp.\-php.
+Definition at line 1084 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a2dba4fd3850e2c373dad4604d170dfa6}{\index{r@{r}!zip@{zip}}
 \index{zip@{zip}!r@{r}}
@@ -970,7 +1380,7 @@ mixed
 \end{DoxyReturn}
 
 
-Definition at line 1336 of file class.\-rubyphp.\-php.
+Definition at line 1287 of file class.\-rubyphp.\-php.
 
 
 
@@ -980,105 +1390,105 @@ Definition at line 1336 of file class.\-rubyphp.\-php.
 \subsubsection[{\$allowed\-Methods}]{\setlength{\rightskip}{0pt plus 5cm}\$allowed\-Methods}}\label{classr_ab278eba7cab5341dacdccecd7a2cc2df}
 
 
-Definition at line 269 of file class.\-rubyphp.\-php.
+Definition at line 200 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a41c83fecb936997f3e2dae40207e31dd}{\index{r@{r}!\$capitalize@{\$capitalize}}
 \index{\$capitalize@{\$capitalize}!r@{r}}
 \subsubsection[{\$capitalize}]{\setlength{\rightskip}{0pt plus 5cm}\$capitalize}}\label{classr_a41c83fecb936997f3e2dae40207e31dd}
 
 
-Definition at line 256 of file class.\-rubyphp.\-php.
+Definition at line 187 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_af789423037bbc89dc7c850e761177570}{\index{r@{r}!\$count@{\$count}}
 \index{\$count@{\$count}!r@{r}}
 \subsubsection[{\$count}]{\setlength{\rightskip}{0pt plus 5cm}\$count}}\label{classr_af789423037bbc89dc7c850e761177570}
 
 
-Definition at line 257 of file class.\-rubyphp.\-php.
+Definition at line 188 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_ab661cd196618c18d23108b83a10728f3}{\index{r@{r}!\$even@{\$even}}
 \index{\$even@{\$even}!r@{r}}
 \subsubsection[{\$even}]{\setlength{\rightskip}{0pt plus 5cm}\${\bf even}}}\label{classr_ab661cd196618c18d23108b83a10728f3}
 
 
-Definition at line 259 of file class.\-rubyphp.\-php.
+Definition at line 190 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a530c822a487ad325618509d8bf48553a}{\index{r@{r}!\$flip\-Array@{\$flip\-Array}}
 \index{\$flip\-Array@{\$flip\-Array}!r@{r}}
 \subsubsection[{\$flip\-Array}]{\setlength{\rightskip}{0pt plus 5cm}\$flip\-Array}}\label{classr_a530c822a487ad325618509d8bf48553a}
 
 
-Definition at line 267 of file class.\-rubyphp.\-php.
+Definition at line 198 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_aa2f5c87cc7b1ab41965e940d5c1406d9}{\index{r@{r}!\$is\-Money@{\$is\-Money}}
 \index{\$is\-Money@{\$is\-Money}!r@{r}}
 \subsubsection[{\$is\-Money}]{\setlength{\rightskip}{0pt plus 5cm}\$is\-Money}}\label{classr_aa2f5c87cc7b1ab41965e940d5c1406d9}
 
 
-Definition at line 258 of file class.\-rubyphp.\-php.
+Definition at line 189 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_adf14d8e29912c1855022dfa252aa4087}{\index{r@{r}!\$length@{\$length}}
 \index{\$length@{\$length}!r@{r}}
 \subsubsection[{\$length}]{\setlength{\rightskip}{0pt plus 5cm}\${\bf length}}}\label{classr_adf14d8e29912c1855022dfa252aa4087}
 
 
-Definition at line 255 of file class.\-rubyphp.\-php.
+Definition at line 186 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a2557b214f57a046187b88572e443da1f}{\index{r@{r}!\$md5@{\$md5}}
 \index{\$md5@{\$md5}!r@{r}}
 \subsubsection[{\$md5}]{\setlength{\rightskip}{0pt plus 5cm}\${\bf md5}}}\label{classr_a2557b214f57a046187b88572e443da1f}
 
 
-Definition at line 262 of file class.\-rubyphp.\-php.
+Definition at line 193 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_aee2d4fa4e98da4e6ad23bee644ab5e7a}{\index{r@{r}!\$odd@{\$odd}}
 \index{\$odd@{\$odd}!r@{r}}
 \subsubsection[{\$odd}]{\setlength{\rightskip}{0pt plus 5cm}\${\bf odd}}}\label{classr_aee2d4fa4e98da4e6ad23bee644ab5e7a}
 
 
-Definition at line 260 of file class.\-rubyphp.\-php.
+Definition at line 191 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_ae0d210fd358fa750a11e63b26f6d26ea}{\index{r@{r}!\$reverse@{\$reverse}}
 \index{\$reverse@{\$reverse}!r@{r}}
-\subsubsection[{\$reverse}]{\setlength{\rightskip}{0pt plus 5cm}\$reverse}}\label{classr_ae0d210fd358fa750a11e63b26f6d26ea}
+\subsubsection[{\$reverse}]{\setlength{\rightskip}{0pt plus 5cm}\${\bf reverse}}}\label{classr_ae0d210fd358fa750a11e63b26f6d26ea}
 
 
-Definition at line 261 of file class.\-rubyphp.\-php.
+Definition at line 192 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a310d84f0b735d2ab692b4e2acd90e7ef}{\index{r@{r}!\$sha1@{\$sha1}}
 \index{\$sha1@{\$sha1}!r@{r}}
 \subsubsection[{\$sha1}]{\setlength{\rightskip}{0pt plus 5cm}\${\bf sha1}}}\label{classr_a310d84f0b735d2ab692b4e2acd90e7ef}
 
 
-Definition at line 263 of file class.\-rubyphp.\-php.
+Definition at line 194 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_ac95fd27a35f2d9674ef3760a4ea1d07f}{\index{r@{r}!\$slashes@{\$slashes}}
 \index{\$slashes@{\$slashes}!r@{r}}
-\subsubsection[{\$slashes}]{\setlength{\rightskip}{0pt plus 5cm}\$slashes}}\label{classr_ac95fd27a35f2d9674ef3760a4ea1d07f}
+\subsubsection[{\$slashes}]{\setlength{\rightskip}{0pt plus 5cm}\${\bf slashes}}}\label{classr_ac95fd27a35f2d9674ef3760a4ea1d07f}
 
 
-Definition at line 266 of file class.\-rubyphp.\-php.
+Definition at line 197 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a85a2ada0b16d9e59f094e77df5848459}{\index{r@{r}!\$to\-\_\-f@{\$to\-\_\-f}}
 \index{\$to\-\_\-f@{\$to\-\_\-f}!r@{r}}
 \subsubsection[{\$to\-\_\-f}]{\setlength{\rightskip}{0pt plus 5cm}\${\bf to\-\_\-f}}}\label{classr_a85a2ada0b16d9e59f094e77df5848459}
 
 
-Definition at line 252 of file class.\-rubyphp.\-php.
+Definition at line 183 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_afecc47a810cf510aff6387286b9c0e73}{\index{r@{r}!\$to\-\_\-i@{\$to\-\_\-i}}
 \index{\$to\-\_\-i@{\$to\-\_\-i}!r@{r}}
 \subsubsection[{\$to\-\_\-i}]{\setlength{\rightskip}{0pt plus 5cm}\${\bf to\-\_\-i}}}\label{classr_afecc47a810cf510aff6387286b9c0e73}
 
 
-Definition at line 253 of file class.\-rubyphp.\-php.
+Definition at line 184 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a41eb7bfd09e3b6ad118551accfaad638}{\index{r@{r}!\$to\-\_\-int@{\$to\-\_\-int}}
 \index{\$to\-\_\-int@{\$to\-\_\-int}!r@{r}}
 \subsubsection[{\$to\-\_\-int}]{\setlength{\rightskip}{0pt plus 5cm}\${\bf to\-\_\-int}}}\label{classr_a41eb7bfd09e3b6ad118551accfaad638}
 
 
-Definition at line 254 of file class.\-rubyphp.\-php.
+Definition at line 185 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a5469620d055732b419fff71704232d2f}{\index{r@{r}!\$to\-\_\-s@{\$to\-\_\-s}}
 \index{\$to\-\_\-s@{\$to\-\_\-s}!r@{r}}
@@ -1089,24 +1499,24 @@ ex\-: \$foo = new r(\char`\"{}\$string\char`\"{}); print \$foo-\/$>$length; prin
 
 etc.. 
 
-Definition at line 251 of file class.\-rubyphp.\-php.
+Definition at line 182 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_a0ca8b395aaa07c4aac3bdb1f9964d4f5}{\index{r@{r}!\$trim@{\$trim}}
 \index{\$trim@{\$trim}!r@{r}}
 \subsubsection[{\$trim}]{\setlength{\rightskip}{0pt plus 5cm}\$trim}}\label{classr_a0ca8b395aaa07c4aac3bdb1f9964d4f5}
 
 
-Definition at line 265 of file class.\-rubyphp.\-php.
+Definition at line 196 of file class.\-rubyphp.\-php.
 
 \hypertarget{classr_aac81a74a7b30767af29bfd9a695636df}{\index{r@{r}!\$val@{\$val}}
 \index{\$val@{\$val}!r@{r}}
 \subsubsection[{\$val}]{\setlength{\rightskip}{0pt plus 5cm}\${\bf val}}}\label{classr_aac81a74a7b30767af29bfd9a695636df}
 
 
-Definition at line 264 of file class.\-rubyphp.\-php.
+Definition at line 195 of file class.\-rubyphp.\-php.
 
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_8rubyphp_8php}{class.\-rubyphp.\-php}\end{DoxyCompactItemize}
+rubyphp/\hyperlink{class_8rubyphp_8php}{class.\-rubyphp.\-php}\end{DoxyCompactItemize}

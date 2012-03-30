@@ -41,10 +41,11 @@ body {
 	min-height: 300px; 
 	padding: 10px; 
 	margin: 50px auto auto 10px; 
-	border: 1px #999999 solid; 
 	background: #eeeeee;
 	font-size: 25px;
 	float:left;
+	border-radius: 5px;
+	box-shadow: 0px 5px 10px #000000, inset 0 1px 1px #ffffff;
 }
 .functions {
 	padding: 10px;
@@ -70,16 +71,17 @@ body {
 	<body>
 
 		<div class="bigbox">
-			<div class="container">
+			<div class="container" style="position:relative;z-index:100;">
 <pre>
 	<?php
 
-	
+	/* *** ARRAY TEST *** 
 	$data = array("Juice","Person","Place");
 	$a = new r($data);
-	$one = array("Me","You","I");
+	$one = array("Me"); //,"You","I"
 	$two = array("Someone","Peanuts","Baseball");
 	print_r( $a->zip( $one , $two ) );
+	*/
 
 	/* *** STRING TEST ****
 	$b = new r("Pierce Moore");
@@ -92,14 +94,15 @@ body {
 	print $b->to_f() . '<br />';
 	print $b->to_i() . '<br />';
 	print $b->length . '<br />';
-	print $b->capitalize('all') . '<br />';
-	print $b->capitalize('none') . '<br />';
-	print $b->capitalize('words') . '<br />';
+	print $b->cap('all') . '<br />';
+	print $b->cap('none') . '<br />';
+	print $b->cap('words') . '<br />';
 	print $b->first() . '<br />';
 	print $b->last() . '<br />';
 	print $b->index(1) . '<br />';
+	print $b->downcase();
 
-	$b->showObject();
+	//$b->showObject();
 	*/
 
 	/* *** INTEGER TEST *****/
@@ -120,27 +123,28 @@ body {
 	print $b->even() . '<br />';
 	print $b->odd() . '<br />';
 	$b->showObject();
-	
-
-	$c = new r(1234);
-	//$c->isMoney();
-	$d = new r(12.34);
+*/
+	/* *** ARRAY TEST *** */
 	$array = array(
-		"thingOne" => array(
-			"another" => "Yep",
-			"andAnother" => "Yepper",
-			"third?" => array(
-				"wow" => "deep brah"
+		"'thingOne'" => array(
+			"'ANOTHER'" => "Yep",
+			"'a'ndAnWEO 'WEDJ'er" => "YeP'Per'",
+			"thASDLKJd?" => array(
+				"w'O'w" => "deep 'brah' ?WOOT'WOOT'"
 			)
 		),
 		"thingTwo" => array(
-			"here we go!"
+			"here we GOOO!"
 		)
 	);
 	$f = new r($array);
-	//print $f->flip();
-*/
+	//print_r( $f );
+	// print_r( $f->downcase() );
+	//print $f->pos("YeP");
+	//print_r($f->slashes());
 
+
+	$a = new r("Pierce");
 	$writtenMethods = get_class_methods("r");
 	$allowedMethods = $a->allowedMethods;
 
