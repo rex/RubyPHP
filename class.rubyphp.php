@@ -7,157 +7,13 @@
  * Have you ever written code in Ruby and then tried to do the same things in PHP but realized that you definitely couldn't? Yeah. Me too. That's why this class came to be.
  * 
  **/
-$functions = array(
-	"utility" => array(
-		"exception" => array(
-			"Exception Object",
-			"msg"
-		),
-		"responds_to" => array(
-			"function"
-		),
-		"_call" => array(
-			"function"
-		),
-		"showObject",
-		"val",
-		"toJSON",
-		"fromJSON",
-		"serial",
-		"unserial",
-		"dump",
-		"destroy",
-		"secure" => array(
-			"mode"
-		),
-		"md5",
-		"sha1",
-		"escape",
-		"to_s",
-		"to_f",
-		"to_i",
-		"to_int"
-	),
-	"strings" => array(
-		"flip",
-		"to_s",
-		"length",
-		"cap" => array(
-			"type",
-			"value = 'null'"
-		)
-	),
-	"arrays" => array(
-		"first",
-		"last",
-		"index" => array(
-			"index"
-		),
-		"srt" => array(
-			"method = 'sort'"
-		),
-		"push" => array(
-			"item",
-			"location"
-		),
-		"rotate",
-		"sample" => array(
-			"size = 1"
-		),
-		"shuf",
-		"slice" => array(
-			"start",
-			"count",
-			"end"
-		),
-		"uniq",
-		"zip"
-	),
-	"numbers" => array(
-		"money" => array(
-			"symbol = '$'",
-			"decimal = '.'"
-		),
-		"even",
-		"odd",
-		"gcd" => array(
-			"comparison"
-		),
-		"rnd" => array(
-			"place"
-		),
-		"mult" => array(
-			"times"
-		),
-		"av",
-		"infinite",
-		"NaN",
-		"zero"
-	),
-	"ruby-specific" => array(
-		"concat" => array(
-			"item",
-			"position = 'end'"
-		),
-		"prepend" => array(
-			"item"
-		),
-		"downcase",
-		"each_char" => array(
-			"function"
-		),
-		"hex",
-		"toHex",
-		"index" => array(
-			"key"
-		),
-		"match" => array(
-			"regex"
-		),
-		"succ",
-		"reverse",
-		"swapcase",
-		"each",
-		"eql" => array(
-			"comparison"
-		)
-	),
-	"miscellaneous" => array(
-		"tr",
-		"del" => array(
-			"index"
-		),
-		"ex" => array( // Explode
-			"delimiter"
-		),
-		"im" => array( // Implode
-			"delimiter"
-		),
-		"repeat" => array(
-			"times"
-		),
-		"replace" => array(
-			"regex",
-			"value"
-		),
-		"cnt" => array(
-			"recursive = 0"
-		),
-		"slashes" => array(
-			"mode"
-		),
-		"pos" => array(
-			"key"
-		)
-	)
-);
 
 // Some debug variables
 define("DEBUG", false);			/// Enables / Disables global debug mode
 define("CHAINING", false);		/// This is a dead variable for now. Once all functionality is written, I will rewrite all functions to enable chaining. $a = new r("Pierce")->length()->uniq()->slashes();
 
 /**
- * I would call this class RubyPHP, but in an effort to make development with this class more efficient, I figured writing $foo = new RubyPHP("$string") a thousand times wasn't worth it.
+ * I would call this class RubyPHP, but in an effort to make development with this class more efficient, I figured writing $foo = new RubyPHP("$string") a thousand times wasn't worth it. So I decided $foo = new r("bar"); was better.
  * 
  * @package RubyPHP
  * @brief Taking all the beautiful simplicity of Ruby and implementing it in PHP!
@@ -198,68 +54,96 @@ class r {
 	var $flipArray;
 
 	var $allowedMethods = array(
-		"boolean" => array(
+		"autorun" => array(
 			"val",
 			"flip",
-			"to_s",
-			"length"
-		),
-		"string" => array(
-			"val",
-			"flip",
+			"reverse",
 			"to_s",
 			"length",
-			"cap",
-			"lowercase",
-			"capFirst",
-			"toJSON",
-			"fromJSON",
-			"dump",
-			"secure",
-			"sha1",
 			"md5",
+			"sha1",
 			"escape",
+			"NaN",
+			"swapcase",
+			"downcase",
+			"hex",
+			"toHex",
+			"first",
+			"last",
+			"srt",
+			"slashes",
+			"cnt",
+			"tr",
+			"shuf"
+		),
+		"all" => array(
+			"_call",
+			"val",
+			"flip",
+			"reverse",
+			"to_s",
+			"length",
+			"dump",
+			"destroy",
+			"eql",
+			"responds_to",
+			"showObject",
+			"secure",
+			"md5",
+			"sha1",
+			"escape",
+			"repeat"
+		),
+		"numbers" => array(
+			"to_f",
+			"to_i",
+			"money",
+			"even",
+			"odd",
+			"gcd",
+			"rnd",
+			"mult",
+			"av",
+			"infinite",
+			"NaN",
+			"zero"
+		),
+		"string" => array(
+			"each",
+			"swapcase",
+			"concat",
+			"prepend",
+			"downcase",
+			"each_char",
+			"hex",
+			"toHex",
+			"index",
+			"match",
+			"replace",
+			"each",
+			"cap",
 			"to_int",
 			"to_i",
 			"to_f",
 			"first",
 			"last",
 			"index",
-			"sort",
+			"srt",
 			"push",
 			"sample",
 			"rotate",
 			"shuf",
-			"slice"
-		),
-		"integer" => array(
-			"val",
-			"money",
-			"even",
-			"odd",
-			"gcd",
-			"rnd",
-			"mult",
-			"av",
-			"infinite",
-			"NaN",
-			"zero"
-		),
-		"double" => array(
-			"val",
-			"money",
-			"even",
-			"odd",
-			"gcd",
-			"rnd",
-			"mult",
-			"av",
-			"infinite",
-			"NaN",
-			"zero"
+			"slice",
+			"ex",
+			"im",
+			"slashes",
+			"cnt",
+			"tr",
+			"del",
+			"pos",
+			"repeat"
 		),
 		"array" => array(
-			"val",
 			"first",
 			"last",
 			"index",
@@ -270,7 +154,31 @@ class r {
 			"shuf",
 			"slice",
 			"uniq",
-			"zip"
+			"zip",
+			"serial",
+			"unserial",
+			"toJSON",
+			"fromJSON",
+			"length",
+			"cap",
+			"av",
+			"concat",
+			"prepend",
+			"downcase",
+			"each_char",
+			"match",
+			"reverse",
+			"each",
+			"tr",
+			"del",
+			"ex",
+			"im",
+			"replace",
+			"cnt",
+			"slashes",
+			"pos",
+			"repeat",
+			"flatten"
 		)
 	);
 
@@ -298,7 +206,7 @@ class r {
 	 * */
 	public final function exception( Exception $e , $msg ) {
 
-		print "#######################################";
+		print "####################################### \n\n<br /><br />";
 
 		print "Exception: $msg \n";
 
@@ -353,11 +261,15 @@ class r {
 	 * @fn showObject()
 	 * @return void
 	 * */
-	public final function showObject() {
+	public final function showObject( $fetch = false ) {
 
-		print "<pre>";
-		print_r( $this );
-		print "</pre>";
+		if( $fetch ) {
+			return $this;
+		} else {
+			print "<pre>";
+			print_r( $this );
+			print "</pre>";
+		}
 
 	}
 
@@ -418,8 +330,9 @@ class r {
 	 **/
 	private final function runMethods() {
 
-		foreach( $this->methods as $k ) {
-			//$this->$k = $this->$k();
+		foreach( $this->allowedMethods['autorun'] as $k=>$v ) {
+			print "Running method: $v()<br />";
+			$this->$v = $this->$v();
 		}
 
 	}
@@ -475,7 +388,7 @@ class r {
 		$this->length = strlen( $this->value );
 		$this->chars = str_split((string)$this->value);
 		$this->flip = $this->flip();
-		$this->methods = $this->allowedMethods['integer'];
+		$this->methods = $this->allowedMethods['numbers'];
 		$this->runMethods();
 		return $this->value;
 	}
@@ -493,7 +406,7 @@ class r {
 		$this->valueString = $this->to_s();
 		$this->to_s = $this->to_s();
 		$this->length = $this->length();
-		$this->methods = $this->allowedMethods['double'];
+		$this->methods = $this->allowedMethods['numbers'];
 		$this->runMethods();
 		return $this->value;
 
@@ -608,6 +521,9 @@ class r {
 	 **/
 	public final function md5() {
 
+		if( $this->type == "array" ) {
+			return false;
+		}
 		return md5( $this->value );
 
 	}
@@ -622,6 +538,9 @@ class r {
 	 **/
 	public final function sha1() {
 
+		if( $this->type == "array" ) {
+			return false;
+		}
 		return sha1( $this->value );
 
 	}
@@ -636,6 +555,9 @@ class r {
 	 **/
 	public final function escape() {
 
+		if( $this->type == "array" ) {
+			return false;
+		}
 		return mysql_real_escape_string( $this->value );
 
 	}
@@ -1069,7 +991,7 @@ class r {
 	 **/
 	public final function NaN() {
 
-		return is_nan( $this->value );
+		return is_nan( (double)$this->value );
 
 	}
 
@@ -1211,10 +1133,14 @@ class r {
 	 **/
 	public final function shuf() {
 
-		if( is_array( $this->value )) {
-			return shuffle( $this->value );
-		} else if( is_string( $this->value )) {
-			return shuffle( $this->chars ); 
+		if( $this->type == "array" ) {
+			$arr = $this->value;
+			shuffle( $arr );
+			return $arr;
+		} else if( $this->type == "string" ) {
+			$arr = $this->chars;
+			shuffle( $arr );
+			return $arr;
 		}
 		return false;
 
@@ -1281,6 +1207,7 @@ class r {
 	 * @package RubyPHP
 	 * @author Pierce Moore
 	 * @fn zip()
+	 * @todo Check to see if array_map() is more effective here than the solution I found.
 	 * @param mixed $args - This function accepts as many arguments as you throw at it. It will hard-typecast all arguments into arrays and go from there. 
 	 * @return mixed
 	 **/
@@ -1676,25 +1603,15 @@ class r {
 	 * @package RubyPHP
 	 * @author Pierce Moore
 	 * @fn cnt()
-	 * @param int $mode - The count mode: 1) Normal, top-level count. 2) Recursive count. Counts all levels.
+	 * @param int $mode - The count mode: null ) Normal, top-level count. 1) Recursive count. Counts all levels. <DEFAULT
 	 * @return mixed
 	 **/
 	public final function cnt( $mode = 1 ) {
 
-		switch( $mode ) {
-			case 1: 
-				$m = "COUNT_NORMAL";
-				break;
-			case 2:
-				$m = "COUNT_RECURSIVE";
-				break;
-			default:
-				return false;
-		}
 		if( $this->type == "string" ) {
-			return count( $this->chars , $m );
+			return count( $this->chars , $mode );
 		} else if( $this->type == "array" ) {
-			return count( $this->value , $m );
+			return count( $this->value , $mode );
 		}
 		return false;
 
@@ -1711,32 +1628,50 @@ class r {
 	 **/
 	public final function slashes( $mode = "add" ) {
 
-		switch( $mode ) {
-			case "add":
-				$f = function( $val , $key ) { /// For some reason, array_walk_recursive() sends these backwards. I'm used to $key=>$val pairs. Oh well. *sigh*
-					( $this->type == "array" ) ? $return = array( $key , addslashes( $val ) ) : $return = addslashes( $val );
-					return $return; 
-				};
-				break;
-			case "addc":
-				$f = function($val) { return addcslashes($val); };
-				break;
-			case "strip":
-				$f = function($val) { return stripslashes($val); };
-				break;
-			case "stripc":
-				$f = function($val) { return stripcslashes($val); };
-				break;
-			default:
-				return false;
+		try {
+			switch( $mode ) {
+				case "add":
+				case "addc":
+				case "strip":
+				case "stripc":
+					$f = $mode . "slashes";
+					break;
+				default:
+					return false;
+			}
+
+			if( $this->type == "string" || is_array( @$this->chars) ) {
+				return $f( $this->value );
+			} else if( $this->type == "array" ) {
+				return $this->arraySlash( $this->value , $f );
+			}
+			throw new exception("Invalid data type sent to slashes(). Only strings and arrays are accepted.");
+		} catch( Exception $e ) {
+			$this->exception( $e , $e->getMessage() );
 		}
 
-		if( $this->type == "string" || is_array( @$this->chars) ) {
-			return $f( $this->value );
-		} else if( $this->type == "array" ) {
-			return array_walk_recursive( $this->value , $f );
+	}
+
+	/**
+	 * Adds/Removes slashes in an array. This is a recursive function, and will secure all levels of an n-dimensional array.
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn slashes()
+	 * @param array $array - The array to be recursed through.
+	 * @param mixed $mode - This is the function to use. Passed to the function initially by slashes(). 
+	 * @return mixed
+	 **/
+	public final function arraySlash( $array , $mode ) {
+
+		foreach( $array as $k=>$v ){
+			if( is_array( $v )) {
+				$output[] = $this->arraySlash( $v , $mode );
+			} else {
+				$output[$k] = $mode( $v );
+			}
 		}
-		return false;
+		return $output;
 
 	}
 
@@ -1751,21 +1686,166 @@ class r {
 	 **/
 	public final function pos( $needle , $recursive = true ) {
 
-		if( !isset( $needle ) ) {
+		if( !isset( $needle )) {
 			return false;
 		}
 		$search = function( $key , $haystack ) {
-			return array_search( $key , $haystack );
+			if( is_array( $haystack )) {
+				return array_search( $key , $haystack );
+			} else {
+				return strpos( $haystack , $key );
+			}
 		};
 
 		if( $this->type == "string" || is_array( @$this->chars) ) {
-			return $search( $this->chars );
+			return $search( $needle , @$this->chars );
 		} else if( $this->type == "array" ) {
 			return array_walk_recursive( $this->value , $search );
 		}
 		return false;
 
 	}
+
+	/**
+	 * Multipurpose replace function. Regex for strings and numbers, and a key->val replace for arrays.
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn replace()
+	 * @param string $item - The pattern or key to match against (regex)
+	 * @param mixed $replacer - The item that will replace the found key
+	 * @param boolean $recursive - Flag whether or not the function will recurse into the provided array
+	 * @return mixed
+	 **/
+	public final function replace( $item , $replacer , $recursive = true ) {
+		try {
+			if( !isset( $item ) || !isset( $replacer ) ) {
+				throw new exception("One or more arguments missing for replace(). Please try again.");
+			}
+			if( $this->type == "array" ) {
+				if( in_array( $item , $this->value )) {
+					$key = array_search( $item , $this->value );
+					$this->value[$key] = $replacer;
+				} else {
+					if( $recursive ) {
+						return $this->arrayReplace( $this->value , $item , $replacer );
+					} else {
+						return false;
+					}
+				}	
+			} else if( $this->type == "string"  || is_array( $this->chars )) {
+				return preg_replace( $item , $replacer , $this->value );
+			} else {
+				throw new exception("Invalid data type for replace(). Please try again.");
+			}
+		} catch( Exception $e ){
+			$this->exception( $e , $e->getMessage() );
+		}
+
+	}
+
+	/**
+	 * Recursive array replacement function.
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn arrayReplace()
+	 * @param array $array - The Haystack to search in
+	 * @param string $item - The pattern or key to match against (regex)
+	 * @param mixed $replacer - The item that will replace the found key
+	 * @return mixed
+	 **/
+	public final function arrayReplace( $array , $item , $replacer ) {
+		foreach( func_get_args() as $k=>$v ) {
+			if( empty($v) ) {
+				return false;
+			}
+		}
+		if( !is_array( $array )) {
+			return false;
+		}
+		// Test if $item is a regex
+		$regex = strpos( $item , "/");
+		foreach( $array as $k=>$v ){
+			if( is_array( $v )) {
+				$output[$k] = $this->arrayReplace( $v , $item , $replacer );
+			} else {
+				if( strpos( $v , $item ) || ( strcmp( $v , $item ) == 0 )) {
+					$output[$k] = str_replace( $item , (string)$replacer, $v );
+				} else if( $regex ) {
+					$output[$k] = preg_replace( $item , (string)$replacer, $v );
+				} else {
+					$output[$k] = $v;
+				}
+			}
+		}
+		return $output;
+	}
+
+	/**
+	 * Alias to succ() function in Ruby. Finds successor to any element provided. 
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn flatten()
+	 * @param mixed $val - The value of the flattened keypair
+	 * @param mixed $key - The key of the flattened keypair
+	 * @return array
+	 **/
+	public final function flatten( $val = null , $key = null ) {
+		if( isset($val) && isset($key)) {
+			$this->output[$key] = $val;
+		} else {
+			if( $this->type == "array" ) {
+				$this->output = array();
+				array_walk_recursive( $this->value , array( $this , "flatten"));
+				return $this->output;
+			}	
+		}
+	}
+
+	/**
+	 * 
+	 * WARNING: This function is not completed. Don't use it. Or your stuff will break, guaranteed. I'll finish this later.
+	 * Alias to succ() function in Ruby. Finds successor to any element provided. 
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn succ()
+	 * @param mixed $item - The item that will be incremented by one
+	 * @return mixed
+	 **/
+/*	public final function succ( $item = null ) {
+		( $item == null ) ? $val = $this->value : $val = $item;
+		if( $this->type == "string" || is_array( $this->chars ) ) {
+			$high = $this->length - 1;
+			for( $i = $high ; $i >= 0; $i-- ) {
+				$curr = $this->chars[$i];
+				if( preg_match( "/^[a-zA-Z0-9]/" , $curr)) {
+					if( preg_match( "/[0-9]/" , $curr )) {
+						// Number, process accordingly
+					} elseif( preg_match( "/[a-zA-Z]/", $curr )) {
+						// Letter, do your thing.
+						$curr++;
+						$this->chars[$i] = $curr;
+						return implode(	$this->chars );
+					}
+				}
+			}
+		} elseif( $this->type == "array" ) {
+			foreach( $val as $k=>$v ) {
+				if( is_array( $v ) ) {
+					$output[$k] = $this-succ( $v );
+				} else {
+					$output[$k] = "";
+				}
+			}
+		}
+
+		return $output;
+
+	}
+*/
 
 }
 

@@ -3,6 +3,152 @@
 require_once('class.rubyphp.php');
 
 
+$functions = array(
+	"utility" => array(
+		"exception" => array(
+			"Exception Object",
+			"msg"
+		),
+		"responds_to" => array(
+			"function"
+		),
+		"_call" => array(
+			"function"
+		),
+		"showObject",
+		"val",
+		"toJSON",
+		"fromJSON",
+		"serial",
+		"unserial",
+		"dump",
+		"destroy",
+		"secure" => array(
+			"mode"
+		),
+		"md5",
+		"sha1",
+		"escape",
+		"to_s",
+		"to_f",
+		"to_i",
+		"to_int"
+	),
+	"strings" => array(
+		"flip",
+		"to_s",
+		"length",
+		"cap" => array(
+			"type",
+			"value = 'null'"
+		)
+	),
+	"arrays" => array(
+		"first",
+		"last",
+		"index" => array(
+			"index"
+		),
+		"srt" => array(
+			"method = 'sort'"
+		),
+		"push" => array(
+			"item",
+			"location"
+		),
+		"rotate",
+		"sample" => array(
+			"size = 1"
+		),
+		"shuf",
+		"slice" => array(
+			"start",
+			"count",
+			"end"
+		),
+		"uniq",
+		"zip",
+		"flatten"
+	),
+	"numbers" => array(
+		"money" => array(
+			"symbol = '$'",
+			"decimal = '.'"
+		),
+		"even",
+		"odd",
+		"gcd" => array(
+			"comparison"
+		),
+		"rnd" => array(
+			"place"
+		),
+		"mult" => array(
+			"times"
+		),
+		"av",
+		"infinite",
+		"NaN",
+		"zero"
+	),
+	"ruby-specific" => array(
+		"concat" => array(
+			"item",
+			"position = 'end'"
+		),
+		"prepend" => array(
+			"item"
+		),
+		"downcase",
+		"each_char" => array(
+			"function"
+		),
+		"hex",
+		"toHex",
+		"index" => array(
+			"key"
+		),
+		"match" => array(
+			"regex"
+		),
+		"succ",
+		"reverse",
+		"swapcase",
+		"each",
+		"eql" => array(
+			"comparison"
+		)
+	),
+	"miscellaneous" => array(
+		"tr",
+		"del" => array(
+			"index"
+		),
+		"ex" => array( // Explode
+			"delimiter"
+		),
+		"im" => array( // Implode
+			"delimiter"
+		),
+		"repeat" => array(
+			"times"
+		),
+		"replace" => array(
+			"regex",
+			"value"
+		),
+		"cnt" => array(
+			"recursive = 0"
+		),
+		"slashes" => array(
+			"mode"
+		),
+		"pos" => array(
+			"key"
+		)
+	)
+);
+
 ?>
 <html>
 	<head>
@@ -14,14 +160,21 @@ require_once('class.rubyphp.php');
 }
 * {
 	font-family: League;
+	line-height: 100%;
 }
-h1,h2 {
+h1,h2,h3 {
 	font-size: 50px;
 	margin: 0;
 	padding: 0;
+	clear: both;
+	color: #dddddd;
+	text-shadow: 0px 1px 3px #000000;
 }
 h2 {
 	font-size: 40px;
+}
+h3 {
+	font-size: 30px;
 }
 pre {
 	font-size: 20px;
@@ -29,12 +182,18 @@ pre {
 }
 body {
 	margin:0;
-	padding: 0;
+	padding: 20px;
 	background: #cccccc;
 }
 .bigbox {
-	width: 1000px;
-	margin: 50px auto auto auto;
+	width: 250px;
+	float: left;
+	clear: none;
+	padding: 10px;
+	box-shadow: 0px 5px 10px #000000, inset 0 1px 1px #3EC1ED;
+	background: -webkit-gradient( linear , left bottom , left top, color-stop(0 , #073B5C), color-stop(1 , #0769A6));
+	margin: 50px 25px auto auto;
+	border-radius: 5px;
 }
 .container {
 	width: 460px;
@@ -49,30 +208,36 @@ body {
 }
 .functions {
 	padding: 10px;
-	margin: auto auto 10px auto;
+	margin: auto auto 20px 20px;
 	border-radius: 5px;
 	font-size: 25px;
+	width: 275px;
+	float:left;
 	color: #eeeeee;
 	text-shadow:0px 1px 2px #000000;
+}
+.functions:hover {
+	opacity: 1;
+	cursor: pointer;
 }
 .green {
 	/*border: 1px #256B12 solid;*/
 	box-shadow: 0px 2px 10px #000000, inset 0px 1px 1px #CCF2B6;
 	background: -webkit-gradient(linear,left bottom, left top, color-stop(0, #245904), color-stop(1, #61BA2D));
+	opacity: 0.9;
 }
 .red {
 	/*border: 1px #256B12 solid;*/
 	box-shadow: 0px 2px 10px #000000, inset 0px 1px 1px #F5C4C4;
 	background: -webkit-gradient(linear,left bottom, left top, color-stop(0, #961E1E), color-stop(1, #DB3B3B));
+	opacity: 0.9;
 }
 </style>
 	</head>
 
 	<body>
-
-		<div class="bigbox">
-			<div class="container" style="position:relative;z-index:100;">
-<pre>
+		<div>
+			<h1>RubyPHP Built-In Methods</h1>
 	<?php
 
 	/* *** ARRAY TEST *** 
@@ -106,7 +271,7 @@ body {
 	*/
 
 	/* *** INTEGER TEST *****/
-/*	$b = new r(1234576488);
+	$b = new r(1234576488);
 	print $b->secure('sha1') . '<br />';
 	print $b->md5() . '<br />';
 	print $b->sha1() . '<br />';
@@ -123,10 +288,10 @@ body {
 	print $b->even() . '<br />';
 	print $b->odd() . '<br />';
 	$b->showObject();
-*/
+/**/
 	/* *** ARRAY TEST *** */
-	$array = array(
-		"'thingOne'" => array(
+/*	$array = array(
+		"thingOne" => array(
 			"'ANOTHER'" => "Yep",
 			"'a'ndAnWEO 'WEDJ'er" => "YeP'Per'",
 			"thASDLKJd?" => array(
@@ -134,25 +299,58 @@ body {
 			)
 		),
 		"thingTwo" => array(
-			"here we GOOO!"
+			"here we \"GOOO\"!"
+		),
+		"three"	=> array(
+			"one" => array(
+				"one" => array(
+					"one" => "'This rocks'.",
+					"two" => "'uh' 'huh'"
+				)
+			),
+			"two" => array(
+				"one" => array(
+					"one" => "'This rocks'.",
+					"two" => "'uh' 'huh'"
+				)
+			)
 		)
 	);
 	$f = new r($array);
+	$f->showObject();
+
+	print_r($f->_call(function( $item ) {
+		foreach( $item as $k=>$v ){
+			print "Key: $k, Val: $v <br />";
+		}
+	}));
+*/
+	//print_r($f->flatten());
 	//print_r( $f );
-	// print_r( $f->downcase() );
+	//print_r( $f->downcase() );
 	//print $f->pos("YeP");
 	//print_r($f->slashes());
 
-
 	$a = new r("Pierce");
+	//$a->showObject();
+
+	/*
+	$json = json_encode( $f->replace("u","PERSONWOOOOO") );
+	print '<script type="text/javascript">console.log(' . $json . ');</script>';
+	*/
+
 	$writtenMethods = get_class_methods("r");
 	$allowedMethods = $a->allowedMethods;
 
 	// Flatten the allowedMethods array
 	foreach($allowedMethods as $k=>$v) {
+		print '<div class="bigbox round shadow">';
+		print "<h1>$k</h1>";
 		foreach($v as $key=>$val) {
 			$methodsInUse[] = $val;
+			print "<h3>$val</h3>";
 		}
+		print '</div>';
 	}
 	$methodsInUse = array_unique($methodsInUse);
 
@@ -210,20 +408,10 @@ body {
 		}
 	}
 
+
+print "<h2>$completedCount / $methodCount functions written! " . round(($completedCount / $methodCount) * 100 ) . "% done!</h2>";
+print $output;
 	?>
-</pre>
-			</div>
-
-			<div class="container">
-				<h1>RubyPHP Built-In Methods</h1>
-
-
-			<h2>
-				<?=$completedCount;?> / <?=$methodCount;?> functions written!
-				<?php print round(($completedCount / $methodCount) * 100 ) . "% done!"; ?>
-			</h2>
-
-			<?=$output;?>
 
 			</div>
 		</div>

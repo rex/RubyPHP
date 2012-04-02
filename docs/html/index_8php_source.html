@@ -47,6 +47,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
@@ -99,237 +100,425 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00003"></a>00003 require_once(<span class="stringliteral">&#39;class.rubyphp.php&#39;</span>);
 <a name="l00004"></a>00004 
 <a name="l00005"></a>00005 
-<a name="l00006"></a>00006 ?&gt;
-<a name="l00007"></a>00007 &lt;html&gt;
-<a name="l00008"></a>00008         &lt;head&gt;
-<a name="l00009"></a>00009 
-<a name="l00010"></a>00010 &lt;style type=<span class="stringliteral">&quot;text/css&quot;</span>&gt;
-<a name="l00011"></a>00011 @font-face {
-<a name="l00012"></a>00012         font-family: League;
-<a name="l00013"></a>00013         src: url(<span class="stringliteral">&#39;league.otf&#39;</span>);
-<a name="l00014"></a>00014 }
-<a name="l00015"></a>00015 * {
-<a name="l00016"></a>00016         font-family: League;
-<a name="l00017"></a>00017 }
-<a name="l00018"></a>00018 h1,h2 {
-<a name="l00019"></a>00019         font-size: 50px;
-<a name="l00020"></a>00020         margin: 0;
-<a name="l00021"></a>00021         padding: 0;
-<a name="l00022"></a>00022 }
-<a name="l00023"></a>00023 h2 {
-<a name="l00024"></a>00024         font-size: 40px;
-<a name="l00025"></a>00025 }
-<a name="l00026"></a>00026 pre {
-<a name="l00027"></a>00027         font-size: 20px;
-<a name="l00028"></a>00028         line-height: 85%;
-<a name="l00029"></a>00029 }
-<a name="l00030"></a>00030 body {
-<a name="l00031"></a>00031         margin:0;
-<a name="l00032"></a>00032         padding: 0;
-<a name="l00033"></a>00033         background: #cccccc;
-<a name="l00034"></a>00034 }
-<a name="l00035"></a>00035 .bigbox {
-<a name="l00036"></a>00036         width: 1000px;
-<a name="l00037"></a>00037         margin: 50px <span class="keyword">auto</span> <span class="keyword">auto</span> <span class="keyword">auto</span>;
-<a name="l00038"></a>00038 }
-<a name="l00039"></a>00039 .container {
-<a name="l00040"></a>00040         width: 460px;
-<a name="l00041"></a>00041         min-height: 300px; 
-<a name="l00042"></a>00042         padding: 10px; 
-<a name="l00043"></a>00043         margin: 50px <span class="keyword">auto</span> <span class="keyword">auto</span> 10px; 
-<a name="l00044"></a>00044         background: #eeeeee;
-<a name="l00045"></a>00045         font-size: 25px;
-<a name="l00046"></a>00046         <span class="keywordtype">float</span>:left;
-<a name="l00047"></a>00047         border-radius: 5px;
-<a name="l00048"></a>00048         box-shadow: 0px 5px 10px #000000, inset 0 1px 1px #ffffff;
-<a name="l00049"></a>00049 }
-<a name="l00050"></a>00050 .functions {
-<a name="l00051"></a>00051         padding: 10px;
-<a name="l00052"></a>00052         margin: <span class="keyword">auto</span> <span class="keyword">auto</span> 10px <span class="keyword">auto</span>;
-<a name="l00053"></a>00053         border-radius: 5px;
-<a name="l00054"></a>00054         font-size: 25px;
-<a name="l00055"></a>00055         color: #eeeeee;
-<a name="l00056"></a>00056         text-shadow:0px 1px 2px #000000;
-<a name="l00057"></a>00057 }
-<a name="l00058"></a>00058 .green {
-<a name="l00059"></a>00059         <span class="comment">/*border: 1px #256B12 solid;*/</span>
-<a name="l00060"></a>00060         box-shadow: 0px 2px 10px #000000, inset 0px 1px 1px #CCF2B6;
-<a name="l00061"></a>00061         background: -webkit-gradient(linear,left bottom, left top, color-stop(0, #245904), color-stop(1, #61BA2D));
-<a name="l00062"></a>00062 }
-<a name="l00063"></a>00063 .red {
-<a name="l00064"></a>00064         <span class="comment">/*border: 1px #256B12 solid;*/</span>
-<a name="l00065"></a>00065         box-shadow: 0px 2px 10px #000000, inset 0px 1px 1px #F5C4C4;
-<a name="l00066"></a>00066         background: -webkit-gradient(linear,left bottom, left top, color-stop(0, #961E1E), color-stop(1, #DB3B3B));
-<a name="l00067"></a>00067 }
-<a name="l00068"></a>00068 &lt;/style&gt;
-<a name="l00069"></a>00069         &lt;/head&gt;
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071         &lt;body&gt;
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073                 &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;bigbox&quot;</span>&gt;
-<a name="l00074"></a>00074                         &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;container&quot;</span> style=<span class="stringliteral">&quot;position:relative;z-index:100;&quot;</span>&gt;
-<a name="l00075"></a>00075 &lt;pre&gt;
-<a name="l00076"></a>00076         &lt;?php
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078         <span class="comment">/* *** ARRAY TEST *** </span>
-<a name="l00079"></a>00079 <span class="comment">        $data = array(&quot;Juice&quot;,&quot;Person&quot;,&quot;Place&quot;);</span>
-<a name="l00080"></a>00080 <span class="comment">        $a = new r($data);</span>
-<a name="l00081"></a>00081 <span class="comment">        $one = array(&quot;Me&quot;); //,&quot;You&quot;,&quot;I&quot;</span>
-<a name="l00082"></a>00082 <span class="comment">        $two = array(&quot;Someone&quot;,&quot;Peanuts&quot;,&quot;Baseball&quot;);</span>
-<a name="l00083"></a>00083 <span class="comment">        print_r( $a-&gt;zip( $one , $two ) );</span>
-<a name="l00084"></a>00084 <span class="comment">        */</span>
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086         <span class="comment">/* *** STRING TEST ****</span>
-<a name="l00087"></a>00087 <span class="comment">        $b = new r(&quot;Pierce Moore&quot;);</span>
-<a name="l00088"></a>00088 <span class="comment">        print $b-&gt;secure(&#39;sha1&#39;) . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00089"></a>00089 <span class="comment">        print $b-&gt;md5() . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00090"></a>00090 <span class="comment">        print $b-&gt;sha1() . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00091"></a>00091 <span class="comment">        print $b-&gt;escape() . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00092"></a>00092 <span class="comment">        print $b-&gt;to_s() . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00093"></a>00093 <span class="comment">        print $b-&gt;flip . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00094"></a>00094 <span class="comment">        print $b-&gt;to_f() . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00095"></a>00095 <span class="comment">        print $b-&gt;to_i() . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00096"></a>00096 <span class="comment">        print $b-&gt;length . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00097"></a>00097 <span class="comment">        print $b-&gt;cap(&#39;all&#39;) . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00098"></a>00098 <span class="comment">        print $b-&gt;cap(&#39;none&#39;) . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00099"></a>00099 <span class="comment">        print $b-&gt;cap(&#39;words&#39;) . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00100"></a>00100 <span class="comment">        print $b-&gt;first() . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00101"></a>00101 <span class="comment">        print $b-&gt;last() . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00102"></a>00102 <span class="comment">        print $b-&gt;index(1) . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00103"></a>00103 <span class="comment">        print $b-&gt;downcase();</span>
-<a name="l00104"></a>00104 <span class="comment"></span>
-<a name="l00105"></a>00105 <span class="comment">        //$b-&gt;showObject();</span>
-<a name="l00106"></a>00106 <span class="comment">        */</span>
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108         <span class="comment">/* *** INTEGER TEST *****/</span>
-<a name="l00109"></a>00109 <span class="comment">/*      $b = new r(1234576488);</span>
-<a name="l00110"></a>00110 <span class="comment">        print $b-&gt;secure(&#39;sha1&#39;) . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00111"></a>00111 <span class="comment">        print $b-&gt;md5() . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00112"></a>00112 <span class="comment">        print $b-&gt;sha1() . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00113"></a>00113 <span class="comment">        print $b-&gt;escape() . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00114"></a>00114 <span class="comment">        print $b-&gt;to_s() . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00115"></a>00115 <span class="comment">        print $b-&gt;flip . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00116"></a>00116 <span class="comment">        print $b-&gt;to_f() . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00117"></a>00117 <span class="comment">        print $b-&gt;to_i() . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00118"></a>00118 <span class="comment">        print $b-&gt;length . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00119"></a>00119 <span class="comment">        print $b-&gt;money() . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00120"></a>00120 <span class="comment">        print $b-&gt;first() . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00121"></a>00121 <span class="comment">        print $b-&gt;last() . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00122"></a>00122 <span class="comment">        print $b-&gt;index(1) . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00123"></a>00123 <span class="comment">        print $b-&gt;even() . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00124"></a>00124 <span class="comment">        print $b-&gt;odd() . &#39;&lt;br /&gt;&#39;;</span>
-<a name="l00125"></a>00125 <span class="comment">        $b-&gt;showObject();</span>
-<a name="l00126"></a>00126 <span class="comment">*/</span>
-<a name="l00127"></a>00127         <span class="comment">/* *** ARRAY TEST *** */</span>
-<a name="l00128"></a><a class="code" href="index_8php.html#ac1361b8d873c1f927b21b809f99e5752">00128</a>         <a class="code" href="index_8php.html#ac1361b8d873c1f927b21b809f99e5752">$array</a> = array(
-<a name="l00129"></a>00129                 <span class="stringliteral">&quot;&#39;thingOne&#39;&quot;</span> =&gt; array(
-<a name="l00130"></a>00130                         <span class="stringliteral">&quot;&#39;ANOTHER&#39;&quot;</span> =&gt; <span class="stringliteral">&quot;Yep&quot;</span>,
-<a name="l00131"></a>00131                         <span class="stringliteral">&quot;&#39;a&#39;ndAnWEO &#39;WEDJ&#39;er&quot;</span> =&gt; <span class="stringliteral">&quot;YeP&#39;Per&#39;&quot;</span>,
-<a name="l00132"></a>00132                         <span class="stringliteral">&quot;thASDLKJd?&quot;</span> =&gt; array(
-<a name="l00133"></a>00133                                 <span class="stringliteral">&quot;w&#39;O&#39;w&quot;</span> =&gt; <span class="stringliteral">&quot;deep &#39;brah&#39; ?WOOT&#39;WOOT&#39;&quot;</span>
-<a name="l00134"></a>00134                         )
+<a name="l00006"></a><a class="code" href="index_8php.html#aa75daea491817f3b64daa2f51128bcdf">00006</a> <a class="code" href="index_8php.html#aa75daea491817f3b64daa2f51128bcdf">$functions</a> = array(
+<a name="l00007"></a>00007         <span class="stringliteral">&quot;utility&quot;</span> =&gt; array(
+<a name="l00008"></a>00008                 <span class="stringliteral">&quot;exception&quot;</span> =&gt; array(
+<a name="l00009"></a>00009                         <span class="stringliteral">&quot;Exception Object&quot;</span>,
+<a name="l00010"></a>00010                         <span class="stringliteral">&quot;msg&quot;</span>
+<a name="l00011"></a>00011                 ),
+<a name="l00012"></a>00012                 <span class="stringliteral">&quot;responds_to&quot;</span> =&gt; array(
+<a name="l00013"></a>00013                         <span class="stringliteral">&quot;function&quot;</span>
+<a name="l00014"></a>00014                 ),
+<a name="l00015"></a>00015                 <span class="stringliteral">&quot;_call&quot;</span> =&gt; array(
+<a name="l00016"></a>00016                         <span class="stringliteral">&quot;function&quot;</span>
+<a name="l00017"></a>00017                 ),
+<a name="l00018"></a>00018                 <span class="stringliteral">&quot;showObject&quot;</span>,
+<a name="l00019"></a>00019                 <span class="stringliteral">&quot;val&quot;</span>,
+<a name="l00020"></a>00020                 <span class="stringliteral">&quot;toJSON&quot;</span>,
+<a name="l00021"></a>00021                 <span class="stringliteral">&quot;fromJSON&quot;</span>,
+<a name="l00022"></a>00022                 <span class="stringliteral">&quot;serial&quot;</span>,
+<a name="l00023"></a>00023                 <span class="stringliteral">&quot;unserial&quot;</span>,
+<a name="l00024"></a>00024                 <span class="stringliteral">&quot;dump&quot;</span>,
+<a name="l00025"></a>00025                 <span class="stringliteral">&quot;destroy&quot;</span>,
+<a name="l00026"></a>00026                 <span class="stringliteral">&quot;secure&quot;</span> =&gt; array(
+<a name="l00027"></a>00027                         <span class="stringliteral">&quot;mode&quot;</span>
+<a name="l00028"></a>00028                 ),
+<a name="l00029"></a>00029                 <span class="stringliteral">&quot;md5&quot;</span>,
+<a name="l00030"></a>00030                 <span class="stringliteral">&quot;sha1&quot;</span>,
+<a name="l00031"></a>00031                 <span class="stringliteral">&quot;escape&quot;</span>,
+<a name="l00032"></a>00032                 <span class="stringliteral">&quot;to_s&quot;</span>,
+<a name="l00033"></a>00033                 <span class="stringliteral">&quot;to_f&quot;</span>,
+<a name="l00034"></a>00034                 <span class="stringliteral">&quot;to_i&quot;</span>,
+<a name="l00035"></a>00035                 <span class="stringliteral">&quot;to_int&quot;</span>
+<a name="l00036"></a>00036         ),
+<a name="l00037"></a>00037         <span class="stringliteral">&quot;strings&quot;</span> =&gt; array(
+<a name="l00038"></a>00038                 <span class="stringliteral">&quot;flip&quot;</span>,
+<a name="l00039"></a>00039                 <span class="stringliteral">&quot;to_s&quot;</span>,
+<a name="l00040"></a>00040                 <span class="stringliteral">&quot;length&quot;</span>,
+<a name="l00041"></a>00041                 <span class="stringliteral">&quot;cap&quot;</span> =&gt; array(
+<a name="l00042"></a>00042                         <span class="stringliteral">&quot;type&quot;</span>,
+<a name="l00043"></a>00043                         <span class="stringliteral">&quot;value = &#39;null&#39;&quot;</span>
+<a name="l00044"></a>00044                 )
+<a name="l00045"></a>00045         ),
+<a name="l00046"></a>00046         <span class="stringliteral">&quot;arrays&quot;</span> =&gt; array(
+<a name="l00047"></a>00047                 <span class="stringliteral">&quot;first&quot;</span>,
+<a name="l00048"></a>00048                 <span class="stringliteral">&quot;last&quot;</span>,
+<a name="l00049"></a>00049                 <span class="stringliteral">&quot;index&quot;</span> =&gt; array(
+<a name="l00050"></a>00050                         <span class="stringliteral">&quot;index&quot;</span>
+<a name="l00051"></a>00051                 ),
+<a name="l00052"></a>00052                 <span class="stringliteral">&quot;srt&quot;</span> =&gt; array(
+<a name="l00053"></a>00053                         <span class="stringliteral">&quot;method = &#39;sort&#39;&quot;</span>
+<a name="l00054"></a>00054                 ),
+<a name="l00055"></a>00055                 <span class="stringliteral">&quot;push&quot;</span> =&gt; array(
+<a name="l00056"></a>00056                         <span class="stringliteral">&quot;item&quot;</span>,
+<a name="l00057"></a>00057                         <span class="stringliteral">&quot;location&quot;</span>
+<a name="l00058"></a>00058                 ),
+<a name="l00059"></a>00059                 <span class="stringliteral">&quot;rotate&quot;</span>,
+<a name="l00060"></a>00060                 <span class="stringliteral">&quot;sample&quot;</span> =&gt; array(
+<a name="l00061"></a>00061                         <span class="stringliteral">&quot;size = 1&quot;</span>
+<a name="l00062"></a>00062                 ),
+<a name="l00063"></a>00063                 <span class="stringliteral">&quot;shuf&quot;</span>,
+<a name="l00064"></a>00064                 <span class="stringliteral">&quot;slice&quot;</span> =&gt; array(
+<a name="l00065"></a>00065                         <span class="stringliteral">&quot;start&quot;</span>,
+<a name="l00066"></a>00066                         <span class="stringliteral">&quot;count&quot;</span>,
+<a name="l00067"></a>00067                         <span class="stringliteral">&quot;end&quot;</span>
+<a name="l00068"></a>00068                 ),
+<a name="l00069"></a>00069                 <span class="stringliteral">&quot;uniq&quot;</span>,
+<a name="l00070"></a>00070                 <span class="stringliteral">&quot;zip&quot;</span>,
+<a name="l00071"></a>00071                 <span class="stringliteral">&quot;flatten&quot;</span>
+<a name="l00072"></a>00072         ),
+<a name="l00073"></a>00073         <span class="stringliteral">&quot;numbers&quot;</span> =&gt; array(
+<a name="l00074"></a>00074                 <span class="stringliteral">&quot;money&quot;</span> =&gt; array(
+<a name="l00075"></a>00075                         <span class="stringliteral">&quot;symbol = &#39;$&#39;&quot;</span>,
+<a name="l00076"></a>00076                         <span class="stringliteral">&quot;decimal = &#39;.&#39;&quot;</span>
+<a name="l00077"></a>00077                 ),
+<a name="l00078"></a>00078                 <span class="stringliteral">&quot;even&quot;</span>,
+<a name="l00079"></a>00079                 <span class="stringliteral">&quot;odd&quot;</span>,
+<a name="l00080"></a>00080                 <span class="stringliteral">&quot;gcd&quot;</span> =&gt; array(
+<a name="l00081"></a>00081                         <span class="stringliteral">&quot;comparison&quot;</span>
+<a name="l00082"></a>00082                 ),
+<a name="l00083"></a>00083                 <span class="stringliteral">&quot;rnd&quot;</span> =&gt; array(
+<a name="l00084"></a>00084                         <span class="stringliteral">&quot;place&quot;</span>
+<a name="l00085"></a>00085                 ),
+<a name="l00086"></a>00086                 <span class="stringliteral">&quot;mult&quot;</span> =&gt; array(
+<a name="l00087"></a>00087                         <span class="stringliteral">&quot;times&quot;</span>
+<a name="l00088"></a>00088                 ),
+<a name="l00089"></a>00089                 <span class="stringliteral">&quot;av&quot;</span>,
+<a name="l00090"></a>00090                 <span class="stringliteral">&quot;infinite&quot;</span>,
+<a name="l00091"></a>00091                 <span class="stringliteral">&quot;NaN&quot;</span>,
+<a name="l00092"></a>00092                 <span class="stringliteral">&quot;zero&quot;</span>
+<a name="l00093"></a>00093         ),
+<a name="l00094"></a>00094         <span class="stringliteral">&quot;ruby-specific&quot;</span> =&gt; array(
+<a name="l00095"></a>00095                 <span class="stringliteral">&quot;concat&quot;</span> =&gt; array(
+<a name="l00096"></a>00096                         <span class="stringliteral">&quot;item&quot;</span>,
+<a name="l00097"></a>00097                         <span class="stringliteral">&quot;position = &#39;end&#39;&quot;</span>
+<a name="l00098"></a>00098                 ),
+<a name="l00099"></a>00099                 <span class="stringliteral">&quot;prepend&quot;</span> =&gt; array(
+<a name="l00100"></a>00100                         <span class="stringliteral">&quot;item&quot;</span>
+<a name="l00101"></a>00101                 ),
+<a name="l00102"></a>00102                 <span class="stringliteral">&quot;downcase&quot;</span>,
+<a name="l00103"></a>00103                 <span class="stringliteral">&quot;each_char&quot;</span> =&gt; array(
+<a name="l00104"></a>00104                         <span class="stringliteral">&quot;function&quot;</span>
+<a name="l00105"></a>00105                 ),
+<a name="l00106"></a>00106                 <span class="stringliteral">&quot;hex&quot;</span>,
+<a name="l00107"></a>00107                 <span class="stringliteral">&quot;toHex&quot;</span>,
+<a name="l00108"></a>00108                 <span class="stringliteral">&quot;index&quot;</span> =&gt; array(
+<a name="l00109"></a>00109                         <span class="stringliteral">&quot;key&quot;</span>
+<a name="l00110"></a>00110                 ),
+<a name="l00111"></a>00111                 <span class="stringliteral">&quot;match&quot;</span> =&gt; array(
+<a name="l00112"></a>00112                         <span class="stringliteral">&quot;regex&quot;</span>
+<a name="l00113"></a>00113                 ),
+<a name="l00114"></a>00114                 <span class="stringliteral">&quot;succ&quot;</span>,
+<a name="l00115"></a>00115                 <span class="stringliteral">&quot;reverse&quot;</span>,
+<a name="l00116"></a>00116                 <span class="stringliteral">&quot;swapcase&quot;</span>,
+<a name="l00117"></a>00117                 <span class="stringliteral">&quot;each&quot;</span>,
+<a name="l00118"></a>00118                 <span class="stringliteral">&quot;eql&quot;</span> =&gt; array(
+<a name="l00119"></a>00119                         <span class="stringliteral">&quot;comparison&quot;</span>
+<a name="l00120"></a>00120                 )
+<a name="l00121"></a>00121         ),
+<a name="l00122"></a>00122         <span class="stringliteral">&quot;miscellaneous&quot;</span> =&gt; array(
+<a name="l00123"></a>00123                 <span class="stringliteral">&quot;tr&quot;</span>,
+<a name="l00124"></a>00124                 <span class="stringliteral">&quot;del&quot;</span> =&gt; array(
+<a name="l00125"></a>00125                         <span class="stringliteral">&quot;index&quot;</span>
+<a name="l00126"></a>00126                 ),
+<a name="l00127"></a>00127                 <span class="stringliteral">&quot;ex&quot;</span> =&gt; array( <span class="comment">// Explode</span>
+<a name="l00128"></a>00128                         <span class="stringliteral">&quot;delimiter&quot;</span>
+<a name="l00129"></a>00129                 ),
+<a name="l00130"></a>00130                 <span class="stringliteral">&quot;im&quot;</span> =&gt; array( <span class="comment">// Implode</span>
+<a name="l00131"></a>00131                         <span class="stringliteral">&quot;delimiter&quot;</span>
+<a name="l00132"></a>00132                 ),
+<a name="l00133"></a>00133                 <span class="stringliteral">&quot;repeat&quot;</span> =&gt; array(
+<a name="l00134"></a>00134                         <span class="stringliteral">&quot;times&quot;</span>
 <a name="l00135"></a>00135                 ),
-<a name="l00136"></a>00136                 <span class="stringliteral">&quot;thingTwo&quot;</span> =&gt; array(
-<a name="l00137"></a>00137                         <span class="stringliteral">&quot;here we GOOO!&quot;</span>
-<a name="l00138"></a>00138                 )
-<a name="l00139"></a>00139         );
-<a name="l00140"></a><a class="code" href="index_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">00140</a>         <a class="code" href="index_8php.html#a23c42e7d231a63025b55e4eb7e3d4c99">$f</a> = <span class="keyword">new</span> <a class="code" href="classr.html">r</a>(<a class="code" href="index_8php.html#ac1361b8d873c1f927b21b809f99e5752">$array</a>);
-<a name="l00141"></a>00141         <span class="comment">//print_r( $f );</span>
-<a name="l00142"></a>00142         <span class="comment">// print_r( $f-&gt;downcase() );</span>
-<a name="l00143"></a>00143         <span class="comment">//print $f-&gt;pos(&quot;YeP&quot;);</span>
-<a name="l00144"></a>00144         <span class="comment">//print_r($f-&gt;slashes());</span>
-<a name="l00145"></a>00145 
-<a name="l00146"></a>00146 
-<a name="l00147"></a><a class="code" href="index_8php.html#acebf83966ef6d7e5645a6b62ba368f9f">00147</a>         <a class="code" href="index_8php.html#acebf83966ef6d7e5645a6b62ba368f9f">$a</a> = <span class="keyword">new</span> <a class="code" href="classr.html">r</a>(<span class="stringliteral">&quot;Pierce&quot;</span>);
-<a name="l00148"></a><a class="code" href="index_8php.html#a2e64f0494f7eccf90168af7f67198650">00148</a>         <a class="code" href="index_8php.html#a2e64f0494f7eccf90168af7f67198650">$writtenMethods</a> = get_class_methods(<span class="stringliteral">&quot;r&quot;</span>);
-<a name="l00149"></a><a class="code" href="index_8php.html#ab278eba7cab5341dacdccecd7a2cc2df">00149</a>         <a class="code" href="index_8php.html#ab278eba7cab5341dacdccecd7a2cc2df">$allowedMethods</a> = <a class="code" href="index_8php.html#acebf83966ef6d7e5645a6b62ba368f9f">$a</a>-&gt;allowedMethods;
-<a name="l00150"></a>00150 
-<a name="l00151"></a>00151         <span class="comment">// Flatten the allowedMethods array</span>
-<a name="l00152"></a>00152         <span class="keywordflow">foreach</span>(<a class="code" href="index_8php.html#ab278eba7cab5341dacdccecd7a2cc2df">$allowedMethods</a> as $k=&gt;$v) {
-<a name="l00153"></a>00153                 <span class="keywordflow">foreach</span>($v as $key=&gt;$val) {
-<a name="l00154"></a>00154                         <a class="code" href="index_8php.html#a1c475c0c53206fb15c4c3028bb7d5c7c">$methodsInUse</a>[] = $val;
-<a name="l00155"></a>00155                 }
-<a name="l00156"></a>00156         }
-<a name="l00157"></a><a class="code" href="index_8php.html#a1c475c0c53206fb15c4c3028bb7d5c7c">00157</a>         <a class="code" href="index_8php.html#a1c475c0c53206fb15c4c3028bb7d5c7c">$methodsInUse</a> = array_unique(<a class="code" href="index_8php.html#a1c475c0c53206fb15c4c3028bb7d5c7c">$methodsInUse</a>);
-<a name="l00158"></a>00158 
-<a name="l00159"></a>00159         <span class="keywordflow">foreach</span>(<a class="code" href="index_8php.html#a1c475c0c53206fb15c4c3028bb7d5c7c">$methodsInUse</a> as $k=&gt;$v) {
-<a name="l00160"></a>00160                 <span class="keywordflow">foreach</span>( <a class="code" href="index_8php.html#ab278eba7cab5341dacdccecd7a2cc2df">$allowedMethods</a> as $key =&gt; $val ) {
-<a name="l00161"></a>00161                         $s = array_search( $v , $val );
-<a name="l00162"></a>00162                         <span class="keywordflow">if</span>($s) {
-<a name="l00163"></a>00163                                 $breakdown[$v][] = $key;
-<a name="l00164"></a>00164                         }
-<a name="l00165"></a>00165                 }
-<a name="l00166"></a>00166         }
-<a name="l00167"></a>00167 
-<a name="l00168"></a><a class="code" href="index_8php.html#a56c1b7384519355df73a254a12f0bae3">00168</a>         <a class="code" href="index_8php.html#a56c1b7384519355df73a254a12f0bae3">$methodCount</a> = 0;
-<a name="l00169"></a><a class="code" href="index_8php.html#a51c734a41c7747051953ec3d78dd1c5b">00169</a>         <a class="code" href="index_8php.html#a51c734a41c7747051953ec3d78dd1c5b">$completedCount</a> = 0;
-<a name="l00170"></a><a class="code" href="index_8php.html#a73004ce9cd673c1bfafd1dc351134797">00170</a>         <a class="code" href="index_8php.html#a73004ce9cd673c1bfafd1dc351134797">$output</a> = <span class="stringliteral">&quot;&quot;</span>;
-<a name="l00171"></a>00171 
-<a name="l00172"></a>00172         <span class="keywordflow">foreach</span>( <a class="code" href="class_8rubyphp_8php.html#aa75daea491817f3b64daa2f51128bcdf">$functions</a> as $k=&gt;$v ) {
-<a name="l00173"></a>00173                 <a class="code" href="index_8php.html#a73004ce9cd673c1bfafd1dc351134797">$output</a> .= <span class="stringliteral">&quot;&lt;h2&gt;$k&lt;/h2&gt;&quot;</span>;
-<a name="l00174"></a>00174                 <span class="keywordflow">foreach</span>( $v as $key=&gt;$val ) {
-<a name="l00175"></a>00175                         <a class="code" href="index_8php.html#a56c1b7384519355df73a254a12f0bae3">$methodCount</a>++;
-<a name="l00176"></a>00176                         <span class="keywordflow">if</span>( is_array( $val ) ) {
-<a name="l00177"></a>00177                                 $item = $key;
-<a name="l00178"></a>00178                         } <span class="keywordflow">else</span> {
-<a name="l00179"></a>00179                                 $item = $val;
-<a name="l00180"></a>00180                         }
-<a name="l00181"></a>00181                         <span class="keywordflow">if</span>(in_array($item, <a class="code" href="index_8php.html#a2e64f0494f7eccf90168af7f67198650">$writtenMethods</a>)) {
-<a name="l00182"></a>00182                                 <a class="code" href="index_8php.html#a73004ce9cd673c1bfafd1dc351134797">$output</a> .= <span class="stringliteral">&quot;&lt;div class=\&quot;functions green\&quot;&gt;&quot;</span>;
-<a name="l00183"></a>00183                                 <a class="code" href="index_8php.html#a51c734a41c7747051953ec3d78dd1c5b">$completedCount</a>++;
-<a name="l00184"></a>00184                         } <span class="keywordflow">else</span> {
-<a name="l00185"></a>00185                                 <a class="code" href="index_8php.html#a73004ce9cd673c1bfafd1dc351134797">$output</a> .= <span class="stringliteral">&quot;&lt;div class=\&quot;functions red\&quot;&gt;&quot;</span>;
-<a name="l00186"></a>00186                         }
-<a name="l00187"></a>00187                         <span class="keywordflow">if</span>(is_array($val)) {
-<a name="l00188"></a>00188                                 <a class="code" href="index_8php.html#a73004ce9cd673c1bfafd1dc351134797">$output</a> .= $key . <span class="stringliteral">&quot;(&quot;</span>;
-<a name="l00189"></a>00189                                 <span class="keywordflow">if</span>( count($val) &gt; 1) {
-<a name="l00190"></a>00190                                         $separator = <span class="stringliteral">&quot; , &quot;</span>;
-<a name="l00191"></a>00191                                 } <span class="keywordflow">else</span> {
-<a name="l00192"></a>00192                                         $separator = <span class="stringliteral">&quot; &quot;</span>;
-<a name="l00193"></a>00193                                 }
-<a name="l00194"></a>00194                                 <span class="keywordflow">foreach</span> ($val as $value) {
-<a name="l00195"></a>00195                                         <a class="code" href="index_8php.html#a73004ce9cd673c1bfafd1dc351134797">$output</a> .= <span class="stringliteral">&quot; $$value$separator&quot;</span>;
-<a name="l00196"></a>00196                                 }
-<a name="l00197"></a>00197                         } <span class="keywordflow">else</span> {
-<a name="l00198"></a>00198                                 <a class="code" href="index_8php.html#a73004ce9cd673c1bfafd1dc351134797">$output</a> .= $val . <span class="stringliteral">&quot;(&quot;</span>;
-<a name="l00199"></a>00199                         }
-<a name="l00200"></a>00200                         <a class="code" href="index_8php.html#a73004ce9cd673c1bfafd1dc351134797">$output</a> .= <span class="stringliteral">&quot;)&quot;</span>;
-<a name="l00201"></a>00201 
-<a name="l00202"></a>00202                         <span class="keywordflow">if</span>( isset( $breakdown[$item] )) {
-<a name="l00203"></a>00203                                 <span class="keywordflow">foreach</span>( $breakdown[$item] as $key=&gt;$val) {
-<a name="l00204"></a>00204                                         <a class="code" href="index_8php.html#a73004ce9cd673c1bfafd1dc351134797">$output</a> .= <span class="stringliteral">&quot;&lt;br /&gt;Used by data type: $val&quot;</span>;
-<a name="l00205"></a>00205                                 }
-<a name="l00206"></a>00206                         }
-<a name="l00207"></a>00207                         
-<a name="l00208"></a>00208 
-<a name="l00209"></a>00209                         <a class="code" href="index_8php.html#a73004ce9cd673c1bfafd1dc351134797">$output</a> .= <span class="stringliteral">&quot;&lt;/div&gt;&quot;</span>;
-<a name="l00210"></a>00210                 }
-<a name="l00211"></a>00211         }
-<a name="l00212"></a>00212 
-<a name="l00213"></a>00213         ?&gt;
-<a name="l00214"></a>00214 &lt;/pre&gt;
-<a name="l00215"></a>00215                         &lt;/div&gt;
-<a name="l00216"></a>00216 
-<a name="l00217"></a>00217                         &lt;div <span class="keyword">class</span>=<span class="stringliteral">&quot;container&quot;</span>&gt;
-<a name="l00218"></a>00218                                 &lt;h1&gt;RubyPHP Built-In Methods&lt;/h1&gt;
-<a name="l00219"></a>00219 
-<a name="l00220"></a>00220 
-<a name="l00221"></a>00221                         &lt;h2&gt;
-<a name="l00222"></a><a class="code" href="index_8php.html#a1b77627b646134ac307a24cf90261ebb">00222</a>                                 &lt;?=<a class="code" href="index_8php.html#a51c734a41c7747051953ec3d78dd1c5b">$completedCount</a>;?&gt; / &lt;?=<a class="code" href="index_8php.html#a56c1b7384519355df73a254a12f0bae3">$methodCount</a>;?&gt; functions written!
-<a name="l00223"></a>00223                                 &lt;?php print round((<a class="code" href="index_8php.html#a51c734a41c7747051953ec3d78dd1c5b">$completedCount</a> / <a class="code" href="index_8php.html#a56c1b7384519355df73a254a12f0bae3">$methodCount</a>) * 100 ) . <span class="stringliteral">&quot;% done!&quot;</span>; ?&gt;
-<a name="l00224"></a>00224                         &lt;/h2&gt;
-<a name="l00225"></a>00225 
-<a name="l00226"></a>00226                         &lt;?=<a class="code" href="index_8php.html#a73004ce9cd673c1bfafd1dc351134797">$output</a>;?&gt;
-<a name="l00227"></a>00227 
-<a name="l00228"></a>00228                         &lt;/div&gt;
-<a name="l00229"></a>00229                 &lt;/div&gt;
-<a name="l00230"></a>00230         &lt;/body&gt;
-<a name="l00231"></a>00231 &lt;/html&gt;
+<a name="l00136"></a>00136                 <span class="stringliteral">&quot;replace&quot;</span> =&gt; array(
+<a name="l00137"></a>00137                         <span class="stringliteral">&quot;regex&quot;</span>,
+<a name="l00138"></a>00138                         <span class="stringliteral">&quot;value&quot;</span>
+<a name="l00139"></a>00139                 ),
+<a name="l00140"></a>00140                 <span class="stringliteral">&quot;cnt&quot;</span> =&gt; array(
+<a name="l00141"></a>00141                         <span class="stringliteral">&quot;recursive = 0&quot;</span>
+<a name="l00142"></a>00142                 ),
+<a name="l00143"></a>00143                 <span class="stringliteral">&quot;slashes&quot;</span> =&gt; array(
+<a name="l00144"></a>00144                         <span class="stringliteral">&quot;mode&quot;</span>
+<a name="l00145"></a>00145                 ),
+<a name="l00146"></a>00146                 <span class="stringliteral">&quot;pos&quot;</span> =&gt; array(
+<a name="l00147"></a>00147                         <span class="stringliteral">&quot;key&quot;</span>
+<a name="l00148"></a>00148                 )
+<a name="l00149"></a>00149         )
+<a name="l00150"></a>00150 );
+<a name="l00151"></a>00151 
+<a name="l00152"></a>00152 ?&gt;
+<a name="l00153"></a>00153 &lt;html&gt;
+<a name="l00154"></a>00154         &lt;head&gt;
+<a name="l00155"></a>00155 
+<a name="l00156"></a>00156 &lt;style type=<span class="stringliteral">&quot;text/css&quot;</span>&gt;
+<a name="l00157"></a>00157 @font-face {
+<a name="l00158"></a>00158         font-family: League;
+<a name="l00159"></a>00159         src: url(<span class="stringliteral">&#39;league.otf&#39;</span>);
+<a name="l00160"></a>00160 }
+<a name="l00161"></a>00161 * {
+<a name="l00162"></a>00162         font-family: League;
+<a name="l00163"></a>00163         line-height: 100%;
+<a name="l00164"></a>00164 }
+<a name="l00165"></a>00165 h1,h2,h3 {
+<a name="l00166"></a>00166         font-size: 50px;
+<a name="l00167"></a>00167         margin: 0;
+<a name="l00168"></a>00168         padding: 0;
+<a name="l00169"></a>00169         clear: both;
+<a name="l00170"></a>00170         color: #dddddd;
+<a name="l00171"></a>00171         text-shadow: 0px 1px 3px #000000;
+<a name="l00172"></a>00172 }
+<a name="l00173"></a>00173 h2 {
+<a name="l00174"></a>00174         font-size: 40px;
+<a name="l00175"></a>00175 }
+<a name="l00176"></a>00176 h3 {
+<a name="l00177"></a>00177         font-size: 30px;
+<a name="l00178"></a>00178 }
+<a name="l00179"></a>00179 pre {
+<a name="l00180"></a>00180         font-size: 20px;
+<a name="l00181"></a>00181         line-height: 85%;
+<a name="l00182"></a>00182 }
+<a name="l00183"></a>00183 body {
+<a name="l00184"></a>00184         margin:0;
+<a name="l00185"></a>00185         padding: 20px;
+<a name="l00186"></a>00186         background: #cccccc;
+<a name="l00187"></a>00187 }
+<a name="l00188"></a>00188 .bigbox {
+<a name="l00189"></a>00189         width: 250px;
+<a name="l00190"></a>00190         <span class="keywordtype">float</span>: left;
+<a name="l00191"></a>00191         clear: none;
+<a name="l00192"></a>00192         padding: 10px;
+<a name="l00193"></a>00193         box-shadow: 0px 5px 10px #000000, inset 0 1px 1px #3EC1ED;
+<a name="l00194"></a>00194         background: -webkit-gradient( linear , left bottom , left top, color-stop(0 , #073B5C), color-stop(1 , #0769A6));
+<a name="l00195"></a>00195         margin: 50px 25px <span class="keyword">auto</span> <span class="keyword">auto</span>;
+<a name="l00196"></a>00196         border-radius: 5px;
+<a name="l00197"></a>00197 }
+<a name="l00198"></a>00198 .container {
+<a name="l00199"></a>00199         width: 460px;
+<a name="l00200"></a>00200         min-height: 300px; 
+<a name="l00201"></a>00201         padding: 10px; 
+<a name="l00202"></a>00202         margin: 50px <span class="keyword">auto</span> <span class="keyword">auto</span> 10px; 
+<a name="l00203"></a>00203         background: #eeeeee;
+<a name="l00204"></a>00204         font-size: 25px;
+<a name="l00205"></a>00205         <span class="keywordtype">float</span>:left;
+<a name="l00206"></a>00206         border-radius: 5px;
+<a name="l00207"></a>00207         box-shadow: 0px 5px 10px #000000, inset 0 1px 1px #ffffff;
+<a name="l00208"></a>00208 }
+<a name="l00209"></a>00209 .functions {
+<a name="l00210"></a>00210         padding: 10px;
+<a name="l00211"></a>00211         margin: <span class="keyword">auto</span> <span class="keyword">auto</span> 20px 20px;
+<a name="l00212"></a>00212         border-radius: 5px;
+<a name="l00213"></a>00213         font-size: 25px;
+<a name="l00214"></a>00214         width: 275px;
+<a name="l00215"></a>00215         <span class="keywordtype">float</span>:left;
+<a name="l00216"></a>00216         color: #eeeeee;
+<a name="l00217"></a>00217         text-shadow:0px 1px 2px #000000;
+<a name="l00218"></a>00218 }
+<a name="l00219"></a>00219 .functions:hover {
+<a name="l00220"></a>00220         opacity: 1;
+<a name="l00221"></a>00221         cursor: pointer;
+<a name="l00222"></a>00222 }
+<a name="l00223"></a>00223 .green {
+<a name="l00224"></a>00224         <span class="comment">/*border: 1px #256B12 solid;*/</span>
+<a name="l00225"></a>00225         box-shadow: 0px 2px 10px #000000, inset 0px 1px 1px #CCF2B6;
+<a name="l00226"></a>00226         background: -webkit-gradient(linear,left bottom, left top, color-stop(0, #245904), color-stop(1, #61BA2D));
+<a name="l00227"></a>00227         opacity: 0.9;
+<a name="l00228"></a>00228 }
+<a name="l00229"></a>00229 .red {
+<a name="l00230"></a>00230         <span class="comment">/*border: 1px #256B12 solid;*/</span>
+<a name="l00231"></a>00231         box-shadow: 0px 2px 10px #000000, inset 0px 1px 1px #F5C4C4;
+<a name="l00232"></a>00232         background: -webkit-gradient(linear,left bottom, left top, color-stop(0, #961E1E), color-stop(1, #DB3B3B));
+<a name="l00233"></a>00233         opacity: 0.9;
+<a name="l00234"></a>00234 }
+<a name="l00235"></a>00235 &lt;/style&gt;
+<a name="l00236"></a>00236         &lt;/head&gt;
+<a name="l00237"></a>00237 
+<a name="l00238"></a>00238         &lt;body&gt;
+<a name="l00239"></a>00239                 &lt;div&gt;
+<a name="l00240"></a>00240                         &lt;h1&gt;RubyPHP Built-In Methods&lt;/h1&gt;
+<a name="l00241"></a>00241         &lt;?php
+<a name="l00242"></a>00242 
+<a name="l00243"></a>00243         <span class="comment">/* *** ARRAY TEST *** </span>
+<a name="l00244"></a>00244 <span class="comment">        $data = array(&quot;Juice&quot;,&quot;Person&quot;,&quot;Place&quot;);</span>
+<a name="l00245"></a>00245 <span class="comment">        $a = new r($data);</span>
+<a name="l00246"></a>00246 <span class="comment">        $one = array(&quot;Me&quot;); //,&quot;You&quot;,&quot;I&quot;</span>
+<a name="l00247"></a>00247 <span class="comment">        $two = array(&quot;Someone&quot;,&quot;Peanuts&quot;,&quot;Baseball&quot;);</span>
+<a name="l00248"></a>00248 <span class="comment">        print_r( $a-&gt;zip( $one , $two ) );</span>
+<a name="l00249"></a>00249 <span class="comment">        */</span>
+<a name="l00250"></a>00250 
+<a name="l00251"></a>00251         <span class="comment">/* *** STRING TEST ****</span>
+<a name="l00252"></a>00252 <span class="comment">        $b = new r(&quot;Pierce Moore&quot;);</span>
+<a name="l00253"></a>00253 <span class="comment">        print $b-&gt;secure(&#39;sha1&#39;) . &#39;&lt;br /&gt;&#39;;</span>
+<a name="l00254"></a>00254 <span class="comment">        print $b-&gt;md5() . &#39;&lt;br /&gt;&#39;;</span>
+<a name="l00255"></a>00255 <span class="comment">        print $b-&gt;sha1() . &#39;&lt;br /&gt;&#39;;</span>
+<a name="l00256"></a>00256 <span class="comment">        print $b-&gt;escape() . &#39;&lt;br /&gt;&#39;;</span>
+<a name="l00257"></a>00257 <span class="comment">        print $b-&gt;to_s() . &#39;&lt;br /&gt;&#39;;</span>
+<a name="l00258"></a>00258 <span class="comment">        print $b-&gt;flip . &#39;&lt;br /&gt;&#39;;</span>
+<a name="l00259"></a>00259 <span class="comment">        print $b-&gt;to_f() . &#39;&lt;br /&gt;&#39;;</span>
+<a name="l00260"></a>00260 <span class="comment">        print $b-&gt;to_i() . &#39;&lt;br /&gt;&#39;;</span>
+<a name="l00261"></a>00261 <span class="comment">        print $b-&gt;length . &#39;&lt;br /&gt;&#39;;</span>
+<a name="l00262"></a>00262 <span class="comment">        print $b-&gt;cap(&#39;all&#39;) . &#39;&lt;br /&gt;&#39;;</span>
+<a name="l00263"></a>00263 <span class="comment">        print $b-&gt;cap(&#39;none&#39;) . &#39;&lt;br /&gt;&#39;;</span>
+<a name="l00264"></a>00264 <span class="comment">        print $b-&gt;cap(&#39;words&#39;) . &#39;&lt;br /&gt;&#39;;</span>
+<a name="l00265"></a>00265 <span class="comment">        print $b-&gt;first() . &#39;&lt;br /&gt;&#39;;</span>
+<a name="l00266"></a>00266 <span class="comment">        print $b-&gt;last() . &#39;&lt;br /&gt;&#39;;</span>
+<a name="l00267"></a>00267 <span class="comment">        print $b-&gt;index(1) . &#39;&lt;br /&gt;&#39;;</span>
+<a name="l00268"></a>00268 <span class="comment">        print $b-&gt;downcase();</span>
+<a name="l00269"></a>00269 <span class="comment"></span>
+<a name="l00270"></a>00270 <span class="comment">        //$b-&gt;showObject();</span>
+<a name="l00271"></a>00271 <span class="comment">        */</span>
+<a name="l00272"></a>00272 
+<a name="l00273"></a>00273         <span class="comment">/* *** INTEGER TEST *****/</span>
+<a name="l00274"></a><a class="code" href="index_8php.html#ab9eb087b791749ae45deabb0899b7ccc">00274</a>         <a class="code" href="index_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a> = <span class="keyword">new</span> <a class="code" href="classr.html">r</a>(1234576488);
+<a name="l00275"></a>00275         print <a class="code" href="index_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>-&gt;secure(<span class="stringliteral">&#39;sha1&#39;</span>) . <span class="stringliteral">&#39;&lt;br /&gt;&#39;</span>;
+<a name="l00276"></a>00276         print <a class="code" href="index_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>-&gt;md5() . <span class="stringliteral">&#39;&lt;br /&gt;&#39;</span>;
+<a name="l00277"></a>00277         print <a class="code" href="index_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>-&gt;sha1() . <span class="stringliteral">&#39;&lt;br /&gt;&#39;</span>;
+<a name="l00278"></a>00278         print <a class="code" href="index_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>-&gt;escape() . <span class="stringliteral">&#39;&lt;br /&gt;&#39;</span>;
+<a name="l00279"></a>00279         print <a class="code" href="index_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>-&gt;to_s() . <span class="stringliteral">&#39;&lt;br /&gt;&#39;</span>;
+<a name="l00280"></a><a class="code" href="index_8php.html#a976e7b3d05fce3934ce5bc7a635bcade">00280</a>         print <a class="code" href="index_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>-&gt;flip . <span class="stringliteral">&#39;&lt;br /&gt;&#39;</span>;
+<a name="l00281"></a>00281         print <a class="code" href="index_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>-&gt;to_f() . <span class="stringliteral">&#39;&lt;br /&gt;&#39;</span>;
+<a name="l00282"></a>00282         print <a class="code" href="index_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>-&gt;to_i() . <span class="stringliteral">&#39;&lt;br /&gt;&#39;</span>;
+<a name="l00283"></a><a class="code" href="index_8php.html#a328bd7d697cc1b3dfd1859d35420f2d0">00283</a>         print <a class="code" href="index_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>-&gt;length . <span class="stringliteral">&#39;&lt;br /&gt;&#39;</span>;
+<a name="l00284"></a>00284         print <a class="code" href="index_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>-&gt;money() . <span class="stringliteral">&#39;&lt;br /&gt;&#39;</span>;
+<a name="l00285"></a>00285         print <a class="code" href="index_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>-&gt;first() . <span class="stringliteral">&#39;&lt;br /&gt;&#39;</span>;
+<a name="l00286"></a>00286         print <a class="code" href="index_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>-&gt;last() . <span class="stringliteral">&#39;&lt;br /&gt;&#39;</span>;
+<a name="l00287"></a>00287         print <a class="code" href="index_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>-&gt;index(1) . <span class="stringliteral">&#39;&lt;br /&gt;&#39;</span>;
+<a name="l00288"></a>00288         print <a class="code" href="index_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>-&gt;even() . <span class="stringliteral">&#39;&lt;br /&gt;&#39;</span>;
+<a name="l00289"></a>00289         print <a class="code" href="index_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>-&gt;odd() . <span class="stringliteral">&#39;&lt;br /&gt;&#39;</span>;
+<a name="l00290"></a>00290         <a class="code" href="index_8php.html#ab9eb087b791749ae45deabb0899b7ccc">$b</a>-&gt;showObject();
+<a name="l00291"></a>00291 
+<a name="l00292"></a>00292         <span class="comment">/* *** ARRAY TEST *** */</span>
+<a name="l00293"></a>00293 <span class="comment">/*      $array = array(</span>
+<a name="l00294"></a>00294 <span class="comment">                &quot;thingOne&quot; =&gt; array(</span>
+<a name="l00295"></a>00295 <span class="comment">                        &quot;&#39;ANOTHER&#39;&quot; =&gt; &quot;Yep&quot;,</span>
+<a name="l00296"></a>00296 <span class="comment">                        &quot;&#39;a&#39;ndAnWEO &#39;WEDJ&#39;er&quot; =&gt; &quot;YeP&#39;Per&#39;&quot;,</span>
+<a name="l00297"></a>00297 <span class="comment">                        &quot;thASDLKJd?&quot; =&gt; array(</span>
+<a name="l00298"></a>00298 <span class="comment">                                &quot;w&#39;O&#39;w&quot; =&gt; &quot;deep &#39;brah&#39; ?WOOT&#39;WOOT&#39;&quot;</span>
+<a name="l00299"></a>00299 <span class="comment">                        )</span>
+<a name="l00300"></a>00300 <span class="comment">                ),</span>
+<a name="l00301"></a>00301 <span class="comment">                &quot;thingTwo&quot; =&gt; array(</span>
+<a name="l00302"></a>00302 <span class="comment">                        &quot;here we \&quot;GOOO\&quot;!&quot;</span>
+<a name="l00303"></a>00303 <span class="comment">                ),</span>
+<a name="l00304"></a>00304 <span class="comment">                &quot;three&quot; =&gt; array(</span>
+<a name="l00305"></a>00305 <span class="comment">                        &quot;one&quot; =&gt; array(</span>
+<a name="l00306"></a>00306 <span class="comment">                                &quot;one&quot; =&gt; array(</span>
+<a name="l00307"></a>00307 <span class="comment">                                        &quot;one&quot; =&gt; &quot;&#39;This rocks&#39;.&quot;,</span>
+<a name="l00308"></a>00308 <span class="comment">                                        &quot;two&quot; =&gt; &quot;&#39;uh&#39; &#39;huh&#39;&quot;</span>
+<a name="l00309"></a>00309 <span class="comment">                                )</span>
+<a name="l00310"></a>00310 <span class="comment">                        ),</span>
+<a name="l00311"></a>00311 <span class="comment">                        &quot;two&quot; =&gt; array(</span>
+<a name="l00312"></a>00312 <span class="comment">                                &quot;one&quot; =&gt; array(</span>
+<a name="l00313"></a>00313 <span class="comment">                                        &quot;one&quot; =&gt; &quot;&#39;This rocks&#39;.&quot;,</span>
+<a name="l00314"></a>00314 <span class="comment">                                        &quot;two&quot; =&gt; &quot;&#39;uh&#39; &#39;huh&#39;&quot;</span>
+<a name="l00315"></a>00315 <span class="comment">                                )</span>
+<a name="l00316"></a>00316 <span class="comment">                        )</span>
+<a name="l00317"></a>00317 <span class="comment">                )</span>
+<a name="l00318"></a>00318 <span class="comment">        );</span>
+<a name="l00319"></a>00319 <span class="comment">        $f = new r($array);</span>
+<a name="l00320"></a>00320 <span class="comment">        $f-&gt;showObject();</span>
+<a name="l00321"></a>00321 <span class="comment"></span>
+<a name="l00322"></a>00322 <span class="comment">        print_r($f-&gt;_call(function( $item ) {</span>
+<a name="l00323"></a>00323 <span class="comment">                foreach( $item as $k=&gt;$v ){</span>
+<a name="l00324"></a>00324 <span class="comment">                        print &quot;Key: $k, Val: $v &lt;br /&gt;&quot;;</span>
+<a name="l00325"></a>00325 <span class="comment">                }</span>
+<a name="l00326"></a>00326 <span class="comment">        }));</span>
+<a name="l00327"></a>00327 <span class="comment">*/</span>
+<a name="l00328"></a>00328         <span class="comment">//print_r($f-&gt;flatten());</span>
+<a name="l00329"></a>00329         <span class="comment">//print_r( $f );</span>
+<a name="l00330"></a>00330         <span class="comment">//print_r( $f-&gt;downcase() );</span>
+<a name="l00331"></a>00331         <span class="comment">//print $f-&gt;pos(&quot;YeP&quot;);</span>
+<a name="l00332"></a>00332         <span class="comment">//print_r($f-&gt;slashes());</span>
+<a name="l00333"></a>00333 
+<a name="l00334"></a><a class="code" href="index_8php.html#acebf83966ef6d7e5645a6b62ba368f9f">00334</a>         <a class="code" href="index_8php.html#acebf83966ef6d7e5645a6b62ba368f9f">$a</a> = <span class="keyword">new</span> <a class="code" href="classr.html">r</a>(<span class="stringliteral">&quot;Pierce&quot;</span>);
+<a name="l00335"></a>00335         <span class="comment">//$a-&gt;showObject();</span>
+<a name="l00336"></a>00336 
+<a name="l00337"></a>00337         <span class="comment">/*</span>
+<a name="l00338"></a>00338 <span class="comment">        $json = json_encode( $f-&gt;replace(&quot;u&quot;,&quot;PERSONWOOOOO&quot;) );</span>
+<a name="l00339"></a>00339 <span class="comment">        print &#39;&lt;script type=&quot;text/javascript&quot;&gt;console.log(&#39; . $json . &#39;);&lt;/script&gt;&#39;;</span>
+<a name="l00340"></a>00340 <span class="comment">        */</span>
+<a name="l00341"></a>00341 
+<a name="l00342"></a><a class="code" href="index_8php.html#a2e64f0494f7eccf90168af7f67198650">00342</a>         <a class="code" href="index_8php.html#a2e64f0494f7eccf90168af7f67198650">$writtenMethods</a> = get_class_methods(<span class="stringliteral">&quot;r&quot;</span>);
+<a name="l00343"></a><a class="code" href="index_8php.html#ab278eba7cab5341dacdccecd7a2cc2df">00343</a>         <a class="code" href="index_8php.html#ab278eba7cab5341dacdccecd7a2cc2df">$allowedMethods</a> = <a class="code" href="index_8php.html#acebf83966ef6d7e5645a6b62ba368f9f">$a</a>-&gt;allowedMethods;
+<a name="l00344"></a>00344 
+<a name="l00345"></a>00345         <span class="comment">// Flatten the allowedMethods array</span>
+<a name="l00346"></a>00346         <span class="keywordflow">foreach</span>(<a class="code" href="index_8php.html#ab278eba7cab5341dacdccecd7a2cc2df">$allowedMethods</a> as $k=&gt;$v) {
+<a name="l00347"></a>00347                 print <span class="stringliteral">&#39;&lt;div class=&quot;bigbox round shadow&quot;&gt;&#39;</span>;
+<a name="l00348"></a>00348                 print <span class="stringliteral">&quot;&lt;h1&gt;$k&lt;/h1&gt;&quot;</span>;
+<a name="l00349"></a>00349                 <span class="keywordflow">foreach</span>($v as $key=&gt;$val) {
+<a name="l00350"></a>00350                         <a class="code" href="index_8php.html#a1c475c0c53206fb15c4c3028bb7d5c7c">$methodsInUse</a>[] = $val;
+<a name="l00351"></a>00351                         print <span class="stringliteral">&quot;&lt;h3&gt;$val&lt;/h3&gt;&quot;</span>;
+<a name="l00352"></a>00352                 }
+<a name="l00353"></a>00353                 print <span class="stringliteral">&#39;&lt;/div&gt;&#39;</span>;
+<a name="l00354"></a>00354         }
+<a name="l00355"></a><a class="code" href="index_8php.html#a1c475c0c53206fb15c4c3028bb7d5c7c">00355</a>         <a class="code" href="index_8php.html#a1c475c0c53206fb15c4c3028bb7d5c7c">$methodsInUse</a> = array_unique(<a class="code" href="index_8php.html#a1c475c0c53206fb15c4c3028bb7d5c7c">$methodsInUse</a>);
+<a name="l00356"></a>00356 
+<a name="l00357"></a>00357         <span class="keywordflow">foreach</span>(<a class="code" href="index_8php.html#a1c475c0c53206fb15c4c3028bb7d5c7c">$methodsInUse</a> as $k=&gt;$v) {
+<a name="l00358"></a>00358                 <span class="keywordflow">foreach</span>( <a class="code" href="index_8php.html#ab278eba7cab5341dacdccecd7a2cc2df">$allowedMethods</a> as $key =&gt; $val ) {
+<a name="l00359"></a>00359                         $s = array_search( $v , $val );
+<a name="l00360"></a>00360                         <span class="keywordflow">if</span>($s) {
+<a name="l00361"></a>00361                                 $breakdown[$v][] = $key;
+<a name="l00362"></a>00362                         }
+<a name="l00363"></a>00363                 }
+<a name="l00364"></a>00364         }
+<a name="l00365"></a>00365 
+<a name="l00366"></a><a class="code" href="index_8php.html#a56c1b7384519355df73a254a12f0bae3">00366</a>         <a class="code" href="index_8php.html#a56c1b7384519355df73a254a12f0bae3">$methodCount</a> = 0;
+<a name="l00367"></a><a class="code" href="index_8php.html#a51c734a41c7747051953ec3d78dd1c5b">00367</a>         <a class="code" href="index_8php.html#a51c734a41c7747051953ec3d78dd1c5b">$completedCount</a> = 0;
+<a name="l00368"></a><a class="code" href="index_8php.html#a3b3e916294d02621688f0b1b64f95628">00368</a>         <a class="code" href="index_8php.html#a3b3e916294d02621688f0b1b64f95628">$output</a> = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00369"></a>00369 
+<a name="l00370"></a>00370         <span class="keywordflow">foreach</span>( <a class="code" href="index_8php.html#aa75daea491817f3b64daa2f51128bcdf">$functions</a> as $k=&gt;$v ) {
+<a name="l00371"></a>00371                 <a class="code" href="index_8php.html#a3b3e916294d02621688f0b1b64f95628">$output</a> .= <span class="stringliteral">&quot;&lt;h2&gt;$k&lt;/h2&gt;&quot;</span>;
+<a name="l00372"></a>00372                 <span class="keywordflow">foreach</span>( $v as $key=&gt;$val ) {
+<a name="l00373"></a>00373                         <a class="code" href="index_8php.html#a56c1b7384519355df73a254a12f0bae3">$methodCount</a>++;
+<a name="l00374"></a>00374                         <span class="keywordflow">if</span>( is_array( $val ) ) {
+<a name="l00375"></a>00375                                 $item = $key;
+<a name="l00376"></a>00376                         } <span class="keywordflow">else</span> {
+<a name="l00377"></a>00377                                 $item = $val;
+<a name="l00378"></a>00378                         }
+<a name="l00379"></a>00379                         <span class="keywordflow">if</span>(in_array($item, <a class="code" href="index_8php.html#a2e64f0494f7eccf90168af7f67198650">$writtenMethods</a>)) {
+<a name="l00380"></a>00380                                 <a class="code" href="index_8php.html#a3b3e916294d02621688f0b1b64f95628">$output</a> .= <span class="stringliteral">&quot;&lt;div class=\&quot;functions green\&quot;&gt;&quot;</span>;
+<a name="l00381"></a>00381                                 <a class="code" href="index_8php.html#a51c734a41c7747051953ec3d78dd1c5b">$completedCount</a>++;
+<a name="l00382"></a>00382                         } <span class="keywordflow">else</span> {
+<a name="l00383"></a>00383                                 <a class="code" href="index_8php.html#a3b3e916294d02621688f0b1b64f95628">$output</a> .= <span class="stringliteral">&quot;&lt;div class=\&quot;functions red\&quot;&gt;&quot;</span>;
+<a name="l00384"></a>00384                         }
+<a name="l00385"></a>00385                         <span class="keywordflow">if</span>(is_array($val)) {
+<a name="l00386"></a>00386                                 <a class="code" href="index_8php.html#a3b3e916294d02621688f0b1b64f95628">$output</a> .= $key . <span class="stringliteral">&quot;(&quot;</span>;
+<a name="l00387"></a>00387                                 <span class="keywordflow">if</span>( count($val) &gt; 1) {
+<a name="l00388"></a>00388                                         $separator = <span class="stringliteral">&quot; , &quot;</span>;
+<a name="l00389"></a>00389                                 } <span class="keywordflow">else</span> {
+<a name="l00390"></a>00390                                         $separator = <span class="stringliteral">&quot; &quot;</span>;
+<a name="l00391"></a>00391                                 }
+<a name="l00392"></a>00392                                 <span class="keywordflow">foreach</span> ($val as $value) {
+<a name="l00393"></a>00393                                         <a class="code" href="index_8php.html#a3b3e916294d02621688f0b1b64f95628">$output</a> .= <span class="stringliteral">&quot; $$value$separator&quot;</span>;
+<a name="l00394"></a>00394                                 }
+<a name="l00395"></a>00395                         } <span class="keywordflow">else</span> {
+<a name="l00396"></a>00396                                 <a class="code" href="index_8php.html#a3b3e916294d02621688f0b1b64f95628">$output</a> .= $val . <span class="stringliteral">&quot;(&quot;</span>;
+<a name="l00397"></a>00397                         }
+<a name="l00398"></a>00398                         <a class="code" href="index_8php.html#a3b3e916294d02621688f0b1b64f95628">$output</a> .= <span class="stringliteral">&quot;)&quot;</span>;
+<a name="l00399"></a>00399 
+<a name="l00400"></a>00400                         <span class="keywordflow">if</span>( isset( $breakdown[$item] )) {
+<a name="l00401"></a>00401                                 <span class="keywordflow">foreach</span>( $breakdown[$item] as $key=&gt;$val) {
+<a name="l00402"></a>00402                                         <a class="code" href="index_8php.html#a3b3e916294d02621688f0b1b64f95628">$output</a> .= <span class="stringliteral">&quot;&lt;br /&gt;Used by data type: $val&quot;</span>;
+<a name="l00403"></a>00403                                 }
+<a name="l00404"></a>00404                         }
+<a name="l00405"></a>00405                         
+<a name="l00406"></a>00406 
+<a name="l00407"></a>00407                         <a class="code" href="index_8php.html#a3b3e916294d02621688f0b1b64f95628">$output</a> .= <span class="stringliteral">&quot;&lt;/div&gt;&quot;</span>;
+<a name="l00408"></a>00408                 }
+<a name="l00409"></a>00409         }
+<a name="l00410"></a>00410 
+<a name="l00411"></a>00411 
+<a name="l00412"></a>00412 print <span class="stringliteral">&quot;&lt;h2&gt;$completedCount / $methodCount functions written! &quot;</span> . round((<a class="code" href="index_8php.html#a51c734a41c7747051953ec3d78dd1c5b">$completedCount</a> / <a class="code" href="index_8php.html#a56c1b7384519355df73a254a12f0bae3">$methodCount</a>) * 100 ) . <span class="stringliteral">&quot;% done!&lt;/h2&gt;&quot;</span>;
+<a name="l00413"></a>00413 print <a class="code" href="index_8php.html#a3b3e916294d02621688f0b1b64f95628">$output</a>;
+<a name="l00414"></a>00414         ?&gt;
+<a name="l00415"></a>00415 
+<a name="l00416"></a>00416                         &lt;/div&gt;
+<a name="l00417"></a>00417                 &lt;/div&gt;
+<a name="l00418"></a>00418         &lt;/body&gt;
+<a name="l00419"></a>00419 &lt;/html&gt;
 </pre></div></div><!-- contents -->
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 30 2012 18:27:31 for RubyPHP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Apr 2 2012 17:55:35 for RubyPHP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.0
 </small></address>
