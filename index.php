@@ -333,7 +333,7 @@ body {
 */
 
 	$a = new r("Pierce");
-	$a->showObject();
+	//$a->showObject();
 
 	/*
 	$json = json_encode( $f->replace("u","PERSONWOOOOO") );

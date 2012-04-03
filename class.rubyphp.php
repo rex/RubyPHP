@@ -342,7 +342,6 @@ class r {
 	private final function runMethods() {
 
 		foreach( $this->allowedMethods['autorun'] as $k=>$v ) {
-			print "Running method: $v()<br />";
 			$this->$v = $this->$v();
 		}
 
@@ -855,7 +854,7 @@ class r {
 	 **/
 	public final function money( $symbol = "$" , $decimal = "." ) {
 
-		$num = number_format($this->value);
+		$num = @number_format($this->value);
 		if( is_int( $this->value )) {
 			return "{$symbol}{$num}{$decimal}00";
 		} else if( is_float($this->value) ) {
