@@ -111,7 +111,6 @@ $functions = array(
 		"match" => array(
 			"regex"
 		),
-		"succ",
 		"reverse",
 		"swapcase",
 		"each",
@@ -271,7 +270,7 @@ body {
 	*/
 
 	/* *** INTEGER TEST *****/
-	$b = new r(1234576488);
+/*	$b = new r(1234576488);
 	print $b->secure('sha1') . '<br />';
 	print $b->md5() . '<br />';
 	print $b->sha1() . '<br />';
@@ -288,7 +287,7 @@ body {
 	print $b->even() . '<br />';
 	print $b->odd() . '<br />';
 	$b->showObject();
-/**/
+*/
 	/* *** ARRAY TEST *** */
 /*	$array = array(
 		"thingOne" => array(
@@ -324,15 +323,17 @@ body {
 			print "Key: $k, Val: $v <br />";
 		}
 	}));
-*/
+
 	//print_r($f->flatten());
 	//print_r( $f );
 	//print_r( $f->downcase() );
 	//print $f->pos("YeP");
 	//print_r($f->slashes());
 
+*/
+
 	$a = new r("Pierce");
-	//$a->showObject();
+	$a->showObject();
 
 	/*
 	$json = json_encode( $f->replace("u","PERSONWOOOOO") );

@@ -59,6 +59,11 @@ class r {
 			"flip",
 			"reverse",
 			"to_s",
+			"to_f",
+			"to_i",
+			"to_int",
+			"money",
+			"even",
 			"length",
 			"md5",
 			"sha1",
@@ -179,6 +184,9 @@ class r {
 			"pos",
 			"repeat",
 			"flatten"
+		),
+		"boolean" => array(
+
 		)
 	);
 
@@ -313,6 +321,9 @@ class r {
 					throw new exception("Invalid argument or item supplied to RubyPHP. Please try again.");
 					break;
 			}	
+
+			$this->runMethods();
+
 		} catch( Exception $e ) {
 
 			$this->exception( $e , $e->getMessage() );
@@ -350,7 +361,6 @@ class r {
 		$this->value = ( $this->self ) ? 1 : 0;
 		$this->valueString = ( $this->value ) ? "true" : "false";
 		$this->methods = $this->allowedMethods['boolean'];
-		$this->runMethods();
 		return $this->value;
 	}
 
@@ -365,11 +375,8 @@ class r {
 	private final function buildString() {
 
 		$this->valueString = $this->value;
-		$this->length = strlen( $this->value );
 		$this->chars = str_split( $this->value );
-		$this->flip = $this->flip();
 		$this->methods = $this->allowedMethods["string"];
-		$this->runMethods();
 		return $this->value;
 
 	}
@@ -385,11 +392,7 @@ class r {
 	private final function buildInteger() {
 
 		$this->valueString = $this->to_s($this->value);
-		$this->length = strlen( $this->value );
-		$this->chars = str_split((string)$this->value);
-		$this->flip = $this->flip();
 		$this->methods = $this->allowedMethods['numbers'];
-		$this->runMethods();
 		return $this->value;
 	}
 
@@ -404,10 +407,7 @@ class r {
 	private final function buildDouble() {
 
 		$this->valueString = $this->to_s();
-		$this->to_s = $this->to_s();
-		$this->length = $this->length();
 		$this->methods = $this->allowedMethods['numbers'];
-		$this->runMethods();
 		return $this->value;
 
 	}
@@ -423,8 +423,6 @@ class r {
 	private final function buildArray() {
 
 		$this->valueString = null;
-		$this->length = $this->length();
-		$this->flip = $this->flip();
 		$this->methods = $this->allowedMethods['array'];
 		$this->runMethods();
 		return $this->value;
@@ -581,6 +579,7 @@ class r {
 					break;
 				case "integer":
 				case "string":
+					$this->flipArray = array_reverse( $this->chars );
 					return implode(array_reverse($this->chars));
 					break;
 				case "array":
@@ -1336,7 +1335,6 @@ class r {
 	 * @package RubyPHP
 	 * @author Pierce Moore
 	 * @fn downcase()
-	 * @param mixed $item
 	 * @return mixed
 	 **/
 	public final function downcase() {
@@ -1682,6 +1680,7 @@ class r {
 	 * @author Pierce Moore
 	 * @fn pos()
 	 * @param mixed $needle - The search term.
+	 * @param boolean $recursive - Whether or not to recurse into the value array
 	 * @return mixed
 	 **/
 	public final function pos( $needle , $recursive = true ) {

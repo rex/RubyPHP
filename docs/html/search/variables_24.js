@@ -2,7 +2,6 @@ var searchData=
 [
   ['_24a',['$a',['../index_8php.html#acebf83966ef6d7e5645a6b62ba368f9f',1,'index.php']]],
   ['_24allowedmethods',['$allowedMethods',['../classr.html#ab278eba7cab5341dacdccecd7a2cc2df',1,'r\$allowedMethods()'],['../index_8php.html#ab278eba7cab5341dacdccecd7a2cc2df',1,'$allowedMethods():&#160;index.php']]],
-  ['_24b',['$b',['../index_8php.html#ab9eb087b791749ae45deabb0899b7ccc',1,'index.php']]],
   ['_24capitalize',['$capitalize',['../classr.html#a41c83fecb936997f3e2dae40207e31dd',1,'r']]],
   ['_24completedcount',['$completedCount',['../index_8php.html#a51c734a41c7747051953ec3d78dd1c5b',1,'index.php']]],
   ['_24count',['$count',['../classr.html#af789423037bbc89dc7c850e761177570',1,'r']]],
