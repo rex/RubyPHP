@@ -58,7 +58,7 @@ Data retrieved, let's remove the slashes we added earlier for security purposes.
 	$foo->value = $foo->slashes('strip');
 
 Let's loop through the entire array. Write your function here just as easily as you always would. The function you write will be applied to each and every member of the array.
-#### NOTE: When you write your function, we have to work within PHP's limitations. You *MUST* save data to $this->output or another property of your choosing and access it after the loop. You can't interact directly with the data.
+#### NOTE: When you write your function, we have to work within PHP's limitations. You *MUST* save data to `$this->output` or another `$this->property` of your choosing and access it after the loop. You can't interact directly with the data.
 	$foo->each( function( $val ) ) {
 		$this->output .= "<tr><td>{$val['name']}</td><td>{$val['email']</td></tr>";
 	}
@@ -93,6 +93,7 @@ Perhaps you wanted to do cool things to each individual item during that loop. L
 There are lots of cool functions in here just for numbers. A few of my favorites are: 
 
 Integers
+
 	$foo = new r(12345);
 
 	print $foo->money;		// $12,345.00
@@ -102,6 +103,7 @@ Integers
 	print $foo->NaN;		// false
 
 Double / Float
+
 	$foo = new r(12345.66);
 
 	print $foo->money;		// $12,345.67
@@ -113,7 +115,7 @@ Double / Float
 
 # Notes / Quirks
 
-### 1) When passing a function to each(), each_char(), or _call(), remember that you are working within an `object` context and that to access other functions you must use `$this->function()` syntax.
+### 1) When passing a function to `each()`, `each_char()`, `or _call()`, remember that you are working within an `object` context and that to access other functions you must use `$this->function()` syntax.
 ### 2) For now, running functions on the `r` object does *not* modify the original data, and instead returns the data to you. so to strip slashes from data, you will need to use `$f = $foo->slashes('strip');`.
 ### 3) This class is still in development. More functions will be added all the time (time permitting) and if `return` values or methods change, I will notate it here and in the code.
 
