@@ -58,14 +58,15 @@ Data retrieved, let's remove the slashes we added earlier for security purposes.
 	$foo->value = $foo->slashes('strip');
 
 Let's loop through the entire array. Write your function here just as easily as you always would. The function you write will be applied to each and every member of the array.
-#### NOTE: When you write your function, we have to work within PHP's limitations. You *MUST* save data to `$this->output` or another `$this->property` of your choosing and access it after the loop. You can't interact directly with the data.
+#### NOTE: When you write your function, we have to work within PHP 5.3's limitations. If you are *NOT* running PHP 5.4, you are very limited with this function as you cannot access the `$this` object within the anonymous function. PHP 5.3- should stick to the alternative syntax listed below.
+
 	$foo->each( function( $val ) ) {
 		$this->output .= "<tr><td>{$val['name']}</td><td>{$val['email']</td></tr>";
 	}
 	// Loop over, now we can access that data using $this->output;
 	echo "<table>{$this->output}</table>";
 
-#### Alternative syntax, if you want to keep it closer to what you're used to.
+#### Alternative syntax, if you want to keep it closer to what you're used to *OR* if you are using a PHP version of less than 5.4: 
 	foreach( $foo->val as $k=>$v ) {
 		$output .= "<tr><td>{$v['name']}</td><td>{$v['email']</td></tr>";
 	}
@@ -115,13 +116,13 @@ Double / Float
 
 # Notes / Quirks
 
-### 1) When passing a function to `each()`, `each_char()`, `or _call()`, remember that you are working within an `object` context and that to access other functions you must use `$this->function()` syntax.
+### 1) When passing a function to `each()`, `each_char()`, or `_call()`, remember that you are working within an `object` context and that to access other functions you must use `$this->function()` syntax.
 ### 2) For now, running functions on the `r` object does *not* modify the original data, and instead returns the data to you. so to strip slashes from data, you will need to use `$f = $foo->slashes('strip');`.
 ### 3) This class is still in development. More functions will be added all the time (time permitting) and if `return` values or methods change, I will notate it here and in the code.
 
 # About Me
-## Name: Pierce Moore
-## Occupation: Web Developer for a 3D animation / rendering / production company in Dallas, Texas, USA. 
-## Email: Pierce@PierceMoore.com
-## Twitter: <http://twitter.com/kiapierce/>
-## Homepage: <http://piercemoore.com/>
+### Name: Pierce Moore
+### Occupation: Web Developer for a 3D animation / rendering / production company in Dallas, Texas, USA. 
+### Email: Pierce@PierceMoore.com
+### Twitter: <http://twitter.com/kiapierce/>
+### Homepage: <http://piercemoore.com/>
