@@ -331,21 +331,21 @@ body {
 	//print_r($f->slashes());
 
 */
-
-	$a = r("Pierce");
+	// True for chaining, false for debug.
+	$a = r("Pierce", true , false );
 	//$a->showObject();
 
 	/**
 	 * NEW INSTANTIATION METHOD!
 	 * */
-	print r("pierce")->caps("all");
+	print r("pierce",true,false)->cap("all")->val;
 	
 	/*
 	$json = json_encode( $f->replace("u","PERSONWOOOOO") );
 	print '<script type="text/javascript">console.log(' . $json . ');</script>';
 	*/
 
-	$writtenMethods = get_class_methods("r");
+	$writtenMethods = get_class_methods("r\\r");
 	$allowedMethods = $a->allowedMethods;
 
 	// Flatten the allowedMethods array

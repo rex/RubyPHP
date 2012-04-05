@@ -37,13 +37,13 @@ That's about as easy as it gets.
  * @version 0.1
  * @copyright Pierce Moore 2012 , Refreshed Web Design 2012
  */
-class r {
+final class r {
 
 	/**
 	* First we declare all our publicly accessible variables for each data type. These will be accessible by $foo->$var. 
 	* 
 	* ex:
-	* $foo = new r("$string");
+	* $foo = r("$string");
 	* print $foo->length;
 	* print $foo->even;
 	* print $foo-slashes;
@@ -209,9 +209,8 @@ class r {
 	function __construct( $item , $chaining = true , $debug = true ) {
 
 		$this->self = $item;
-		$this->value = $item;
-		$this->val = $this->value;
-		$this->origVal = $this->value;
+		$this->val = $item;
+		$this->origVal = $this->val;
 		$this->buildObject();
 
 		$this->setChaining( $chaining );
@@ -233,7 +232,7 @@ class r {
 	 * @param string $msg - The message that was thrown
 	 * @return void
 	 * */
-	public final function exception( Exception $e , $msg ) {
+	public function exception( Exception $e , $msg ) {
 
 		print "####################################### \n\n<br /><br />";
 
@@ -262,7 +261,7 @@ class r {
 	 * @param string $function - The function that you are trying to test for
 	 * @return boolean
 	 * */
-	public final function responds_to( $function ) {
+	public function responds_to( $function ) {
 
 		return in_array( $function , $this->methods );
 	}
@@ -276,9 +275,9 @@ class r {
 	 * @param string $function - The user-supplied function that will be run against the object value
 	 * @return mixed
 	 **/
-	public final function _call( $function ) {
+	public function _call( $function ) {
 
-		return $function( $this->value );
+		return $function( $this->val );
 
 	}
 
@@ -291,7 +290,7 @@ class r {
 	 * @param boolean $mode - True/False mode for global chaining. Defaults to on because it's just better that way.
 	 * @return mixed
 	 **/
-	public final function setChaining( $mode ) {
+	public function setChaining( $mode ) {
 
 		$this->chaining = $mode;
 		return $this;
@@ -307,10 +306,30 @@ class r {
 	 * @param boolean $mode - True/False mode for global debug. Defaults to on because it's just better that way.
 	 * @return mixed
 	 **/
-	public final function setDebug( $mode ) {
+	public function setDebug( $mode ) {
 
 		$this->debug = $mode;
 		return $this;
+
+	}
+
+	/**
+	 * An easy function that will send data depending on whether or not global chaining is enable. If enabled, returns $this. If disabled, simply returns value.
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn chain()
+	 * @param mixed $data - The data that could be returned.
+	 * @return mixed
+	 **/
+	public function chain( $data ) {
+
+		if( @$this->chaining ) {
+			$this->val = $data;
+			return $this;
+		} else {
+			return $data;
+		}
 
 	}
 
@@ -322,7 +341,7 @@ class r {
 	 * @fn showObject()
 	 * @return void
 	 * */
-	public final function showObject( $fetch = false ) {
+	public function showObject( $fetch = false ) {
 
 		if( $fetch ) {
 			return $this;
@@ -334,6 +353,7 @@ class r {
 
 	}
 
+
 	/**
 	 * This is the function that is called upon instantiation. It builds the corresponding object for the item provided and gives it the properties and functionality of a ruby object.
 	 * 
@@ -342,7 +362,7 @@ class r {
 	 * @fn buildObject()
 	 * @return void
 	 **/
-	private final function buildObject() {
+	private function buildObject() {
 
 		try {
 
@@ -392,7 +412,7 @@ class r {
 	 * @fn runMethods()
 	 * @return void
 	 **/
-	private final function runMethods() {
+	private function runMethods() {
 
 		foreach( $this->allowedMethods['autorun'] as $k=>$v ) {
 			$this->$v = $this->$v();
@@ -408,12 +428,12 @@ class r {
 	 * @fn buildBoolean()
 	 * @return boolean
 	 **/
-	private final function buildBoolean() {
+	private function buildBoolean() {
 
-		$this->value = ( $this->self ) ? 1 : 0;
-		$this->valueString = ( $this->value ) ? "true" : "false";
+		$this->val = ( $this->self ) ? 1 : 0;
+		$this->valString = ( $this->val ) ? "true" : "false";
 		$this->methods = $this->allowedMethods['boolean'];
-		return $this->value;
+		return $this->val;
 	}
 
 	/**
@@ -424,12 +444,12 @@ class r {
 	 * @fn buildString()
 	 * @return boolean
 	 * */
-	private final function buildString() {
+	private function buildString() {
 
-		$this->valueString = $this->value;
-		$this->chars = str_split( $this->value );
+		$this->valString = $this->val;
+		$this->chars = str_split( $this->val );
 		$this->methods = $this->allowedMethods["string"];
-		return $this->value;
+		return $this->val;
 
 	}
 
@@ -441,11 +461,11 @@ class r {
 	 * @fn buildInteger()
 	 * @return boolean
 	 * */
-	private final function buildInteger() {
+	private function buildInteger() {
 
-		$this->valueString = $this->to_s($this->value);
+		$this->valString = $this->to_s($this->val);
 		$this->methods = $this->allowedMethods['numbers'];
-		return $this->value;
+		return $this->val;
 	}
 
 	/**
@@ -456,11 +476,11 @@ class r {
 	 * @fn buildDouble()
 	 * @return boolean
 	 * */
-	private final function buildDouble() {
+	private function buildDouble() {
 
-		$this->valueString = $this->to_s();
+		$this->valString = $this->to_s();
 		$this->methods = $this->allowedMethods['numbers'];
-		return $this->value;
+		return $this->val;
 
 	}
 
@@ -472,12 +492,12 @@ class r {
 	 * @fn buildArray()
 	 * @return boolean
 	 * */
-	private final function buildArray() {
+	private function buildArray() {
 
-		$this->valueString = null;
+		$this->valString = null;
 		$this->methods = $this->allowedMethods['array'];
 		$this->runMethods();
-		return $this->value;
+		return $this->val;
 	}
 
 	/**
@@ -488,9 +508,9 @@ class r {
 	 * @fn val()
 	 * @return mixed
 	 **/
-	public final function val() {
+	public function val() {
 
-		return $this->value;
+		return $this->val;
 
 	}
 
@@ -502,9 +522,9 @@ class r {
 	 * @fn dump()
 	 * @return mixed
 	 **/
-	public final function dump() {
+	public function dump() {
 
-		var_dump( $this->value );
+		var_dump( $this->val );
 
 	}
 
@@ -516,7 +536,7 @@ class r {
 	 * @fn destroy()
 	 * @return void
 	 **/
-	public final function destroy() {
+	public function destroy() {
 
 		foreach( $this as $k ){
 			$k = "";
@@ -535,18 +555,18 @@ class r {
 	 * @param string $position - The position to place the salt. Accepts "first" or "last". Default: Null (no salt position)
 	 * @return string
 	 **/
-	public final function secure( $mode = "sha1" , $salt = null , $position = null ) {
+	public function secure( $mode = "sha1" , $salt = null , $position = null ) {
 
 		try {
-			if( is_array($this->value)) {
+			if( is_array($this->val)) {
 				throw new exception("Arrays are not allowed to be secured. Please try again.");
 			}
-			$string = $this->value;
+			$string = $this->val;
 			if( $salt != null ) {
 				if( strcmp( $position , "first" ) == 0 ) {
-					$string = $salt . $this->value;
+					$string = $salt . $this->val;
 				} else if( strcmp( $position , "last" ) == 0 ) {
-					$string = $this->value . $salt;
+					$string = $this->val . $salt;
 				} else {
 					throw new exception("Invalid salt location specified, please try again.");
 				}
@@ -554,7 +574,7 @@ class r {
 			if( !in_array( $mode , hash_algos() ) ) {
 				throw new exception("Invalid or unsupported hashing algorithm specified. Please try again.");
 			}
-			return $mode( $string );
+			return $this->chain( $mode( $string ) );
 		} catch( Exception $e ) {
 			$this->exception( $e , $e->getMessage() );
 		}
@@ -569,12 +589,13 @@ class r {
 	 * @fn md5()
 	 * @return string
 	 **/
-	public final function md5() {
+	public function md5() {
 
 		if( $this->type == "array" ) {
 			return false;
 		}
-		return md5( $this->value );
+
+		return $this->chain( md5( $this->val ) );
 
 	}
 
@@ -586,12 +607,12 @@ class r {
 	 * @fn sha1()
 	 * @return string
 	 **/
-	public final function sha1() {
+	public function sha1() {
 
 		if( $this->type == "array" ) {
 			return false;
 		}
-		return sha1( $this->value );
+		return $this->chain( sha1( $this->val ) );
 
 	}
 
@@ -603,12 +624,12 @@ class r {
 	 * @fn escape()
 	 * @return string
 	 **/
-	public final function escape() {
+	public function escape() {
 
 		if( $this->type == "array" ) {
 			return false;
 		}
-		return mysql_real_escape_string( $this->value );
+		return $this->chain( mysql_real_escape_string( $this->val ) );
 
 	}
 
@@ -620,23 +641,23 @@ class r {
 	 * @fn flip()
 	 * @return mixed
 	 **/
-	public final function flip() {
+	public function flip() {
 
 		try {
 
 			switch( $this->type ) {
 
 				case "boolean":
-					return !$this->value;
+					return $this->chain( !$this->val );
 					break;
 				case "integer":
 				case "string":
 					$this->flipArray = array_reverse( $this->chars );
-					return implode(array_reverse($this->chars));
+					return $this->chain( implode(array_reverse($this->chars)) );
 					break;
 				case "array":
-					$this->flipArray = array_reverse( $this->value );
-					return $this->flipArray;
+					$this->flipArray = array_reverse( $this->val );
+					return $this->chain( $this->flipArray );
 					break;
 				default:
 					return null;
@@ -655,9 +676,9 @@ class r {
 	 * @fn to_s()
 	 * @return string
 	 **/
-	public final function to_s() {
+	public function to_s() {
 
-		return (string)$this->value;
+		return $this->chain( (string)$this->val );
 
 	}
 
@@ -669,9 +690,9 @@ class r {
 	 * @fn to_i()
 	 * @return int
 	 **/
-	public final function to_i() {
+	public function to_i() {
 
-		return (int)$this->value;
+		return $this->chain( (int)$this->val );
 
 	}
 
@@ -683,9 +704,9 @@ class r {
 	 * @fn to_int()
 	 * @return int
 	 **/
-	public final function to_int() {
+	public function to_int() {
 
-		return (int)$this->value;
+		return $this->chain( (int)$this->val );
 
 	}
 
@@ -697,9 +718,9 @@ class r {
 	 * @fn to_f()
 	 * @return float
 	 **/
-	public final function to_f() {
+	public function to_f() {
 
-		return (float)$this->value;
+		return $this->chain( (float)$this->val );
 
 	}
 
@@ -711,15 +732,15 @@ class r {
 	 * @fn length()
 	 * @return int
 	 **/
-	public final function length( $mode = COUNT_NORMAL ) {
+	public function length( $mode = COUNT_NORMAL ) {
 
-		if( !is_array( $this->value )) {
+		if( !is_array( $this->val )) {
 
-			return strlen( (string)$this->value );
+			return $this->chain( strlen( (string)$this->val ) );
 
-		} else if (is_array( $this->value )) {
+		} else if (is_array( $this->val )) {
 
-			return count( $this->value , $mode );
+			return $this->chain( count( $this->val , $mode ) );
 		}
 
 	}
@@ -734,27 +755,27 @@ class r {
 	 * @param mixed $value - The value to be modified. I found that this parameter was necessary for other functions that required casing and needed to pass their own values.
 	 * @return string
 	 **/
-	public final function cap( $type , $value = null ) {
+	public function cap( $type , $value = null ) {
 
 		try {
 
 			if( !isset( $value ) || value == null ) {
-				$value = $this->value;
+				$value = $this->val;
 			}
 
 			switch( $type ) {
 
 				case "first":
-					return ucfirst( strtolower( $value ));
+					return $this->chain( ucfirst( strtolower( $value )) );
 					break;
 				case "all":
-					return strtoupper( $value );
+					return $this->chain( strtoupper( $value ) );
 					break;
 				case "none":
-					return strtolower( $value );
+					return $this->chain( strtolower( $value ) );
 					break;
 				case "words":
-					return ucwords( strtolower( $value ));
+					return $this->chain( ucwords( strtolower( $value )) );
 					break;
 				default: 
 					throw new exception("Invalid capitalization mode supplied. 'first', 'all', 'none', and 'words' are acceptable.");
@@ -776,12 +797,12 @@ class r {
 	 * @fn first()
 	 * @return mixed
 	 **/
-	public final function first() {
+	public function first() {
 
-		if( is_array( $this->value )) {
-			return reset($this->value);
+		if( is_array( $this->val )) {
+			return $this->chain( reset($this->val) );
 		} else if( isset($this->chars) && is_array( $this->chars )) {
-			return reset($this->chars);
+			return $this->chain( reset($this->chars) );
 		} else {
 			return false;
 		}
@@ -796,12 +817,12 @@ class r {
 	 * @fn last()
 	 * @return mixed
 	 **/
-	public final function last() {
+	public function last() {
 
-		if( is_array( $this->value )) {
-			return end($this->value);
+		if( is_array( $this->val )) {
+			return $this->chain( end($this->val) );
 		} else if( isset($this->chars) && is_array( $this->chars )) {
-			return end($this->chars);
+			return $this->chain( end($this->chars) );
 		} else {
 			return false;
 		}
@@ -816,9 +837,9 @@ class r {
 	 * @fn toJSON()
 	 * @return string
 	 **/
-	public final function toJSON() {
+	public function toJSON() {
 
-		return json_encode( $this->value );
+		return $this->chain( json_encode( $this->val ) );
 
 	}
 
@@ -830,9 +851,9 @@ class r {
 	 * @fn fromJSON()
 	 * @return string
 	 **/
-	public final function fromJSON() {
+	public function fromJSON() {
 
-		return json_decode( $this->value );
+		return $this->chain( json_decode( $this->val ) );
 
 	}
 
@@ -844,9 +865,9 @@ class r {
 	 * @fn serial()
 	 * @return string
 	 **/
-	public final function serial() {
+	public function serial() {
 
-		return serialize( $this->value );
+		return $this->chain( serialize( $this->val ) );
 
 	}
 
@@ -858,9 +879,9 @@ class r {
 	 * @fn unserial()
 	 * @return mixed
 	 **/
-	public final function unserial() {
+	public function unserial() {
 
-		return unserialize( $this->value );
+		return $this->chain( unserialize( $this->val ) );
 
 	}
 
@@ -873,14 +894,14 @@ class r {
 	 * @param int $key - The key to locate
 	 * @return mixed
 	 **/
-	public final function index( $key ) {
-		if( $key > count( $this->value )) {
-			return false;
+	public function index( $key ) {
+		if( $key > count( $this->val )) {
+			return $this->chain( $this->val );
 		}
-		if(!is_array( $this->value )) {
-			return $this->chars[$key];
+		if(!is_array( $this->val )) {
+			return $this->chain( $this->chars[$key] );
 		} else {
-			return $this->value[$key];
+			return $this->chain( $this->val[$key] );
 		}
 
 	}	
@@ -905,17 +926,17 @@ class r {
 	 * @param string $decimal - The decimal separator
 	 * @return string
 	 **/
-	public final function money( $symbol = "$" , $decimal = "." ) {
+	public function money( $symbol = "$" , $decimal = "." ) {
 
-		$num = @number_format($this->value);
-		if( is_int( $this->value )) {
-			return "{$symbol}{$num}{$decimal}00";
-		} else if( is_float($this->value) ) {
-			return "{$symbol}{$num}";
-		} else if( !is_array($this->value) && !is_bool($this->value)) {
-			return "{$symbol}{$num}{$decimal}00";
+		$num = @number_format($this->val);
+		if( is_int( $this->val )) {
+			return $this->chain( "{$symbol}{$num}{$decimal}00" );
+		} else if( is_float($this->val) ) {
+			return $this->chain( "{$symbol}{$num}" );
+		} else if( !is_array($this->val) && !is_bool($this->val)) {
+			return $this->chain( "{$symbol}{$num}{$decimal}00" );
 		} else {
-			return false;
+			return $this->chain( $this->val );
 		}
 
 	}
@@ -928,12 +949,17 @@ class r {
 	 * @fn even()
 	 * @return boolean
 	 **/
-	public final function even() {
+	public function even() {
 
-		if( $this->value % 2 ) {
-			return false;
+		if( $this->val % 2 ) {
+			$this->even = false;
 		} else {
-			return true;
+			$this->even = true;
+		}
+		if( @$this->chaining ) {
+			return $this;
+		} else {
+			return $this->even;
 		}
 
 	}	
@@ -946,12 +972,17 @@ class r {
 	 * @fn odd()
 	 * @return boolean
 	 **/
-	public final function odd() {
+	public function odd() {
 
-		if( $this->value % 2 ) {
-			return true;
+		if( $this->val % 2 ) {
+			$this->odd = false;
 		} else {
-			return false;
+			$this->odd = true;
+		}
+		if( @$this->chaining ) {
+			return $this;
+		} else {
+			return $this->odd;
 		}
 
 	}	
@@ -965,9 +996,9 @@ class r {
 	 * @param mixed $times - The multiplier
 	 * @return mixed
 	 **/
-	public final function mult( $times ) {
+	public function mult( $times ) {
 
-		return $this->value * $times;
+		return $this->chain( $this->val * $times );
 
 	}	
 
@@ -979,9 +1010,9 @@ class r {
 	 * @fn av()
 	 * @return mixed
 	 **/
-	public final function av() {
+	public function av() {
 
-		return abs($this->value);
+		return $this->chain( abs($this->val) );
 
 	}	
 
@@ -994,9 +1025,9 @@ class r {
 	 * @param mixed $comparison - The number to find the GCD with
 	 * @return mixed
 	 **/
-	public final function gcd( $comparison ) {
+	public function gcd( $comparison ) {
 
-		return $this->value * $comparison;
+		return $this->chain( $this->val * $comparison );
 
 	}	
 
@@ -1009,12 +1040,12 @@ class r {
 	 * @param int $place - The precision with which you would like to round the number.
 	 * @return mixed
 	 **/
-	public final function rnd( $place ) {
+	public function rnd( $place ) {
 
-		if( $this->NaN( $this->value ) ) {
-			return false;
+		if( $this->NaN( $this->val ) ) {
+			return $this->chain( $this->val );
 		}
-		return round( $this->value , $place );
+		return $this->chain( round( $this->val , $place ) );
 
 	}	
 
@@ -1026,9 +1057,9 @@ class r {
 	 * @fn infinite()
 	 * @return boolean
 	 **/
-	public final function infinite() {
+	public function infinite() {
 
-		return is_infinite( $this->value );
+		return $this->chain( is_infinite( $this->val ) );
 
 	}	
 
@@ -1040,9 +1071,14 @@ class r {
 	 * @fn NaN()
 	 * @return boolean
 	 **/
-	public final function NaN() {
+	public function NaN() {
 
-		return is_nan( (double)$this->value );
+		$this->NaN = is_nan( (double)$this->val );
+		if( $this->chaining ) {
+			return $this;
+		} else {
+			return $this->NaN;
+		}
 
 	}
 
@@ -1054,12 +1090,17 @@ class r {
 	 * @fn zero()
 	 * @return boolean
 	 **/
-	public final function zero() {
+	public function zero() {
 
-		if( $this->value != 0 ) {
-			return false;
+		if( $this->val != 0 ) {
+			$this->zero = false;
 		} else {
-			return true;
+			$this->zero = true;
+		}
+		if( $this->chaining ) {
+			return $this;
+		} else {
+			return $this->zero;
 		}
 
 	}
@@ -1083,12 +1124,12 @@ class r {
 	 * @fn srt()
 	 * @return mixed
 	 **/
-	public final function srt( $method = 'sort') {
+	public function srt( $method = 'sort') {
 
-		if( !is_array( $this->value ) ) {
-			return false; 
+		if( !is_array( $this->val ) ) {
+			return $this->val; 
 		}
-		return $method( $this->value );
+		return $method( $this->val );
 
 	}
 
@@ -1102,21 +1143,21 @@ class r {
 	 * @param string $location - The item to be 
 	 * @return mixed
 	 **/
-	public final function push( $item , $location = "end" ) {
+	public function push( $item , $location = "end" ) {
 
 		try {
 
-			if( !is_array( $this->value ) ) {
-				return false; 
+			if( !is_array( $this->val ) ) {
+				return $this->val; 
 			} else {
 				switch( $location ) {
 					case "fin":
 					case "end":
-						return array_push( $this->value , item );
+						return $this->chain( array_push( $this->val , item ) );
 						break;
 					case "start":
 					case "beg":
-						return array_unshift( $this->value , $item );
+						return $this->chain( array_unshift( $this->val , $item ) );
 						break;
 					default:
 						throw new exception("Invalid location specified in push(). The function accepts 'beg','start','fin', and 'end'");
@@ -1138,12 +1179,12 @@ class r {
 	 * @fn rotate()
 	 * @return array
 	 **/
-	public final function rotate() {
+	public function rotate() {
 
-		if( !is_array( $this->value ) ) {
-			return false; 
+		if( !is_array( $this->val ) ) {
+			return $this->$this->val;
 		}
-		return array_push(array_shift( $this->value ));
+		return $this->chain( array_push(array_shift( $this->val )) );
 
 	}
 
@@ -1156,21 +1197,27 @@ class r {
 	 * @param int $size - The number of random elements to return.
 	 * @return mixed
 	 **/
-	public final function sample( $size = 1 ) {
+	public function sample( $size = 1 ) {
 
 		$return = array();
 
-		if( !is_array( $this->value ) ) {
-			return false; 
+		if( !is_array( $this->val ) ) {
+			return $this->val; 
 		}
-		if( count( $this->value ) < $size ) {
-			$size = count( $this->value );
+		if( count( $this->val ) < $size ) {
+			$size = count( $this->val );
 		}
 		for( $i = 0; $i < $size; $i++ ) {
-			$key = array_rand( $this->value );
-			$return[] = array( $key => $this->value[$key] );
+			$key = array_rand( $this->val );
+			$return[] = array( $key => $this->val[$key] );
 		}
-		return $return;
+		$this->sample = $return;
+		if( $this->chaining ) {
+			return $this;
+		} else {
+			return $this->sample;
+		}
+		
 
 	}
 
@@ -1182,18 +1229,22 @@ class r {
 	 * @fn shuf()
 	 * @return mixed
 	 **/
-	public final function shuf() {
+	public function shuf() {
 
 		if( $this->type == "array" ) {
-			$arr = $this->value;
+			$arr = $this->val;
 			shuffle( $arr );
-			return $arr;
+			return $this->chain( $arr );
 		} else if( $this->type == "string" ) {
 			$arr = $this->chars;
 			shuffle( $arr );
-			return $arr;
+			return $this->chain( $arr );
 		}
-		return false;
+		if( $this->chaining ) {
+			return $this;
+		} else {
+			return $this->val;
+		}
 
 	}
 
@@ -1207,24 +1258,30 @@ class r {
 	 * @param int $count - The size of the slice. 
 	 * @return mixed
 	 **/
-	public final function slice( $start = 0 , $count = null ) {
+	public function slice( $start = 0 , $count = null ) {
 
 		try {
 			if( $count == null ) {
 				throw new exception("The size of the desired slice is required, but was not provided. Please provide both the starting point and the size of the slice.");
 			}
-			if( is_array( $this->value ) ) {
-				if( $start > count( $this->value ) ) {
+			if( is_array( $this->val ) ) {
+				if( $start > count( $this->val ) ) {
 					throw new exception("The key you provided is greater than the highest key in the array. Please select a smaller starting key.");
 				}
-				return array_slice( $this->value , $start , $count );
-			} else if( is_string( $this->value )) {
-				if( $start > count( $this->value ) ) {
+				$return = array_slice( $this->val , $start , $count );
+			} else if( is_string( $this->val )) {
+				if( $start > count( $this->val ) ) {
 					throw new exception("The key you provided is greater than the highest key in the character array. Please select a smaller starting key.");
 				}
-				return array_slice( $this->chars , $start , $count );
+				$return = array_slice( $this->chars , $start , $count );
 			} else {
 				throw new exception("You are trying to slice an unsupported data type. Please try again.");
+			}
+			$this->slice = $return;
+			if( $this->chaining ) {
+				return $this;
+			} else {
+				return $this->slice;
 			}
 		} catch( Exception $e ) {
 			$this->exception( $e , $e->getMessage() );
@@ -1240,14 +1297,18 @@ class r {
 	 * @fn uniq()
 	 * @return mixed
 	 **/
-	public final function uniq() {
+	public function uniq() {
 
-		if( is_array( $this->value )) {
-			return array_unique( $this->value );
+		if( is_array( $this->val )) {
+			array_unique( $this->val );
 		} else if( is_array( $this->chars )) {
-			return array_unique( $this->chars );
+			array_unique( $this->chars );
+		}
+		$return = $this->val;
+		if( $this->chaining ) {
+			return $this;
 		} else {
-			return false;
+			return $return;
 		}
 
 	}
@@ -1262,9 +1323,9 @@ class r {
 	 * @param mixed $args - This function accepts as many arguments as you throw at it. It will hard-typecast all arguments into arrays and go from there. 
 	 * @return mixed
 	 **/
-	public final function zip( $args ) {
+	public function zip( $args ) {
 
-		$val = (array)$this->value;
+		$val = (array)$this->val;
 		$data = array();
 		$return = array();
 		$max = 0;
@@ -1288,7 +1349,7 @@ class r {
 			} 
 		}
 
-		return $return;
+		return $this->chain( $return );
 
 	}
 
@@ -1300,10 +1361,10 @@ class r {
 	 * @fn swapcase()
 	 * @return mixed
 	 **/
-	public final function swapcase() {
+	public function swapcase() {
 
 		if( $this->type != "string" ) {
-			return false;
+			return $this->val;
 		}
 		$return = array();
 		foreach( $this->chars as $k=>$v) {
@@ -1312,7 +1373,7 @@ class r {
 			} else if( ctype_lower( $v )) {
 				$return[] = strtoupper( $v );
 			}
-			return implode( $return );
+			return $this->chain( implode( $return ) );
 		}
 
 	}
@@ -1327,33 +1388,33 @@ class r {
 	 * @param string $position - The position in the array you would like the value appended. Accepts "start" "fin" "begin" and "end"
 	 * @return mixed
 	 **/
-	public final function concat( $item , $position = "end" ) {
+	public function concat( $item , $position = "end" ) {
 
 		$val = (array)$item;
-		if( !is_array( $this->value ) && !is_array( $this->chars )) {
-			return false;
+		if( !is_array( $this->val ) && !is_array( $this->chars )) {
+			return $this->val;
 		}
 		switch( $position ) {
 			case "start":
 			case "begin":
-				if( is_array( $this->value )) {
-					return array_unshift( $this->value , $val );
+				if( is_array( $this->val )) {
+					$return = array_unshift( $this->val , $val );
 				} else if( is_array( $this->chars )) {
-					return implode( array_unshift( $this->chars , $val ));
+					$return = implode( array_unshift( $this->chars , $val ));
 				}
 				break;
 			case "fin":
 			case "end":
-				if( is_array( $this->value )) {
-					return array_push( $this->value , $val);
+				if( is_array( $this->val )) {
+					$return = array_push( $this->val , $val);
 				} else if( is_array( $this->chars )) {
-					return implode( array_push( $this->chars , $val ) );
+					$return = implode( array_push( $this->chars , $val ) );
 				}
 				break;
 			default:
 				return false;
 		}
-		
+		return $this->chain( $return );
 
 	}
 
@@ -1366,17 +1427,17 @@ class r {
 	 * @param mixed $item - The item to be prepended to the existing array
 	 * @return mixed
 	 **/
-	public final function prepend( $item ) {
+	public function prepend( $item ) {
 
-		if( !is_array( $this->value ) && !is_array( $this->chars )) {
-			return false;
+		if( !is_array( $this->val ) && !is_array( $this->chars )) {
+			return $this->val;
 		}
-		if( is_array( $this->value )) {
-			return array_unshift( $this->value , $item );
+		if( is_array( $this->val )) {
+			return $this->chain( array_unshift( $this->val , $item ) );
 		} else if( is_array( $this->chars )) {
-			return imploade( array_unshift( $this->chars, $item));
+			return $this->chain( imploade( array_unshift( $this->chars, $item)) );
 		} else {
-			return false;
+			return $this->val;
 		}
 
 	}
@@ -1389,12 +1450,12 @@ class r {
 	 * @fn downcase()
 	 * @return mixed
 	 **/
-	public final function downcase() {
+	public function downcase() {
 
 		if( $this->type == "string" ) {
-			return strtolower( $this->value );
+			return $this->chain( strtolower( $this->val ) );
 		} else {
-			return false;
+			return $this->val;
 		}
 
 	}
@@ -1407,12 +1468,12 @@ class r {
 	 * @fn hex()
 	 * @return mixed
 	 **/
-	public final function hex() {
+	public function hex() {
 
 		if( $this->type == "string" ) {
-			return hexdec( $this->value );
+			return $this->chain( hexdec( $this->val ) );
 		} else {
-			return false;
+			return $this->val;
 		}
 
 	}
@@ -1425,10 +1486,10 @@ class r {
 	 * @fn toHex()
 	 * @return mixed
 	 **/
-	public final function toHex() {
+	public function toHex() {
 
 		if( $this->type == "string" ) {
-			return dechex( $this->value );
+			return $this->chain( dechex( $this->val ) );
 		} else {
 			return false;
 		}
@@ -1444,11 +1505,11 @@ class r {
 	 * @param string $pattern - The pattern that the regex will follow.
 	 * @return mixed
 	 **/
-	public final function match( $pattern ) {
+	public function match( $pattern ) {
 
 		if( $this->type == "string" ) {
-			if( preg_match( $pattern , $this->value , $matches ) ) {
-				return $matches;
+			if( preg_match( $pattern , $this->val , $matches ) ) {
+				return $this->chain( $matches );
 			}
 		}
 		return false;
@@ -1464,15 +1525,15 @@ class r {
 	 * @param string $function - The user-supplied function that will be run against the characters
 	 * @return mixed
 	 **/
-	public final function each_char( $function ) {
+	public function each_char( $function ) {
 
 		if( is_array( $this->chars ) ) {
 			foreach( $this->chars as $k => $v ) {
 				$output[] = $function( $v );
 			}
-			return $output;
+			return $this->chain( $output );
 		}
-		return false;
+		return $this->val;
 
 	}
 
@@ -1485,14 +1546,14 @@ class r {
 	 * @param string $function - The user-supplied function that will be run against the characters or elements
 	 * @return mixed
 	 **/
-	public final function each( $function ) {
+	public function each( $function ) {
 
 		if( $this->type == "string" ) {
 			foreach( $this->chars as $k => $v ) {
 				$output[] = $function( $v );
 			}
 		} else if ( $this->type == "array" ) {
-			foreach( $this->value as $k => $v ) {
+			foreach( $this->val as $k => $v ) {
 				$output[] = $function( $v );
 			}
 		} else if ( is_array( $this->chars )) {
@@ -1500,9 +1561,9 @@ class r {
 				$output[] = $function( $v );
 			}
 		} else {
-			return false;
+			return $this->val;
 		}
-		return $output;
+		return $this->chain( $output );
 
 	}
 
@@ -1514,9 +1575,9 @@ class r {
 	 * @fn reverse()
 	 * @return mixed
 	 **/
-	public final function reverse() {
+	public function reverse() {
 
-		return $this->flip();
+		return $this->chain( $this->flip() );
 
 	}
 
@@ -1529,12 +1590,15 @@ class r {
 	 * @param mixed $comparison - The value to be compared to.
 	 * @return boolean
 	 **/
-	public final function eql( $comparison ) {
+	public function eql( $comparison ) {
 
+		if( !isset( $comparison )) {
+			return $this->val;
+		}
 		if( $this->type == "string" ) {
-			return ( strcmp( $this->value , $comparison ) == 0 );
+			return ( strcmp( $this->val , $comparison ) == 0 );
 		} else {
-			return $this->value == $comparison;
+			return $this->val == $comparison;
 		}
 
 	}
@@ -1547,12 +1611,12 @@ class r {
 	 * @fn tr()
 	 * @return mixed
 	 **/
-	public final function tr() {
+	public function tr() {
 
 		if( $this->type == "string" ) {
-			return trim( $this->value );
+			return $this->chain( trim( $this->val ) );
 		} else {
-			return false;
+			return $this->val;
 		}
 
 	}
@@ -1566,23 +1630,25 @@ class r {
 	 * @param mixed $key - The key to remove from the array
 	 * @return mixed
 	 **/
-	public final function del( $key ) {
+	public function del( $key ) {
 
 		if( $this->type == "string" ) {
 			if( $key > count( $this->chars )) {
-				return false;
+				return $this->val;
 			}
 			unset( $this->chars[$key] );
-			return $this->chars;
+			$return = $this->chars;
 		} else if( $this->type == "array" ) {
-			if( $key > count( $this->value )) {
-				return false;
+			if( $key > count( $this->val )) {
+				return $this->val;
 			}
-			unset( $this->value[$key] );
-			return $this->value;
+			unset( $this->val[$key] );
+			$return = $this->val;
 		} else {
-			return false;
+			$return = $this->val;
 		}
+
+		return $this->chain( $return );
 
 	}
 
@@ -1595,9 +1661,12 @@ class r {
 	 * @param string $delimiter - The character separator used to break the string apart
 	 * @return mixed
 	 **/
-	public final function ex( $delimiter ) {
+	public function ex( $delimiter ) {
 
-		return explode( $delimiter , $this->value );
+		if( !isset($delimiter)) {
+			return $this->val;
+		}
+		return $this->chain( explode( $delimiter , $this->val ) );
 
 	}
 
@@ -1610,14 +1679,16 @@ class r {
 	 * @param string $delimiter - The character separator to include between characters.
 	 * @return mixed
 	 **/
-	public final function im( $delimiter ) {
+	public function im( $delimiter ) {
 
-		if( is_array( $this->value )) {
-			return implode( $delimiter , $this->value );
-		} else if( is_array( $this->chars ) ) {
-			return implode( $delimiter , $this->chars );
+		if( !isset($delimiter)) {
+			return $this->val;
 		}
-		return false;
+		if( is_array( $this->val )) {
+			return $this->chain( implode( $delimiter , $this->val ));
+		} else if( is_array( $this->chars ) ) {
+			return $this->chain( implode( $delimiter , $this->chars ));
+		}
 
 	}
 
@@ -1630,18 +1701,18 @@ class r {
 	 * @param int $num - Number of times to be repeated
 	 * @return mixed
 	 **/
-	public final function repeat( $num ) {
+	public function repeat( $num ) {
 		if( $num <= 0 || is_nan( $num )) {
-			return false;
+			return $this->val;
 		}
 		if( $this->type == "array" ) {
 			for( $i = 0; $i < $num; $i++ ) {
-				$return[$i] = $this->value;
+				$return[$i] = $this->val;
 			}
 		} else if( is_array( $this->chars ) ) {
-			$return = str_repeat( $this->value , $num );
+			$return = str_repeat( $this->val , $num );
 		} else {
-			return false;
+			$return = $this->val;
 		}
 		return $return;
 
@@ -1656,14 +1727,20 @@ class r {
 	 * @param int $mode - The count mode: null ) Normal, top-level count. 1) Recursive count. Counts all levels. <DEFAULT
 	 * @return mixed
 	 **/
-	public final function cnt( $mode = 1 ) {
+	public function cnt( $mode = 1 ) {
 
 		if( $this->type == "string" ) {
-			return count( $this->chars , $mode );
+			$this->count = count( $this->chars , $mode );
 		} else if( $this->type == "array" ) {
-			return count( $this->value , $mode );
+			$this->count = count( $this->val , $mode );
+		} else {
+			return $this->val;
 		}
-		return false;
+		if( @$this->chaining ){
+			return $this;
+		} else {
+			return $this->count;
+		}
 
 	}
 
@@ -1676,7 +1753,7 @@ class r {
 	 * @param mixed $mode - The method of slashes to use. DEFAULT: "add", ACCEPTS: "add","addc","strip","stripc"
 	 * @return mixed
 	 **/
-	public final function slashes( $mode = "add" ) {
+	public function slashes( $mode = "add" ) {
 
 		try {
 			switch( $mode ) {
@@ -1687,13 +1764,13 @@ class r {
 					$f = $mode . "slashes";
 					break;
 				default:
-					return false;
+					return $this->val;
 			}
 
 			if( $this->type == "string" || is_array( @$this->chars) ) {
-				return $f( $this->value );
+				return $this->chain( $f( $this->val ) );
 			} else if( $this->type == "array" ) {
-				return $this->arraySlash( $this->value , $f );
+				return $this->chain( $this->arraySlash( $this->val , $f ) );
 			}
 			throw new exception("Invalid data type sent to slashes(). Only strings and arrays are accepted.");
 		} catch( Exception $e ) {
@@ -1712,7 +1789,7 @@ class r {
 	 * @param mixed $mode - This is the function to use. Passed to the function initially by slashes(). 
 	 * @return mixed
 	 **/
-	public final function arraySlash( $array , $mode ) {
+	public function arraySlash( $array , $mode ) {
 
 		foreach( $array as $k=>$v ){
 			if( is_array( $v )) {
@@ -1721,7 +1798,7 @@ class r {
 				$output[$k] = $mode( $v );
 			}
 		}
-		return $output;
+		return $this->chain( $output );
 
 	}
 
@@ -1735,10 +1812,10 @@ class r {
 	 * @param boolean $recursive - Whether or not to recurse into the value array
 	 * @return mixed
 	 **/
-	public final function pos( $needle , $recursive = true ) {
+	public function pos( $needle , $recursive = true ) {
 
 		if( !isset( $needle )) {
-			return false;
+			return $this->val;
 		}
 		$search = function( $key , $haystack ) {
 			if( is_array( $haystack )) {
@@ -1751,9 +1828,9 @@ class r {
 		if( $this->type == "string" || is_array( @$this->chars) ) {
 			return $search( $needle , @$this->chars );
 		} else if( $this->type == "array" ) {
-			return array_walk_recursive( $this->value , $search );
+			return array_walk_recursive( $this->val , $search );
 		}
-		return false;
+		return $this->val;
 
 	}
 
@@ -1768,24 +1845,24 @@ class r {
 	 * @param boolean $recursive - Flag whether or not the function will recurse into the provided array
 	 * @return mixed
 	 **/
-	public final function replace( $item , $replacer , $recursive = true ) {
+	public function replace( $item , $replacer , $recursive = true ) {
 		try {
 			if( !isset( $item ) || !isset( $replacer ) ) {
 				throw new exception("One or more arguments missing for replace(). Please try again.");
 			}
 			if( $this->type == "array" ) {
-				if( in_array( $item , $this->value )) {
-					$key = array_search( $item , $this->value );
-					$this->value[$key] = $replacer;
+				if( in_array( $item , $this->val )) {
+					$key = array_search( $item , $this->val );
+					$this->val[$key] = $replacer;
 				} else {
 					if( $recursive ) {
-						return $this->arrayReplace( $this->value , $item , $replacer );
+						return $this->chain( $this->arrayReplace( $this->val , $item , $replacer ) );
 					} else {
-						return false;
+						return $this->val;
 					}
 				}	
 			} else if( $this->type == "string"  || is_array( $this->chars )) {
-				return preg_replace( $item , $replacer , $this->value );
+				return $this->chain( preg_replace( $item , $replacer , $this->val ) );
 			} else {
 				throw new exception("Invalid data type for replace(). Please try again.");
 			}
@@ -1806,14 +1883,14 @@ class r {
 	 * @param mixed $replacer - The item that will replace the found key
 	 * @return mixed
 	 **/
-	public final function arrayReplace( $array , $item , $replacer ) {
+	public function arrayReplace( $array , $item , $replacer ) {
 		foreach( func_get_args() as $k=>$v ) {
 			if( empty($v) ) {
-				return false;
+				return $this->val;
 			}
 		}
 		if( !is_array( $array )) {
-			return false;
+			return $this->val;
 		}
 		// Test if $item is a regex
 		$regex = strpos( $item , "/");
@@ -1843,13 +1920,13 @@ class r {
 	 * @param mixed $key - The key of the flattened keypair
 	 * @return array
 	 **/
-	public final function flatten( $val = null , $key = null ) {
+	public function flatten( $val = null , $key = null ) {
 		if( isset($val) && isset($key)) {
 			$this->output[$key] = $val;
 		} else {
 			if( $this->type == "array" ) {
 				$this->output = array();
-				array_walk_recursive( $this->value , array( $this , "flatten"));
+				array_walk_recursive( $this->val , array( $this , "flatten"));
 				return $this->output;
 			}	
 		}
@@ -1866,8 +1943,8 @@ class r {
 	 * @param mixed $item - The item that will be incremented by one
 	 * @return mixed
 	 **/
-/*	public final function succ( $item = null ) {
-		( $item == null ) ? $val = $this->value : $val = $item;
+/*	public function succ( $item = null ) {
+		( $item == null ) ? $val = $this->val : $val = $item;
 		if( $this->type == "string" || is_array( $this->chars ) ) {
 			$high = $this->length - 1;
 			for( $i = $high ; $i >= 0; $i-- ) {
