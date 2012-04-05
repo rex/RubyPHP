@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Rubyphp : A class to provide PHP with Ruby-like functionality. " />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Rubyphp</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/piercemoore/RubyPHP">Fork Me on GitHub</a>
+
+          <h1 id="project_title">Rubyphp</h1>
+          <h2 id="project_tagline">A class to provide PHP with Ruby-like functionality. </h2>
+
+          <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/piercemoore/RubyPHP/zipball/master">Download this project as a .zip file</a>
+            <a class="tar_download_link" href="https://github.com/piercemoore/RubyPHP/tarball/master">Download this project as a tar.gz file</a>
+          </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>RubyPHP</h1>
+
+<h2>The easiest way to bring Ruby-like syntax and functionality to your PHP code.</h2>
+
+<hr><h2>Background</h2>
+
+<p>I recently started learning Ruby and was amazed at the sheer volume of incredibly efficient functionality that every single item had immediately available to it. Virtually anything that I wanted to do to a string, array, integer, etc was available without writing an extra function. Even something as simple as reversing the characters in a string went from this:</p>
+
+<pre><code>&lt;?php
+    echo implode( array_reverse( str_split( $string ) ) );
+?&gt;
+</code></pre>
+
+<p>To this:</p>
+
+<pre><code>puts string.reverse
+</code></pre>
+
+<p>And this gave me an idea. What if I brought this level of convenience and functionality to PHP? And thus, RubyPHP was born.</p>
+
+<h2>Overview</h2>
+
+<p>The list of functionality is very, very long ( 66 functions and counting ), but it will be virtually constantly added to as time permits. Help from the community is also appreciated :-P</p>
+
+<h2>What you need</h2>
+
+<ul>
+<li>PHP 5.3+</li>
+<li>Excitement</li>
+</ul><h2>How to use the Script</h2>
+
+<ol>
+<li>Include the script <code>require_once('class.rubyphp.php');</code>
+</li>
+<li>Whenever you create or generate data that you want to handle in cool ways, simply instantiate the object with the data inside it. You do <em>NOT</em> need to specify a data type. Just instantiate and the code works for you! <code>$foo = new r("bar");</code>
+</li>
+<li>Now that it's instantiated, you simply need to access some of the built-in properties that are created upon instantiation or, if you need something more thorough, run one of the awesome built-in functions. <code>echo $foo-&gt;length</code> or <code>echo $foo-&gt;flip</code>. The possibilities are virtually endless.</li>
+</ol><h1>Samples - examples using data returned from a database</h1>
+
+<pre><code>$data = $this-&gt;db-&gt;query('SELECT * FROM `users`'); // Returns an associative array of 10 items
+</code></pre>
+
+<h2>Arrays</h2>
+
+<pre><code>$f = new r($data);
+
+echo $f-&gt;length;                    // 10
+print_r( $f-&gt;flip );            // Shows the array reversed
+print_r( $f-&gt;slashes("strip")); // Recursively iterates through the array and removes the slashes from every single item for display
+print_r( $f-&gt;flatten );         // Flattens the array to one dimension and returns it
+print_r( $f-&gt;first );               // Displays $data[0]
+print_r( $f-&gt;last );                // Displays $data[9]
+</code></pre>
+
+<p>And many, many more!!</p>
+
+<h2>Say you looped through the dataset and wanted to manipulate things like a boss</h2>
+
+<pre><code>$foo = new r( $data );
+</code></pre>
+
+<p>Data retrieved, let's remove the slashes we added earlier for security purposes. NOTE: This behavior will probably change soon so that $foo-&gt;slashes() will save the new array automatically.</p>
+
+<pre><code>$foo-&gt;value = $foo-&gt;slashes('strip');
+</code></pre>
+
+<p>Let's loop through the entire array. Write your function here just as easily as you always would. The function you write will be applied to each and every member of the array.</p>
+
+<h4>NOTE: When you write your function, we have to work within PHP 5.3's limitations. If you are <em>NOT</em> running PHP 5.4, you are very limited with this function as you cannot access the <code>$this</code> object within the anonymous function. PHP 5.3- should stick to the alternative syntax listed below.</h4>
+
+<pre><code>$foo-&gt;each( function( $val ) {
+    $this-&gt;output .= "&lt;tr&gt;&lt;td&gt;{$val['name']}&lt;/td&gt;&lt;td&gt;{$val['email']&lt;/td&gt;&lt;/tr&gt;";
+});
+// Loop over, now we can access that data using $this-&gt;output;
+echo "&lt;table&gt;{$this-&gt;output}&lt;/table&gt;";
+</code></pre>
+
+<h4>Alternative syntax, if you want to keep it closer to what you're used to <em>OR</em> if you are using a PHP version of less than 5.4:</h4>
+
+<pre><code>foreach( $foo-&gt;val as $k=&gt;$v ) {
+    $output .= "&lt;tr&gt;&lt;td&gt;{$v['name']}&lt;/td&gt;&lt;td&gt;{$v['email']&lt;/td&gt;&lt;/tr&gt;";
+}
+echo "&lt;table&gt;$output&lt;/table&gt;";
+</code></pre>
+
+<h2>Strings</h2>
+
+<p>Perhaps you wanted to do cool things to each individual item during that loop. Let's try it.</p>
+
+<pre><code>foreach( $foo-&gt;val as $k=&gt;$v ) {
+    $name = new r($v['name']);
+    $pass = new r($v['password']);
+    $email = new r($v['email']);
+
+    // Now time to do cool stuff
+    $n = $name-&gt;caps('words'); // Capitalizes first letter of each word "Pierce Moore"
+    $p = $pass-&gt;sha1; OR $p = $pass-&gt;md5; OR $p = $pass-&gt;secure('sha512') // NOTE: In the secure() function, you can supply whatever hashing algorithm you want. tiger160,3 , crc32, whatver you want.
+    $e = $email-&gt;trim();
+
+    print "Name: $n, Pass: $p, Email: $e.";
+}
+</code></pre>
+
+<h2>Numbers</h2>
+
+<p>There are lots of cool functions in here just for numbers. A few of my favorites are: </p>
+
+<p>Integers</p>
+
+<pre><code>$foo = new r(12345);
+
+print $foo-&gt;money;      // $12,345.00
+print $foo-&gt;even;       // false
+print $foo-&gt;odd;        // true
+print $foo-&gt;mult(2);    // 24690
+print $foo-&gt;NaN;        // false
+</code></pre>
+
+<p>Double / Float</p>
+
+<pre><code>$foo = new r(12345.66);
+
+print $foo-&gt;money;      // $12,345.67
+print $foo-&gt;even;       // true
+print $foo-&gt;odd;        // false
+print $foo-&gt;mult(2);    // 24691.32
+print $foo-&gt;NaN;        // false
+</code></pre>
+
+<h1>Notes / Quirks</h1>
+
+<h3>1) When passing a function to <code>each()</code>, <code>each_char()</code>, or <code>_call()</code>, remember that you are working within an <code>object</code> context and that to access other functions you must use <code>$this-&gt;function()</code> syntax.</h3>
+
+<h3>2) For now, running functions on the <code>r</code> object does <em>not</em> modify the original data, and instead returns the data to you. so to strip slashes from data, you will need to use <code>$f = $foo-&gt;slashes('strip');</code>.</h3>
+
+<h3>3) This class is still in development. More functions will be added all the time (time permitting) and if <code>return</code> values or methods change, I will notate it here and in the code.</h3>
+
+<h1>About Me</h1>
+
+<h3>Name: Pierce Moore</h3>
+
+<h3>Occupation: Web Developer for a 3D animation / rendering / production company in Dallas, Texas, USA.</h3>
+
+<h3>Email: Pierce@PierceMoore.com</h3>
+
+<h3>Twitter: <a href="http://twitter.com/kiapierce/">http://twitter.com/kiapierce/</a>
+</h3>
+
+<h3>Homepage: <a href="http://piercemoore.com/">http://piercemoore.com/</a>
+</h3>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Rubyphp maintained by <a href="https://github.com/piercemoore">piercemoore</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("<script type="text/javascript">    var _gaq = _gaq || [];   _gaq.push(['_setAccount', 'UA-7133211-15']);   _gaq.push(['_trackPageview']);    (function() {     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);   })();  </script>");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
