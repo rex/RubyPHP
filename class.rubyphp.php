@@ -1,4 +1,6 @@
 <?php
+// Set awesome namespace
+namespace r;
 
 /**
  * 
@@ -8,12 +10,26 @@
  * 
  **/
 
-// Some debug variables
-define("DEBUG", false);			/// Enables / Disables global debug mode
-define("CHAINING", false);		/// This is a dead variable for now. Once all functionality is written, I will rewrite all functions to enable chaining. $a = new r("Pierce")->length()->uniq()->slashes();
+// Let's write a function that you can use in your own code to decrease the size of object instantiation. 
+function r( $item ) {
+	return new r( $item );
+}
+/*
+
+As long as you use the above function, your code will go from this:
+
+$f = new r("Pierce");
+
+to
+
+$f = r("Pierce"); 
+
+That's about as easy as it gets.
+
+*/
 
 /**
- * I would call this class RubyPHP, but in an effort to make development with this class more efficient, I figured writing $foo = new RubyPHP("$string") a thousand times wasn't worth it. So I decided $foo = new r("bar"); was better.
+ * I would call this class RubyPHP, but in an effort to make development with this class more efficient, I figured writing $foo = new RubyPHP("$string") a thousand times wasn't worth it. So I decided $foo = r("bar"); was better.
  * 
  * @package RubyPHP
  * @brief Taking all the beautiful simplicity of Ruby and implementing it in PHP!
@@ -190,7 +206,7 @@ class r {
 		)
 	);
 
-	function __construct( $item ) {
+	function __construct( $item , $chaining = true , $debug = true ) {
 
 		$this->self = $item;
 		$this->value = $item;
@@ -198,8 +214,13 @@ class r {
 		$this->origVal = $this->value;
 		$this->buildObject();
 
-		if( DEBUG )
+		$this->setChaining( $chaining );
+		$this->setDebug( $debug );
+
+		if( $this->debug )
 			$this->showObject();
+
+		return $this;
 	}
 
 	/**
@@ -258,6 +279,38 @@ class r {
 	public final function _call( $function ) {
 
 		return $function( $this->value );
+
+	}
+
+	/**
+	 * Set the global chaining switch on/off
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn setChaining()
+	 * @param boolean $mode - True/False mode for global chaining. Defaults to on because it's just better that way.
+	 * @return mixed
+	 **/
+	public final function setChaining( $mode ) {
+
+		$this->chaining = $mode;
+		return $this;
+
+	}
+
+	/**
+	 * Set the global debug switch on/off
+	 * 
+	 * @package RubyPHP
+	 * @author Pierce Moore
+	 * @fn setDebug()
+	 * @param boolean $mode - True/False mode for global debug. Defaults to on because it's just better that way.
+	 * @return mixed
+	 **/
+	public final function setDebug( $mode ) {
+
+		$this->debug = $mode;
+		return $this;
 
 	}
 

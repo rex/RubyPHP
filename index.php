@@ -1,5 +1,5 @@
 <?php
-
+namespace r;
 require_once('class.rubyphp.php');
 
 
@@ -332,9 +332,14 @@ body {
 
 */
 
-	$a = new r("Pierce");
+	$a = r("Pierce");
 	//$a->showObject();
 
+	/**
+	 * NEW INSTANTIATION METHOD!
+	 * */
+	print r("pierce")->caps("all");
+	
 	/*
 	$json = json_encode( $f->replace("u","PERSONWOOOOO") );
 	print '<script type="text/javascript">console.log(' . $json . ');</script>';

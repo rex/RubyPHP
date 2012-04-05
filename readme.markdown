@@ -60,9 +60,9 @@ Data retrieved, let's remove the slashes we added earlier for security purposes.
 Let's loop through the entire array. Write your function here just as easily as you always would. The function you write will be applied to each and every member of the array.
 #### NOTE: When you write your function, we have to work within PHP 5.3's limitations. If you are *NOT* running PHP 5.4, you are very limited with this function as you cannot access the `$this` object within the anonymous function. PHP 5.3- should stick to the alternative syntax listed below.
 
-	$foo->each( function( $val ) ) {
+	$foo->each( function( $val ) {
 		$this->output .= "<tr><td>{$val['name']}</td><td>{$val['email']</td></tr>";
-	}
+	});
 	// Loop over, now we can access that data using $this->output;
 	echo "<table>{$this->output}</table>";
 
