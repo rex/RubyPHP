@@ -31,16 +31,22 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>RubyPHP</h1>
+<h1>RubyPHP</h1>
 
-<h2>The easiest way to bring Ruby-like syntax and functionality to your PHP code.</h2>
+<h3>The easiest way to bring Ruby-like syntax and functionality to your PHP code.</h3>
 
-<hr><h2>Background</h2>
+<hr />
+
+<h2>Background</h2>
 
 <p>I recently started learning Ruby and was amazed at the sheer volume of incredibly efficient functionality that every single item had immediately available to it. Virtually anything that I wanted to do to a string, array, integer, etc was available without writing an extra function. Even something as simple as reversing the characters in a string went from this:</p>
 
 <pre><code>&lt;?php
     echo implode( array_reverse( str_split( $string ) ) );
+
+    // OR
+
+    echo strrev( $string );
 ?&gt;
 </code></pre>
 
@@ -60,41 +66,44 @@
 <ul>
 <li>PHP 5.3+</li>
 <li>Excitement</li>
-</ul><h2>How to use the Script</h2>
+</ul>
+
+<h2>How to use the Script</h2>
 
 <ol>
-<li>Include the script <code>require_once('class.rubyphp.php');</code>
-</li>
-<li>Whenever you create or generate data that you want to handle in cool ways, simply instantiate the object with the data inside it. You do <em>NOT</em> need to specify a data type. Just instantiate and the code works for you! <code>$foo = new r("bar");</code>
-</li>
+<li>Include the script <code>require_once('class.rubyphp.php');</code></li>
+<li>Remember to include your new PHP file in the <code>r</code> namespace. Simply include <code>namespace r;</code> at the top of your scripts and you will be in! </li>
+<li>Whenever you create or generate data that you want to handle in cool ways, simply instantiate the object with the data inside it. You do <em>NOT</em> need to specify a data type. Just instantiate and the code works for you! <code>$foo = r("bar");</code></li>
 <li>Now that it's instantiated, you simply need to access some of the built-in properties that are created upon instantiation or, if you need something more thorough, run one of the awesome built-in functions. <code>echo $foo-&gt;length</code> or <code>echo $foo-&gt;flip</code>. The possibilities are virtually endless.</li>
-</ol><h1>Samples - examples using data returned from a database</h1>
+</ol>
+
+<h1>Samples - examples using data returned from a database</h1>
 
 <pre><code>$data = $this-&gt;db-&gt;query('SELECT * FROM `users`'); // Returns an associative array of 10 items
 </code></pre>
 
 <h2>Arrays</h2>
 
-<pre><code>$f = new r($data);
+<pre><code>$f = r($data);
 
-echo $f-&gt;length;                    // 10
-print_r( $f-&gt;flip );            // Shows the array reversed
-print_r( $f-&gt;slashes("strip")); // Recursively iterates through the array and removes the slashes from every single item for display
-print_r( $f-&gt;flatten );         // Flattens the array to one dimension and returns it
-print_r( $f-&gt;first );               // Displays $data[0]
-print_r( $f-&gt;last );                // Displays $data[9]
+echo $f-&gt;length;                   // 10
+print_r( $f-&gt;flip );               // Shows the array reversed
+print_r( $f-&gt;slashes("strip"));    // Recursively iterates through the array and removes the slashes from every single item for display
+print_r( $f-&gt;flatten );            // Flattens the array to one dimension and returns it
+print_r( $f-&gt;first );              // Displays $data[0]
+print_r( $f-&gt;last );               // Displays $data[9]
 </code></pre>
 
 <p>And many, many more!!</p>
 
 <h2>Say you looped through the dataset and wanted to manipulate things like a boss</h2>
 
-<pre><code>$foo = new r( $data );
+<pre><code>$foo = r( $data );
 </code></pre>
 
-<p>Data retrieved, let's remove the slashes we added earlier for security purposes. NOTE: This behavior will probably change soon so that $foo-&gt;slashes() will save the new array automatically.</p>
+<p>Data retrieved, let's remove the slashes we added earlier for security purposes. This function returns the <code>$this</code> object if chaining is enabled (default: enabled) so you can just say:</p>
 
-<pre><code>$foo-&gt;value = $foo-&gt;slashes('strip');
+<pre><code>print_r( $foo-&gt;slashes('strip')-&gt;val );
 </code></pre>
 
 <p>Let's loop through the entire array. Write your function here just as easily as you always would. The function you write will be applied to each and every member of the array.</p>
@@ -110,7 +119,7 @@ echo "&lt;table&gt;{$this-&gt;output}&lt;/table&gt;";
 
 <h4>Alternative syntax, if you want to keep it closer to what you're used to <em>OR</em> if you are using a PHP version of less than 5.4:</h4>
 
-<pre><code>foreach( $foo-&gt;val as $k=&gt;$v ) {
+<pre><code>foreach( $foo-&gt;val as $k =&gt; $v ) {
     $output .= "&lt;tr&gt;&lt;td&gt;{$v['name']}&lt;/td&gt;&lt;td&gt;{$v['email']&lt;/td&gt;&lt;/tr&gt;";
 }
 echo "&lt;table&gt;$output&lt;/table&gt;";
@@ -120,15 +129,10 @@ echo "&lt;table&gt;$output&lt;/table&gt;";
 
 <p>Perhaps you wanted to do cool things to each individual item during that loop. Let's try it.</p>
 
-<pre><code>foreach( $foo-&gt;val as $k=&gt;$v ) {
-    $name = new r($v['name']);
-    $pass = new r($v['password']);
-    $email = new r($v['email']);
-
-    // Now time to do cool stuff
-    $n = $name-&gt;caps('words'); // Capitalizes first letter of each word "Pierce Moore"
-    $p = $pass-&gt;sha1; OR $p = $pass-&gt;md5; OR $p = $pass-&gt;secure('sha512') // NOTE: In the secure() function, you can supply whatever hashing algorithm you want. tiger160,3 , crc32, whatver you want.
-    $e = $email-&gt;trim();
+<pre><code>foreach( $foo-&gt;val as $k =&gt; $v ) {
+    $name = r($v['name'])-&gt;cap("first")-&gt;val;
+    $pass = r($v['password'])-&gt;md5()-&gt;val; // OR $p = $pass-&gt;md5; OR $p = $pass-&gt;secure('sha512') // NOTE: In the secure() function, you can supply whatever hashing algorithm you want. tiger160,3 , crc32, whatver you want.
+    $email = r($v['email'])-&gt;tr()-&gt;val;
 
     print "Name: $n, Pass: $p, Email: $e.";
 }
@@ -140,24 +144,24 @@ echo "&lt;table&gt;$output&lt;/table&gt;";
 
 <p>Integers</p>
 
-<pre><code>$foo = new r(12345);
+<pre><code>$foo = r(12345);
 
-print $foo-&gt;money;      // $12,345.00
-print $foo-&gt;even;       // false
-print $foo-&gt;odd;        // true
-print $foo-&gt;mult(2);    // 24690
-print $foo-&gt;NaN;        // false
+print $foo-&gt;money;     // $12,345.00
+print $foo-&gt;even;      // false
+print $foo-&gt;odd;       // true
+print $foo-&gt;mult(2);   // 24690
+print $foo-&gt;NaN;       // false
 </code></pre>
 
 <p>Double / Float</p>
 
-<pre><code>$foo = new r(12345.66);
+<pre><code>$foo = r(12345.66);
 
-print $foo-&gt;money;      // $12,345.67
-print $foo-&gt;even;       // true
-print $foo-&gt;odd;        // false
-print $foo-&gt;mult(2);    // 24691.32
-print $foo-&gt;NaN;        // false
+print $foo-&gt;money;     // $12,345.67
+print $foo-&gt;even;      // true
+print $foo-&gt;odd;       // false
+print $foo-&gt;mult(2);   // 24691.32
+print $foo-&gt;NaN;       // false
 </code></pre>
 
 <h1>Notes / Quirks</h1>
@@ -176,11 +180,9 @@ print $foo-&gt;NaN;        // false
 
 <h3>Email: Pierce@PierceMoore.com</h3>
 
-<h3>Twitter: <a href="http://twitter.com/kiapierce/">http://twitter.com/kiapierce/</a>
-</h3>
+<h3>Twitter: <a href="http://twitter.com/kiapierce/">http://twitter.com/kiapierce/</a></h3>
 
-<h3>Homepage: <a href="http://piercemoore.com/">http://piercemoore.com/</a>
-</h3>
+<h3>Homepage: <a href="http://piercemoore.com/">http://piercemoore.com/</a></h3>
       </section>
     </div>
 
