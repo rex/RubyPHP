@@ -1,6 +1,6 @@
 <?php
 // Set awesome namespace
-namespace r;
+namespace PierceMoore\RubyPHP;
 
 /**
  * 

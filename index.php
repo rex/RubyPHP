@@ -1,5 +1,5 @@
 <?php
-namespace r;
+namespace PierceMoore\RubyPHP;
 require_once('class.rubyphp.php');
 
 
