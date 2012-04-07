@@ -7,9 +7,14 @@
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
-
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
@@ -84,12 +89,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('functions_vars.html','');
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -101,68 +119,77 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 &#160;<ul>
 <li>$allowedMethods
-: <a class="el" href="classr.html#ab278eba7cab5341dacdccecd7a2cc2df">r</a>
+: <a class="el" href="class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#ab278eba7cab5341dacdccecd7a2cc2df">r</a>
 </li>
 <li>$capitalize
-: <a class="el" href="classr.html#a41c83fecb936997f3e2dae40207e31dd">r</a>
+: <a class="el" href="class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a41c83fecb936997f3e2dae40207e31dd">r</a>
+</li>
+<li>$chaining
+: <a class="el" href="class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a793ad5be4c3ef761cb7096cff62f617a">r</a>
 </li>
 <li>$count
-: <a class="el" href="classr.html#af789423037bbc89dc7c850e761177570">r</a>
+: <a class="el" href="class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#af789423037bbc89dc7c850e761177570">r</a>
+</li>
+<li>$debug
+: <a class="el" href="class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a85ae3e64cd40e9564adceb010085e9dd">r</a>
 </li>
 <li>$even
-: <a class="el" href="classr.html#ab661cd196618c18d23108b83a10728f3">r</a>
+: <a class="el" href="class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#ab661cd196618c18d23108b83a10728f3">r</a>
 </li>
 <li>$flipArray
-: <a class="el" href="classr.html#a530c822a487ad325618509d8bf48553a">r</a>
+: <a class="el" href="class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a530c822a487ad325618509d8bf48553a">r</a>
 </li>
 <li>$isMoney
-: <a class="el" href="classr.html#aa2f5c87cc7b1ab41965e940d5c1406d9">r</a>
+: <a class="el" href="class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#aa2f5c87cc7b1ab41965e940d5c1406d9">r</a>
 </li>
 <li>$length
-: <a class="el" href="classr.html#adf14d8e29912c1855022dfa252aa4087">r</a>
+: <a class="el" href="class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#adf14d8e29912c1855022dfa252aa4087">r</a>
 </li>
 <li>$md5
-: <a class="el" href="classr.html#a2557b214f57a046187b88572e443da1f">r</a>
+: <a class="el" href="class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a2557b214f57a046187b88572e443da1f">r</a>
 </li>
 <li>$odd
-: <a class="el" href="classr.html#aee2d4fa4e98da4e6ad23bee644ab5e7a">r</a>
+: <a class="el" href="class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#aee2d4fa4e98da4e6ad23bee644ab5e7a">r</a>
 </li>
 <li>$reverse
-: <a class="el" href="classr.html#ae0d210fd358fa750a11e63b26f6d26ea">r</a>
+: <a class="el" href="class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#ae0d210fd358fa750a11e63b26f6d26ea">r</a>
 </li>
 <li>$sha1
-: <a class="el" href="classr.html#a310d84f0b735d2ab692b4e2acd90e7ef">r</a>
+: <a class="el" href="class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a310d84f0b735d2ab692b4e2acd90e7ef">r</a>
 </li>
 <li>$slashes
-: <a class="el" href="classr.html#ac95fd27a35f2d9674ef3760a4ea1d07f">r</a>
+: <a class="el" href="class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#ac95fd27a35f2d9674ef3760a4ea1d07f">r</a>
 </li>
 <li>$to_f
-: <a class="el" href="classr.html#a85a2ada0b16d9e59f094e77df5848459">r</a>
+: <a class="el" href="class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a85a2ada0b16d9e59f094e77df5848459">r</a>
 </li>
 <li>$to_i
-: <a class="el" href="classr.html#afecc47a810cf510aff6387286b9c0e73">r</a>
+: <a class="el" href="class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#afecc47a810cf510aff6387286b9c0e73">r</a>
 </li>
 <li>$to_int
-: <a class="el" href="classr.html#a41eb7bfd09e3b6ad118551accfaad638">r</a>
+: <a class="el" href="class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a41eb7bfd09e3b6ad118551accfaad638">r</a>
 </li>
 <li>$to_s
-: <a class="el" href="classr.html#a5469620d055732b419fff71704232d2f">r</a>
+: <a class="el" href="class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a5469620d055732b419fff71704232d2f">r</a>
 </li>
 <li>$trim
-: <a class="el" href="classr.html#a0ca8b395aaa07c4aac3bdb1f9964d4f5">r</a>
+: <a class="el" href="class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a0ca8b395aaa07c4aac3bdb1f9964d4f5">r</a>
 </li>
 <li>$val
-: <a class="el" href="classr.html#aac81a74a7b30767af29bfd9a695636df">r</a>
+: <a class="el" href="class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#aac81a74a7b30767af29bfd9a695636df">r</a>
 </li>
 </ul>
 </div><!-- contents -->
+</div>
+  <div id="nav-path" class="navpath">
+    <ul>
 
+    <li class="footer">Generated on Sat Apr 7 2012 15:39:32 for RubyPHP by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.0 </li>
+   </ul>
+ </div>
 
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 3 2012 11:21:17 for RubyPHP by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.0
-</small></address>
 
 </body>
 </html>

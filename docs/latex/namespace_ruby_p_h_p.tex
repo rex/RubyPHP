@@ -3,15 +3,15 @@
 }
 
 
-This is a dead variable for now. Once all functionality is written, I will rewrite all functions to enable chaining. \$a = new r(\char`\"{}\-Pierce\char`\"{})-\/$>$length()-\/$>$uniq()-\/$>$slashes();.  
+Taking all the beautiful simplicity of Ruby and implementing it in P\-H\-P!  
 
 
 
 
 \subsection{Detailed Description}
-This is a dead variable for now. Once all functionality is written, I will rewrite all functions to enable chaining. \$a = new r(\char`\"{}\-Pierce\char`\"{})-\/$>$length()-\/$>$uniq()-\/$>$slashes();. I would call this class \hyperlink{namespace_ruby_p_h_p}{Ruby\-P\-H\-P}, but in an effort to make development with this class more efficient, I figured writing \$foo = new \hyperlink{namespace_ruby_p_h_p}{Ruby\-P\-H\-P}(\char`\"{}\$string\char`\"{}) a thousand times wasn't worth it. So I decided \$foo = new r(\char`\"{}bar\char`\"{}); was better.
+Taking all the beautiful simplicity of Ruby and implementing it in P\-H\-P! I would call this class \hyperlink{namespace_ruby_p_h_p}{Ruby\-P\-H\-P}, but in an effort to make development with this class more efficient, I figured writing \$foo = new \hyperlink{namespace_ruby_p_h_p}{Ruby\-P\-H\-P}(\char`\"{}\$string\char`\"{}) a thousand times wasn't worth it. So I decided \$foo = r(\char`\"{}bar\char`\"{}); was better.
 
-Taking all the beautiful simplicity of Ruby and implementing it in P\-H\-P! \begin{DoxyAuthor}{Author}
+\begin{DoxyAuthor}{Author}
 Pierce Moore 
 \end{DoxyAuthor}
 \begin{DoxyVersion}{Version}
@@ -31,6 +31,21 @@ A pre-\/emptive security function. You are free to run all functions as-\/is, bu
 Pierce Moore
 \end{DoxyAuthor}
 This utility function will call a user-\/provided function on the data object.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Set the global chaining switch on/off
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Set the global debug switch on/off
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+An easy function that will send data depending on whether or not global chaining is enable. If enabled, returns \$this. If disabled, simply returns value.
 
 \begin{DoxyAuthor}{Author}
 Pierce Moore
