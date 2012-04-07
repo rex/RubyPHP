@@ -1,4 +1,4 @@
-.# RubyPHP
+# RubyPHP
 
 ## The easiest way to bring Ruby-like syntax and functionality to your PHP code.
 
@@ -33,7 +33,7 @@ The list of functionality is very, very long ( 66 functions and counting ), but 
 
 ## How to use the Script
 1. Include the script `require_once('class.rubyphp.php');`
-2. Remember to include your new PHP file in the `r` namespace. Simply include `namespace r;` at the top of your scripts and you will be in! 
+2. Remember to include your new PHP file in the `PierceMoore\RubyPHP` namespace. Simply include `namespace PierceMoore\RubyPHP;` at the top of your scripts and you will be in! 
 2. Whenever you create or generate data that you want to handle in cool ways, simply instantiate the object with the data inside it. You do *NOT* need to specify a data type. Just instantiate and the code works for you! `$foo = r("bar");`
 3. Now that it's instantiated, you simply need to access some of the built-in properties that are created upon instantiation or, if you need something more thorough, run one of the awesome built-in functions. `echo $foo->length` or `echo $foo->flip`. The possibilities are virtually endless.
 

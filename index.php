@@ -345,7 +345,7 @@ body {
 	print '<script type="text/javascript">console.log(' . $json . ');</script>';
 	*/
 
-	$writtenMethods = get_class_methods("r\\r");
+	$writtenMethods = get_class_methods("PierceMoore\\RubyPHP\\r");
 	$allowedMethods = $a->allowedMethods;
 
 	// Flatten the allowedMethods array
