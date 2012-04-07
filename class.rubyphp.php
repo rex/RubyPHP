@@ -68,6 +68,8 @@ final class r {
 	var $trim;
 	var $slashes;
 	var $flipArray;
+	var $chaining = false;
+	var $debug = false;
 
 	var $allowedMethods = array(
 		"autorun" => array(
@@ -324,7 +326,7 @@ final class r {
 	 **/
 	public function chain( $data ) {
 
-		if( @$this->chaining ) {
+		if( $this->chaining ) {
 			$this->val = $data;
 			return $this;
 		} else {
@@ -956,7 +958,7 @@ final class r {
 		} else {
 			$this->even = true;
 		}
-		if( @$this->chaining ) {
+		if( $this->chaining ) {
 			return $this;
 		} else {
 			return $this->even;
@@ -979,7 +981,7 @@ final class r {
 		} else {
 			$this->odd = true;
 		}
-		if( @$this->chaining ) {
+		if( $this->chaining ) {
 			return $this;
 		} else {
 			return $this->odd;
@@ -1074,7 +1076,7 @@ final class r {
 	public function NaN() {
 
 		$this->NaN = is_nan( (double)$this->val );
-		if( @$this->chaining ) {
+		if( $this->chaining ) {
 			return $this;
 		} else {
 			return $this->NaN;
@@ -1097,7 +1099,7 @@ final class r {
 		} else {
 			$this->zero = true;
 		}
-		if( @$this->chaining ) {
+		if( $this->chaining ) {
 			return $this;
 		} else {
 			return $this->zero;
@@ -1212,7 +1214,7 @@ final class r {
 			$return[] = array( $key => $this->val[$key] );
 		}
 		$this->sample = $return;
-		if( @$this->chaining ) {
+		if( $this->chaining ) {
 			return $this;
 		} else {
 			return $this->sample;
@@ -1240,7 +1242,7 @@ final class r {
 			shuffle( $arr );
 			return $this->chain( $arr );
 		}
-		if( @$this->chaining ) {
+		if( $this->chaining ) {
 			return $this;
 		} else {
 			return $this->val;
@@ -1278,7 +1280,7 @@ final class r {
 				throw new exception("You are trying to slice an unsupported data type. Please try again.");
 			}
 			$this->slice = $return;
-			if( @$this->chaining ) {
+			if( $this->chaining ) {
 				return $this;
 			} else {
 				return $this->slice;
@@ -1305,7 +1307,7 @@ final class r {
 			array_unique( $this->chars );
 		}
 		$return = $this->val;
-		if( @$this->chaining ) {
+		if( $this->chaining ) {
 			return $this;
 		} else {
 			return $return;
@@ -1736,7 +1738,7 @@ final class r {
 		} else {
 			return $this->val;
 		}
-		if( @$this->chaining ){
+		if( $this->chaining ){
 			return $this;
 		} else {
 			return $this->count;
