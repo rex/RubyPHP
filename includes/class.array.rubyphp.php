@@ -8,10 +8,15 @@ namespace PierceMoore\RubyPHP;
  * @subpackage Array
  * @author Pierce Moore
  * @copyright 2012 
+ * @version 0.1.1
  * */
 class rArray extends r {
 	
-	
+	function __construct( $item ) {
+
+		$this->val = $item;
+		
+	}
 
 }
 

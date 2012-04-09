@@ -2,17 +2,6 @@
 // Set awesome namespace
 namespace PierceMoore\RubyPHP;
 
-// Bring in pertinent files
-$files = array(
-	'string',
-	'number',
-	'boolean',
-	'array'
-);
-foreach( $files as $k=>$v ) {
-	require_once("class.$v.rubyphp.php");
-}
-
 /**
  * 
  * HEY THERE! And welcome to RubyPHP, your new best friend. 
@@ -20,13 +9,33 @@ foreach( $files as $k=>$v ) {
  * Have you ever written code in Ruby and then tried to do the same things in PHP but realized that you definitely couldn't? Yeah. Me too. That's why this class came to be.
  * 
  **/
+require_once('includes/class.string.rubyphp.php');
+require_once('includes/class.array.rubyphp.php');
+require_once('includes/class.boolean.rubyphp.php');
+require_once('includes/class.number.rubyphp.php');
 
 // Let's write a function that you can use in your own code to decrease the size of object instantiation. 
 function r( $item ) {
-	return new r( $item );
+	switch( gettype( $item )) {
+		case "array":
+			return new rArray($item);
+			break;
+		case "integer":
+		case "float":
+			return new rNumber($item);
+			break;
+		case "string":
+			return new rString($item);
+			break;
+		case "boolean":
+			return new rBoolean($item);
+			break;
+		default:
+			return $item;
+	}
+
 }
 /*
-
 As long as you use the above function, your code will go from this:
 
 $f = new r("Pierce");
@@ -81,6 +90,7 @@ class r {
 	public $flipArray;
 	public $chaining = false;
 	public $debug = false;
+	public $chars = array();
 
 	public $allowedMethods = array(
 		"autorun" => array(
