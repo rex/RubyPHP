@@ -337,7 +337,7 @@ body {
 	$c = r(123.45);
 	$d = r( array('Pierce','Moore',1234) );
 	$e = r(false);
-	$a->showObject();
+	//$a->showObject();
 
 	/**
 	 * NEW INSTANTIATION METHOD!
@@ -348,79 +348,6 @@ body {
 	$json = json_encode( $f->replace("u","PERSONWOOOOO") );
 	print '<script type="text/javascript">console.log(' . $json . ');</script>';
 	*/
-
-	$writtenMethods = get_class_methods("PierceMoore\\RubyPHP\\r");
-	$allowedMethods = $a->allowedMethods;
-
-	// Flatten the allowedMethods array
-	foreach($allowedMethods as $k=>$v) {
-		print '<div class="bigbox round shadow">';
-		print "<h1>$k</h1>";
-		foreach($v as $key=>$val) {
-			$methodsInUse[] = $val;
-			print "<h3>$val</h3>";
-		}
-		print '</div>';
-	}
-	$methodsInUse = array_unique($methodsInUse);
-
-	foreach($methodsInUse as $k=>$v) {
-		foreach( $allowedMethods as $key => $val ) {
-			$s = array_search( $v , $val );
-			if($s) {
-				$breakdown[$v][] = $key;
-			}
-		}
-	}
-
-	$methodCount = 0;
-	$completedCount = 0;
-	$output = "";
-
-	foreach( $functions as $k=>$v ) {
-		$output .= "<h2>$k</h2>";
-		foreach( $v as $key=>$val ) {
-			$methodCount++;
-			if( is_array( $val ) ) {
-				$item = $key;
-			} else {
-				$item = $val;
-			}
-			if(in_array($item, $writtenMethods)) {
-				$output .= "<div class=\"functions green\">";
-				$completedCount++;
-			} else {
-				$output .= "<div class=\"functions red\">";
-			}
-			if(is_array($val)) {
-				$output .= $key . "(";
-				if( count($val) > 1) {
-					$separator = " , ";
-				} else {
-					$separator = " ";
-				}
-				foreach ($val as $value) {
-					$output .= " $$value$separator";
-				}
-			} else {
-				$output .= $val . "(";
-			}
-			$output .= ")";
-
-			if( isset( $breakdown[$item] )) {
-				foreach( $breakdown[$item] as $key=>$val) {
-					$output .= "<br />Used by data type: $val";
-				}
-			}
-			
-
-			$output .= "</div>";
-		}
-	}
-
-
-print "<h2>$completedCount / $methodCount functions written! " . round(($completedCount / $methodCount) * 100 ) . "% done!</h2>";
-print $output;
 	?>
 
 			</div>
