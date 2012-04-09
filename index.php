@@ -338,7 +338,7 @@ body {
 	/**
 	 * NEW INSTANTIATION METHOD!
 	 * */
-	print r("pierce",true,false)->cap("all")->val;
+	//print r("pierce",true,false)->cap("all")->val;
 	
 	/*
 	$json = json_encode( $f->replace("u","PERSONWOOOOO") );

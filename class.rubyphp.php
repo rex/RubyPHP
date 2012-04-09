@@ -2,6 +2,17 @@
 // Set awesome namespace
 namespace PierceMoore\RubyPHP;
 
+// Bring in pertinent files
+$files = array(
+	'string',
+	'number',
+	'boolean',
+	'array'
+);
+foreach( $files as $k=>$v ) {
+	require_once("class.$v.rubyphp.php");
+}
+
 /**
  * 
  * HEY THERE! And welcome to RubyPHP, your new best friend. 
@@ -37,7 +48,7 @@ That's about as easy as it gets.
  * @version 0.1
  * @copyright Pierce Moore 2012 , Refreshed Web Design 2012
  */
-final class r {
+class r {
 
 	/**
 	* First we declare all our publicly accessible variables for each data type. These will be accessible by $foo->$var. 
@@ -51,27 +62,27 @@ final class r {
 	* etc..
 	* */
 
-	var $to_s;
-	var $to_f;
-	var $to_i;
-	var $to_int;
-	var $length;
-	var $capitalize;
-	var $count;
-	var $isMoney;
-	var $even;
-	var $odd;
-	var $reverse;
-	var $md5;
-	var $sha1;
-	var $val;
-	var $trim;
-	var $slashes;
-	var $flipArray;
-	var $chaining = false;
-	var $debug = false;
+	public $to_s;
+	public $to_f;
+	public $to_i;
+	public $to_int;
+	public $length;
+	public $capitalize;
+	public $count;
+	public $isMoney;
+	public $even;
+	public $odd;
+	public $reverse;
+	public $md5;
+	public $sha1;
+	public $val;
+	public $trim;
+	public $slashes;
+	public $flipArray;
+	public $chaining = false;
+	public $debug = false;
 
-	var $allowedMethods = array(
+	public $allowedMethods = array(
 		"autorun" => array(
 			"val",
 			"flip",
@@ -208,7 +219,7 @@ final class r {
 		)
 	);
 
-	function __construct( $item , $chaining = true , $debug = true ) {
+	function __construct( $item , $chaining = true , $debug = false ) {
 
 		$this->self = $item;
 		$this->val = $item;
