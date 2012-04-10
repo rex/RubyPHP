@@ -55,37 +55,7 @@ Just a simple utility function to display the formatted object.
 \begin{DoxyAuthor}{Author}
 Pierce Moore
 \end{DoxyAuthor}
-This is the function that is called upon instantiation. It builds the corresponding object for the item provided and gives it the properties and functionality of a ruby object.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
 With every object instantiation, let's build the basic data that will be present for every single type of value.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Let's go down the list, doing the easy stuff first.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Still going. Now we're building the \char`\"{}string\char`\"{} object.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Still going. Now we're building the \char`\"{}integer\char`\"{} object.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Still going. Now we're building the \char`\"{}double\char`\"{} object.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Still going. Now we're building the \char`\"{}array\char`\"{} object.
 
 \begin{DoxyAuthor}{Author}
 Pierce Moore
@@ -120,7 +90,7 @@ Secures an object using sha1 hashing algorithm
 \begin{DoxyAuthor}{Author}
 Pierce Moore
 \end{DoxyAuthor}
-Secures a value for storage in a database by escaping.
+Adds/\-Removes slashes based on input
 
 \begin{DoxyAuthor}{Author}
 Pierce Moore
@@ -155,17 +125,125 @@ Simply returns the length of the value. If it's a number or string, it will retu
 \begin{DoxyAuthor}{Author}
 Pierce Moore
 \end{DoxyAuthor}
-Deals with casing in strings. Is used to modify the upper-\/ and lower-\/case nature of the string.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
 Returns the first item in an array
 
 \begin{DoxyAuthor}{Author}
 Pierce Moore
 \end{DoxyAuthor}
 Returns the last item in an array
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Adjusts the entire case of a string to lower
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Matches a regex against the object value and returns the occurrences
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Runs a function against each of the characters in the object string or the elements in the object array.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Reverses the elements of an array or the characters in a string/double/integer/etc. This is an alias of flip()!
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Determines whether a provided value is equal to the object value or not
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Breaks apart a string of values into separate array pieces by a provided delimiter
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Flattens an array using a provided delimiter
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Repeats a string, number or array \$num of times.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Counts the elements of a string or an array
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Searches for a key or item in a string, integer, double, or array.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Multipurpose replace function. Regex for strings and numbers, and a key-\/$>$val replace for arrays.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Shuffles an array and returns it. Useful for random selection.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Class to separate Array logic from bulk of \hyperlink{namespace_ruby_p_h_p}{Ruby\-P\-H\-P}
+
+Array \begin{DoxyAuthor}{Author}
+Pierce Moore 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+2012 
+\end{DoxyCopyright}
+\begin{DoxyVersion}{Version}
+0.\-1.\-1
+\end{DoxyVersion}
+Still going. Now we're building the \char`\"{}array\char`\"{} object.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Sorts an array according to the provided parameters.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Places an item into a pre-\/existing array at the specified location. Default\-: \char`\"{}end\char`\"{}
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Rotates an array (first element becomes last element, second element becomes first.)
+
+N\-O\-T\-E\-: T\-H\-I\-S I\-S A V\-E\-R\-Y R\-O\-U\-G\-H C\-U\-T. Just.. Bear with me.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Returns a random sample of an array of a specified number of elements.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Slices a specific part of the array and returns it. If the provided \char`\"{}start\char`\"{} offset is larger than the largest key, an exception will be thrown.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+\char`\"{}\-Cleans\char`\"{} an array by removing all duplicate elements and returning the array with no duplicates.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+\char`\"{}\-Zip\char`\"{} takes multiple arrays and interlaces them at their matching positions
 
 \begin{DoxyAuthor}{Author}
 Pierce Moore
@@ -191,6 +269,68 @@ Unserializes a dataset
 Pierce Moore
 \end{DoxyAuthor}
 Retrieves a specific index from an array
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Appends the elements of a provided array to the r object.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Prepends a value to the front of an array or a string
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Adds/\-Removes slashes in an array. This is a recursive function, and will secure all levels of an n-\/dimensional array.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Recursive array replacement function.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Flattens an array into a single dimension.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Removes a specified key from an array.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Class to separate Boolean logic from bulk of \hyperlink{namespace_ruby_p_h_p}{Ruby\-P\-H\-P}
+
+Boolean \begin{DoxyAuthor}{Author}
+Pierce Moore 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+2012 
+\end{DoxyCopyright}
+\begin{DoxyVersion}{Version}
+0.\-1.\-1
+\end{DoxyVersion}
+Let's go down the list, doing the easy stuff first.
+
+\begin{DoxyAuthor}{Author}
+Pierce Moore
+\end{DoxyAuthor}
+Class to separate Number logic from bulk of \hyperlink{namespace_ruby_p_h_p}{Ruby\-P\-H\-P}
+
+Number \begin{DoxyAuthor}{Author}
+Pierce Moore 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+2012 
+\end{DoxyCopyright}
+\begin{DoxyVersion}{Version}
+0.\-1.\-1
+\end{DoxyVersion}
+Let's build the object for numbers. Floats/\-Doubles/\-Integers are all welcome here.
 
 \begin{DoxyAuthor}{Author}
 Pierce Moore
@@ -250,73 +390,6 @@ Determines if the value is zero
 \begin{DoxyAuthor}{Author}
 Pierce Moore
 \end{DoxyAuthor}
-\subparagraph*{}
-
-\begin{DoxyVerb}                   ARRAY FUNCTIONS, yay!\end{DoxyVerb}
- \subparagraph*{}
-
-Sorts an array according to the provided parameters.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Places an item into a pre-\/existing array at the specified location. Default\-: \char`\"{}end\char`\"{}
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Rotates an array (first element becomes last element, second element becomes first.)
-
-N\-O\-T\-E\-: T\-H\-I\-S I\-S A V\-E\-R\-Y R\-O\-U\-G\-H C\-U\-T. Just.. Bear with me.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Returns a random sample of an array of a specified number of elements.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Shuffles an array and returns it. Useful for random selection.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Slices a specific part of the array and returns it. If the provided \char`\"{}start\char`\"{} offset is larger than the largest key, an exception will be thrown.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-\char`\"{}\-Cleans\char`\"{} an array by removing all duplicate elements and returning the array with no duplicates.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-\char`\"{}\-Zip\char`\"{} takes multiple arrays and interlaces them at their matching positions
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Takes a string and reverses the case of each of the letters. All capitals become lowercase and vice-\/versa
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Appends the elements of a provided array to the r object.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Prepends a value to the front of an array or a string
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Adjusts the entire case of a string to lower
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
 Returns the decimal value for the object value
 
 \begin{DoxyAuthor}{Author}
@@ -327,7 +400,18 @@ Returns the hex value for the object value
 \begin{DoxyAuthor}{Author}
 Pierce Moore
 \end{DoxyAuthor}
-Matches a regex against the object value and returns the occurrences
+Class to separate String logic from bulk of \hyperlink{namespace_ruby_p_h_p}{Ruby\-P\-H\-P}
+
+String \begin{DoxyAuthor}{Author}
+Pierce Moore 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+2012 
+\end{DoxyCopyright}
+\begin{DoxyVersion}{Version}
+0.\-1.\-1
+\end{DoxyVersion}
+Still going. Now we're building the \char`\"{}string\char`\"{} object.
 
 \begin{DoxyAuthor}{Author}
 Pierce Moore
@@ -337,82 +421,22 @@ Runs a function against each of the characters in the object string (\$this-\/$>
 \begin{DoxyAuthor}{Author}
 Pierce Moore
 \end{DoxyAuthor}
-Runs a function against each of the characters in the object string or the elements in the object array.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Reverses the elements of an array or the characters in a string/double/integer/etc. This is an alias of flip()!
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Determines whether a provided value is equal to the object value or not
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
 Trims all whitespace from the beginning and end of the object value.
 
 \begin{DoxyAuthor}{Author}
 Pierce Moore
 \end{DoxyAuthor}
-Removes a specified key from an array.
+Secures a value for storage in a database by escaping.
 
 \begin{DoxyAuthor}{Author}
 Pierce Moore
 \end{DoxyAuthor}
-Breaks apart a string of values into separate array pieces by a provided delimiter
+Deals with casing in strings. Is used to modify the upper-\/ and lower-\/case nature of the string.
 
 \begin{DoxyAuthor}{Author}
 Pierce Moore
 \end{DoxyAuthor}
-Flattens an array using a provided delimiter
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Repeats a string, number or array \$num of times.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Shuffles an array
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Adds/\-Removes slashes based on input
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Adds/\-Removes slashes in an array. This is a recursive function, and will secure all levels of an n-\/dimensional array.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Searches for a key or item in a string, integer, double, or array.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Multipurpose replace function. Regex for strings and numbers, and a key-\/$>$val replace for arrays.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Recursive array replacement function.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-Alias to succ() function in Ruby. Finds successor to any element provided.
-
-\begin{DoxyAuthor}{Author}
-Pierce Moore
-\end{DoxyAuthor}
-W\-A\-R\-N\-I\-N\-G\-: This function is not completed. Don't use it. Or your stuff will break, guaranteed. I'll finish this later. Alias to succ() function in Ruby. Finds successor to any element provided.
+Takes a string and reverses the case of each of the letters. All capitals become lowercase and vice-\/versa
 
 \begin{DoxyAuthor}{Author}
 Pierce Moore 

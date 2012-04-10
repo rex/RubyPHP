@@ -1,22 +1,24 @@
 var searchData=
 [
   ['_24a',['$a',['../namespace_pierce_moore_1_1_ruby_p_h_p.html#acebf83966ef6d7e5645a6b62ba368f9f',1,'PierceMoore::RubyPHP']]],
-  ['_24allowedmethods',['$allowedMethods',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#ab278eba7cab5341dacdccecd7a2cc2df',1,'PierceMoore\RubyPHP\r\$allowedMethods()'],['../namespace_pierce_moore_1_1_ruby_p_h_p.html#ab278eba7cab5341dacdccecd7a2cc2df',1,'PierceMoore\RubyPHP\$allowedMethods()']]],
+  ['_24automethods',['$autoMethods',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a1087b3dc9325a112dd70821346eb169d',1,'PierceMoore::RubyPHP::r']]],
+  ['_24b',['$b',['../namespace_pierce_moore_1_1_ruby_p_h_p.html#ab9eb087b791749ae45deabb0899b7ccc',1,'PierceMoore::RubyPHP']]],
+  ['_24c',['$c',['../namespace_pierce_moore_1_1_ruby_p_h_p.html#ab73d7f4f2dae233dd561e7fdaab3a77b',1,'PierceMoore::RubyPHP']]],
   ['_24capitalize',['$capitalize',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a41c83fecb936997f3e2dae40207e31dd',1,'PierceMoore::RubyPHP::r']]],
   ['_24chaining',['$chaining',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a793ad5be4c3ef761cb7096cff62f617a',1,'PierceMoore::RubyPHP::r']]],
-  ['_24completedcount',['$completedCount',['../namespace_pierce_moore_1_1_ruby_p_h_p.html#a51c734a41c7747051953ec3d78dd1c5b',1,'PierceMoore::RubyPHP']]],
+  ['_24chars',['$chars',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#ad5ebe8d7cc2e0f99a2ca9165c68677d8',1,'PierceMoore::RubyPHP::r']]],
   ['_24count',['$count',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#af789423037bbc89dc7c850e761177570',1,'PierceMoore::RubyPHP::r']]],
+  ['_24d',['$d',['../namespace_pierce_moore_1_1_ruby_p_h_p.html#a0cf5dd496d9f5ff1edf00d234771dcfe',1,'PierceMoore::RubyPHP']]],
   ['_24debug',['$debug',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a85ae3e64cd40e9564adceb010085e9dd',1,'PierceMoore::RubyPHP::r']]],
+  ['_24e',['$e',['../namespace_pierce_moore_1_1_ruby_p_h_p.html#ab74076a9b7e1d23d12b9e8d65e60315a',1,'PierceMoore::RubyPHP']]],
   ['_24even',['$even',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#ab661cd196618c18d23108b83a10728f3',1,'PierceMoore::RubyPHP::r']]],
   ['_24fliparray',['$flipArray',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a530c822a487ad325618509d8bf48553a',1,'PierceMoore::RubyPHP::r']]],
   ['_24functions',['$functions',['../namespace_pierce_moore_1_1_ruby_p_h_p.html#aa75daea491817f3b64daa2f51128bcdf',1,'PierceMoore::RubyPHP']]],
   ['_24ismoney',['$isMoney',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#aa2f5c87cc7b1ab41965e940d5c1406d9',1,'PierceMoore::RubyPHP::r']]],
   ['_24length',['$length',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#adf14d8e29912c1855022dfa252aa4087',1,'PierceMoore::RubyPHP::r']]],
   ['_24md5',['$md5',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a2557b214f57a046187b88572e443da1f',1,'PierceMoore::RubyPHP::r']]],
-  ['_24methodcount',['$methodCount',['../namespace_pierce_moore_1_1_ruby_p_h_p.html#a56c1b7384519355df73a254a12f0bae3',1,'PierceMoore::RubyPHP']]],
-  ['_24methodsinuse',['$methodsInUse',['../namespace_pierce_moore_1_1_ruby_p_h_p.html#a1c475c0c53206fb15c4c3028bb7d5c7c',1,'PierceMoore::RubyPHP']]],
+  ['_24methods',['$methods',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a802753499268a04da139bd6e6ef89b35',1,'PierceMoore::RubyPHP::r']]],
   ['_24odd',['$odd',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#aee2d4fa4e98da4e6ad23bee644ab5e7a',1,'PierceMoore::RubyPHP::r']]],
-  ['_24output',['$output',['../namespace_pierce_moore_1_1_ruby_p_h_p.html#a3b3e916294d02621688f0b1b64f95628',1,'PierceMoore::RubyPHP']]],
   ['_24reverse',['$reverse',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#ae0d210fd358fa750a11e63b26f6d26ea',1,'PierceMoore::RubyPHP::r']]],
   ['_24sha1',['$sha1',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a310d84f0b735d2ab692b4e2acd90e7ef',1,'PierceMoore::RubyPHP::r']]],
   ['_24slashes',['$slashes',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#ac95fd27a35f2d9674ef3760a4ea1d07f',1,'PierceMoore::RubyPHP::r']]],
@@ -25,6 +27,5 @@ var searchData=
   ['_24to_5fint',['$to_int',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a41eb7bfd09e3b6ad118551accfaad638',1,'PierceMoore::RubyPHP::r']]],
   ['_24to_5fs',['$to_s',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a5469620d055732b419fff71704232d2f',1,'PierceMoore::RubyPHP::r']]],
   ['_24trim',['$trim',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#a0ca8b395aaa07c4aac3bdb1f9964d4f5',1,'PierceMoore::RubyPHP::r']]],
-  ['_24val',['$val',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#aac81a74a7b30767af29bfd9a695636df',1,'PierceMoore::RubyPHP::r']]],
-  ['_24writtenmethods',['$writtenMethods',['../namespace_pierce_moore_1_1_ruby_p_h_p.html#a2e64f0494f7eccf90168af7f67198650',1,'PierceMoore::RubyPHP']]]
+  ['_24val',['$val',['../class_pierce_moore_1_1_ruby_p_h_p_1_1r.html#aac81a74a7b30767af29bfd9a695636df',1,'PierceMoore::RubyPHP::r']]]
 ];

@@ -136,19 +136,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
 <p>Just a simple utility function to display the formatted object.</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>This is the function that is called upon instantiation. It builds the corresponding object for the item provided and gives it the properties and functionality of a ruby object.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
 <p>With every object instantiation, let's build the basic data that will be present for every single type of value.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Let's go down the list, doing the easy stuff first.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Still going. Now we're building the "string" object.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Still going. Now we're building the "integer" object.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Still going. Now we're building the "double" object.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Still going. Now we're building the "array" object.</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
 <p>Simple val() function, returns the value of the object.</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
@@ -162,7 +150,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
 <p>Secures an object using sha1 hashing algorithm</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Secures a value for storage in a database by escaping.</p>
+<p>Adds/Removes slashes based on input</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
 <p>Returns the REVERSE of the object. If it's a boolean, it will act like an on/off switch. For arrays, strings, and numbers it will just reverse the order of the characters.</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
@@ -176,11 +164,55 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
 <p>Simply returns the length of the value. If it's a number or string, it will return the number of characters. If an array or object, it will return the number of elements present.</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Deals with casing in strings. Is used to modify the upper- and lower-case nature of the string.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
 <p>Returns the first item in an array</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
 <p>Returns the last item in an array</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Adjusts the entire case of a string to lower</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Matches a regex against the object value and returns the occurrences</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Runs a function against each of the characters in the object string or the elements in the object array.</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Reverses the elements of an array or the characters in a string/double/integer/etc. This is an alias of flip()!</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Determines whether a provided value is equal to the object value or not</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Breaks apart a string of values into separate array pieces by a provided delimiter</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Flattens an array using a provided delimiter</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Repeats a string, number or array $num of times.</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Counts the elements of a string or an array</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Searches for a key or item in a string, integer, double, or array.</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Multipurpose replace function. Regex for strings and numbers, and a key-&gt;val replace for arrays.</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Shuffles an array and returns it. Useful for random selection.</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Class to separate Array logic from bulk of <a class="el" href="namespace_ruby_p_h_p.html" title="Taking all the beautiful simplicity of Ruby and implementing it in PHP!">RubyPHP</a></p>
+<p>Array </p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore </dd></dl>
+<dl class="section copyright"><dt>Copyright:</dt><dd>2012 </dd></dl>
+<dl class="section version"><dt>Version:</dt><dd>0.1.1</dd></dl>
+<p>Still going. Now we're building the "array" object.</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Sorts an array according to the provided parameters.</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Places an item into a pre-existing array at the specified location. Default: "end"</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Rotates an array (first element becomes last element, second element becomes first.)</p>
+<p>NOTE: THIS IS A VERY ROUGH CUT. Just.. Bear with me.</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Returns a random sample of an array of a specified number of elements.</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Slices a specific part of the array and returns it. If the provided "start" offset is larger than the largest key, an exception will be thrown.</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>"Cleans" an array by removing all duplicate elements and returning the array with no duplicates.</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>"Zip" takes multiple arrays and interlaces them at their matching positions</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
 <p>Returns a JSON object of a value</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
@@ -191,6 +223,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Unserializes a dataset</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
 <p>Retrieves a specific index from an array</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Appends the elements of a provided array to the r object.</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Prepends a value to the front of an array or a string</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Adds/Removes slashes in an array. This is a recursive function, and will secure all levels of an n-dimensional array.</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Recursive array replacement function.</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Flattens an array into a single dimension.</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Removes a specified key from an array.</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Class to separate Boolean logic from bulk of <a class="el" href="namespace_ruby_p_h_p.html" title="Taking all the beautiful simplicity of Ruby and implementing it in PHP!">RubyPHP</a></p>
+<p>Boolean </p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore </dd></dl>
+<dl class="section copyright"><dt>Copyright:</dt><dd>2012 </dd></dl>
+<dl class="section version"><dt>Version:</dt><dd>0.1.1</dd></dl>
+<p>Let's go down the list, doing the easy stuff first.</p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
+<p>Class to separate Number logic from bulk of <a class="el" href="namespace_ruby_p_h_p.html" title="Taking all the beautiful simplicity of Ruby and implementing it in PHP!">RubyPHP</a></p>
+<p>Number </p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore </dd></dl>
+<dl class="section copyright"><dt>Copyright:</dt><dd>2012 </dd></dl>
+<dl class="section version"><dt>Version:</dt><dd>0.1.1</dd></dl>
+<p>Let's build the object for numbers. Floats/Doubles/Integers are all welcome here.</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
 <h6></h6>
 <div class="fragment"><pre class="fragment">                   NUMBER FUNCTIONS, yay! (This includes float and int)</pre></div> <h6></h6>
@@ -214,72 +272,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
 <p>Determines if the value is zero</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<h6></h6>
-<div class="fragment"><pre class="fragment">                   ARRAY FUNCTIONS, yay!</pre></div> <h6></h6>
-<p>Sorts an array according to the provided parameters.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Places an item into a pre-existing array at the specified location. Default: "end"</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Rotates an array (first element becomes last element, second element becomes first.)</p>
-<p>NOTE: THIS IS A VERY ROUGH CUT. Just.. Bear with me.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Returns a random sample of an array of a specified number of elements.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Shuffles an array and returns it. Useful for random selection.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Slices a specific part of the array and returns it. If the provided "start" offset is larger than the largest key, an exception will be thrown.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>"Cleans" an array by removing all duplicate elements and returning the array with no duplicates.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>"Zip" takes multiple arrays and interlaces them at their matching positions</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Takes a string and reverses the case of each of the letters. All capitals become lowercase and vice-versa</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Appends the elements of a provided array to the r object.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Prepends a value to the front of an array or a string</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Adjusts the entire case of a string to lower</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
 <p>Returns the decimal value for the object value</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
 <p>Returns the hex value for the object value</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Matches a regex against the object value and returns the occurrences</p>
+<p>Class to separate String logic from bulk of <a class="el" href="namespace_ruby_p_h_p.html" title="Taking all the beautiful simplicity of Ruby and implementing it in PHP!">RubyPHP</a></p>
+<p>String </p>
+<dl class="section author"><dt>Author:</dt><dd>Pierce Moore </dd></dl>
+<dl class="section copyright"><dt>Copyright:</dt><dd>2012 </dd></dl>
+<dl class="section version"><dt>Version:</dt><dd>0.1.1</dd></dl>
+<p>Still going. Now we're building the "string" object.</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
 <p>Runs a function against each of the characters in the object string ($this-&gt;chars)</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Runs a function against each of the characters in the object string or the elements in the object array.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Reverses the elements of an array or the characters in a string/double/integer/etc. This is an alias of flip()!</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Determines whether a provided value is equal to the object value or not</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
 <p>Trims all whitespace from the beginning and end of the object value.</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Removes a specified key from an array.</p>
+<p>Secures a value for storage in a database by escaping.</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Breaks apart a string of values into separate array pieces by a provided delimiter</p>
+<p>Deals with casing in strings. Is used to modify the upper- and lower-case nature of the string.</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Flattens an array using a provided delimiter</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Repeats a string, number or array $num of times.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Shuffles an array</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Adds/Removes slashes based on input</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Adds/Removes slashes in an array. This is a recursive function, and will secure all levels of an n-dimensional array.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Searches for a key or item in a string, integer, double, or array.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Multipurpose replace function. Regex for strings and numbers, and a key-&gt;val replace for arrays.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Recursive array replacement function.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>Alias to succ() function in Ruby. Finds successor to any element provided.</p>
-<dl class="section author"><dt>Author:</dt><dd>Pierce Moore</dd></dl>
-<p>WARNING: This function is not completed. Don't use it. Or your stuff will break, guaranteed. I'll finish this later. Alias to succ() function in Ruby. Finds successor to any element provided.</p>
+<p>Takes a string and reverses the case of each of the letters. All capitals become lowercase and vice-versa</p>
 <dl class="section author"><dt>Author:</dt><dd>Pierce Moore </dd></dl>
 </div></div><!-- contents -->
 </div>
@@ -287,7 +299,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul>
       <li class="navelem"><a class="el" href="namespace_ruby_p_h_p.html">RubyPHP</a>      </li>
 
-    <li class="footer">Generated on Sat Apr 7 2012 15:39:32 for RubyPHP by
+    <li class="footer">Generated on Tue Apr 10 2012 10:23:34 for RubyPHP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.0 </li>
    </ul>

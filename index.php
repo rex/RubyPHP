@@ -337,7 +337,7 @@ body {
 	$c = r(123.45);
 	$d = r( array('Pierce','Moore',1234) );
 	$e = r(false);
-	//$a->showObject();
+	$a->showObject();
 
 	/**
 	 * NEW INSTANTIATION METHOD!

@@ -12,44 +12,6 @@ namespace PierceMoore\RubyPHP;
  * */
 class rArray extends r {
 	
-	public $customMethods = array(
-		"first",
-		"last",
-		"index",
-		"srt",
-		"push",
-		"rotate",
-		"sample",
-		"shuf",
-		"slice",
-		"uniq",
-		"zip",
-		"serial",
-		"unserial",
-		"toJSON",
-		"fromJSON",
-		"length",
-		"cap",
-		"av",
-		"concat",
-		"prepend",
-		"downcase",
-		"each_char",
-		"match",
-		"reverse",
-		"each",
-		"tr",
-		"del",
-		"ex",
-		"im",
-		"replace",
-		"cnt",
-		"slashes",
-		"pos",
-		"repeat",
-		"flatten"
-	);
-
 	function __construct( $item ) {
 		parent::__construct( $item );
 		$this->buildArray();
@@ -69,16 +31,6 @@ class rArray extends r {
 		$this->valString = null;
 		return $this;
 	}
-	/**
-	 * 
-	 * ################################################################
-	 * 
-	 * 			ARRAY FUNCTIONS, yay!
-	 * 
-	 * ################################################################
-	 * 
-	 * */
-
 
 	/**
 	 * Sorts an array according to the provided parameters.
